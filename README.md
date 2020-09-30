@@ -9,7 +9,7 @@ Video links below will take you to youtube, tutorial links will open Google cola
 
 ## Week 1: Linear Algebra I, Vectors
 
-|  |  |
+| Content | Content description |
 |------------------------|---------------|
 |<img width=600/>|<img width=500/>|
 |    [Video 1.1: What is a vector?](https://youtu.be/YBCLN8NnrjM)                        |  Why learn linear algebra, intuition behind vectors, definition of a vector |
