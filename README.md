@@ -1,5 +1,5 @@
 
-# Mathematical Tools for Neuroscientists (Neuro 212 at Harvard)
+# Mathematical Tools for Neuroscience (Neuro 212 at Harvard)
 
 Developed and taught by Ella Batty, Lucy Lai, Alex Chen, and John Assad
 
