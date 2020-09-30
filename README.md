@@ -7,6 +7,8 @@ Overview description
 
 Video links below will take you to youtube, tutorial links will open Google colab notebooks.
 
+The Week 1 videos are a little rough as of now (steep learning curve) so bear with it and they'll get better!
+
 | Topic | Content | Content description |
 |--|----------------------|---------------|
 | <img width=500/> |<img width=600/>|<img width=500/>|
