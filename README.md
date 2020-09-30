@@ -7,7 +7,7 @@ Overview description
 
 Video links below will take you to youtube, tutorial links will open Google colab notebooks.
 
-| Week | Content | Content description |
+| Topic | Content | Content description |
 |--|----------------------|---------------|
 | <img width=500/> |<img width=600/>|<img width=500/>|
 | **Week 1: Linear Algebra I, Vectors**|    [Video 1.1: What is a vector?](https://youtu.be/YBCLN8NnrjM)                        |  Why learn linear algebra, intuition behind vectors, definition of a vector |
