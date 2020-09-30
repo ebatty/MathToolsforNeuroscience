@@ -8,7 +8,7 @@ Overview description
 
 Video links below will take you to youtube, tutorial links will open Google colab notebooks.
 
-**The Week 1 videos are a little rough as of now (steep learning curve) so bear with it and they'll get better!**
+**The Week 1 videos are a little rough as of now (steep learning curve) but bear with it and they get better!**
 
 | Topic | Content | Content description |
 |--|----------------------|---------------|
