@@ -5,6 +5,8 @@ Developed and taught by Ella Batty, Lucy Lai, Alex Chen, and John Assad
 
 Overview description
 
+Video links below will take you to youtube, tutorial links will open Google colab notebooks.
+
 ## Week 1: Linear Algebra I, Vectors
 
 |  |  |
