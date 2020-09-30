@@ -1,4 +1,4 @@
 
 # Mathematical Tools for Neuroscientists (Neuro 212 at Harvard)
 
-Description
+Developed and taught by Eleanor Batty, Lucy Lai, Alex Chen, and John Assad
