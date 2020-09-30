@@ -5,4 +5,4 @@ Developed and taught by Ella Batty, Lucy Lai, Alex Chen, and John Assad
 
 Overview description
 
-## Module 1: Linear Algebra I, Vectors
+## Week 1: Linear Algebra I, Vectors
