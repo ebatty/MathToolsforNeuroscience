@@ -2,6 +2,7 @@
 # Mathematical Tools for Neuroscience (Neurobio 212 at Harvard)
 
 *Developed and taught by Ella Batty, Lucy Lai, Alex Chen, and John Assad*
+
 Course contact: Eleanor_Batty@hms.harvard.edu
 
 ### Description of course
