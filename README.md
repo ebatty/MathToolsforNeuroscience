@@ -34,5 +34,6 @@ We welcome constructive criticism given via opening a git issue.
 | **Week 3: Linear Algebra III, Eigenstuff**|  [Video 3.1: Eigenvectors and eigenvalues (3Blue1Brown Chapter 14)](https://youtu.be/PFDu9oVAE-g)    | Definition of eigenvectors/eigenvalues, how to find eigenvalues of a matrix, brief intro to matrix diagonalization |
 | |  [Video 3.2: Eigenstuff in Neural Circuits](https://youtu.be/5ltxfjF9jEE)   |  |
 | |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week3/Week3Tutorial1.ipynb)                   | Describing transformations with eigenvectors, looking at eigenstuff of a squared matrix, complex eigenvalues, understanding neural circuit discrete dynamics using eigenvalues/eigenvectors |
+| **Week 4: Linear Algebra IV, Matrix Decomposition & Dimensionality Reduction**|  [Video 4.1: Special Matrices]()    | |
 | **Linear Algebra Review**|  Review Video: Coming soon   | Brief recap of key concepts of the last month |
 |  |  Linking to Neuro Video: Coming soon   | Goes through a neuroscience paper that uses linear algebra heavily |
