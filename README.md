@@ -20,7 +20,7 @@ You will not need any math experience beyond high school calculus. Python will b
 
 There are three components to the course: video lectures, comprehension questions, and tutorials.
 
-**Video lectures**: The course consists of short video lectures each structured around a specific topic (10-20 minutes per video). We have created most of these videos using a Khan academy inspired style. We don't want to reinvent the wheel so when great videos already exist on a specific topic, we link to it instead, but this will mostly occur in the linear algebra section. 
+**Video lectures**: The course consists of short video lectures each structured around a specific topic (10-20 minutes per video). We have created most of these videos using a Khan academy inspired style. We don't want to reinvent the wheel so when great videos already exist on a specific topic, we link to those instead, but this will mostly occur in the linear algebra section. 
 
 **Comprehension questions**: These are short questions designed to be looked at right after watching the videos to consolidate your knowledge and try out quick computations. Both questions and answers are provided below.
 
