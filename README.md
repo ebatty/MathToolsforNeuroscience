@@ -28,7 +28,7 @@ There are three components to the course: video lectures, comprehension question
 
 Video links below will take you to Youtube, tutorial links will open Google colab notebooks.
 
-We welcome constructive criticism given via opening a git issue. Note that the Week 1 videos created by me are a little rough right now due a steep learning curve (and a delay in acquiring appropriate audio equipment) but I promise they get better so bear with it. 
+**We welcome constructive criticism given via opening a git issue. Note that the Week 1 videos created by me are a little rough right now due a steep learning curve (and a delay in acquiring appropriate audio equipment) but I promise they get better so bear with it.**
 
 ### The materials
 
