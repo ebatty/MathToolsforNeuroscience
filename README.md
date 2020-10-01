@@ -31,9 +31,12 @@ We welcome constructive criticism given via opening a git issue.
 | |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week2/Week2Tutorial1.ipynb)                   | Matrix multiplication by hand, thinking about transformations, encoding model matrices in the context of the invertible matrix theorem|
 | |  [Tutorial 2](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week2/Week2Tutorial2.ipynb)                   | Properties of nonsquare matrices, changing bases |
 | **Week 3: Linear Algebra III, Eigenstuff**|  [Video 3.1: Eigenvectors and eigenvalues (3Blue1Brown Chapter 14)](https://youtu.be/PFDu9oVAE-g)    | Definition of eigenvectors/eigenvalues, how to find eigenvalues of a matrix, brief intro to matrix diagonalization |
-| |  [Video 3.2: Eigenstuff in Neural Circuits](https://youtu.be/5ltxfjF9jEE)   |  |
+| |  Video 3.2: Coming soon  |  |
 | |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week3/Week3Tutorial1.ipynb)                   | Describing transformations with eigenvectors, looking at eigenstuff of a squared matrix, complex eigenvalues, understanding neural circuit discrete dynamics using eigenvalues/eigenvectors |
-| **Week 4: Linear Algebra IV, Matrix Decomposition & Dimensionality Reduction**|  [Video 4.1: Special Matrices]()    | |
+| **Week 4: Linear Algebra IV, Matrix Decomposition & Dimensionality Reduction**|  Video 4.1: Special Matrices Coming Soon   | |
+| |  Video 4.2: Matrix decomposition & SVD   | |
+| |  Video 4.3: Dimensionality Reduction in Neuroscience (NMA W1D5 Intro lecture)   | |
+| |  Video 4.4: PCA Coming Soon   | |
 | |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week4/Week4Tutorial1.ipynb)                   | Delving into SVD, implementing PCA and exploring correlation effects, PCA on MNIST images |
 | **Linear Algebra Review**|  Review Video: Coming soon   | Brief recap of key concepts of the last month |
 |  |  Linking to Neuro Video: Coming soon   | Goes through a neuroscience paper that uses linear algebra heavily |
