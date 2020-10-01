@@ -8,7 +8,7 @@ Overview description
 
 Video links below will take you to youtube, tutorial links will open Google colab notebooks.
 
-**The Week 1 videos are a little rough as of now (steep learning curve) but bear with it and they get better!** We don't want to reinvent the wheel so when we felt that good videos were already available for topics, we link to those instead of making our own. For the majority of the topics though, we have created/will create our own videos. 
+**The Week 1 videos are a little rough as of now (steep learning curve) but bear with it and they get better!** We don't want to reinvent the wheel so when we felt that good videos were already available for topics, we link to those instead. For the majority of the topics though, we have created/will create our own videos. 
 
 | Topic | Content | Content description |
 |--|----------------------|---------------|
