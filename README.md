@@ -5,6 +5,14 @@
 
 ### Description of course
 
+\noindent Numerical data analysis has become a nearly indispensable tool in modern neuroscience. This course aims to equip graduate students with the fundamental mathematical skills in quantitative modeling and data analysis necessary for neuroscience research (and for further computational neuroscience courses). This course is essentially organized into thirds with a third each on linear algebra, probabiliy & statistics, and basics of machine learning (with some extra topics such as differential equations and dynamical systems). \\
+
+\noindent One goal in formulating this course was to alleviate the need for taking multiple undergraduate-level courses in each of the stated topics (which may be cumbersome due to back-and-forth commute, inconvenient scheduling, or just an excess of materical with no clear applicability to neuroscience research).  Our goal is to make this as fun, approachable, and applicable as possible. We would like to build mathematical intuition for these essential topics.  \\
+
+
+### Course Prerequisites
+
+You will not need any math experience beyond high school calculus. Python will be used in this class so some knowledge of it is necessary, although this course will also serve as an opportunity to practice those skills.  
 
 ### Description of materials
 Video links below will take you to youtube, tutorial links will open Google colab notebooks.
