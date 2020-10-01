@@ -35,7 +35,7 @@ We welcome constructive criticism given via opening a git issue.
 | |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week3/Week3Tutorial1.ipynb)                   | Describing transformations with eigenvectors, looking at eigenstuff of a squared matrix, complex eigenvalues, understanding neural circuit discrete dynamics using eigenvalues/eigenvectors |
 | **Week 4: Linear Algebra IV, Matrix Decomposition & Dimensionality Reduction**|  Video 4.1: Special Matrices Coming Soon   | |
 | |  Video 4.2: Matrix decomposition & SVD   | |
-| |  Video 4.3: Dimensionality Reduction in Neuroscience (NMA W1D5 Intro lecture)   | |
+| |  [Video 4.3: Dimensionality Reduction in Neuroscience (NMA W1D5 Intro lecture)](https://youtu.be/zeBFyRaoVnQ)   | Byron Yu gives overview of using dimensionality reduction on neural population responses, discusses specific research, highlights different methods and when you might use each|
 | |  Video 4.4: PCA Coming Soon   | |
 | |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week4/Week4Tutorial1.ipynb)                   | Delving into SVD, implementing PCA and exploring correlation effects, PCA on MNIST images |
 | **Linear Algebra Review**|  Review Video: Coming soon   | Brief recap of key concepts of the last month |
