@@ -62,6 +62,7 @@ Video links below will take you to Youtube, tutorial links will open Google cola
 | |  [Video 5.2: Solving Differential Equations](https://youtu.be/rSMn_aU_XgA)   | Covers analytical, numerical, and graphical solutions for differential equations |
 | |  [Video 5.2: Solving Differential Equations](https://youtu.be/rSMn_aU_XgA)   | Covers analytical, numerical, and graphical solutions for differential equations |
 | |  [Video 5.3: Systems of Differential Equations](https://youtu.be/lV8SoeAxLgM)   | Continuous dynamical systems, phase portraits, eigenvalue dependence |
-
+| |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week5/Week5Tutorial1.ipynb)                   | Dynamical system exploration concerning rate of ion channels opening |
+| |  [Tutorial 2](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week5/Week5Tutorial2.ipynb)                   | Exploration of FitzHugh-Nagumo Model|
 | **Linear Algebra Review**|  Review Video: Coming soon   | Brief recap of key concepts of the last month |
 |  |  Linking to Neuro Video: Coming soon   | Goes through a neuroscience paper that uses linear algebra heavily |
