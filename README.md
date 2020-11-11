@@ -57,5 +57,6 @@ Video links below will take you to Youtube, tutorial links will open Google cola
 | |  [Video 4.3: Dimensionality Reduction in Neuroscience (NMA W1D5 Intro lecture)](https://youtu.be/zeBFyRaoVnQ)   | Byron Yu gives overview of using dimensionality reduction on neural population responses, discusses specific research, highlights different methods and when you might use each|
 | |  Video 4.4: PCA Coming Soon   | |
 | |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week4/Week4Tutorial1.ipynb)                   | Delving into SVD, implementing PCA and exploring correlation effects, PCA on MNIST images |
+| |  [Tutorial 2](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week4/Week4Tutorial2.ipynb)                   | Delving into SVD as low rank receptive field approximation |
 | **Linear Algebra Review**|  Review Video: Coming soon   | Brief recap of key concepts of the last month |
 |  |  Linking to Neuro Video: Coming soon   | Goes through a neuroscience paper that uses linear algebra heavily |
