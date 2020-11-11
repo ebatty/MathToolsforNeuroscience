@@ -58,5 +58,9 @@ Video links below will take you to Youtube, tutorial links will open Google cola
 | |  [Video 4.4: PCA](https://youtu.be/K7V_Z81H_Vw)  | What is PCA, how do we compute it, how does it relate to SVD |
 | |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week4/Week4Tutorial1.ipynb)                   | Delving into SVD, implementing PCA and exploring correlation effects, PCA on MNIST images |
 | |  [Tutorial 2](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week4/Week4Tutorial2.ipynb)                   | Delving into SVD as low rank receptive field approximation |
+| **Week 5: Dynamical Systems & Differential Equations**|  [Video 5.1: Intro to Dynamical Systems](https://youtu.be/lxB_XdzhieU)   |  What is a dynamical system and what are the types |
+| |  [Video 5.2: Solving Differential Equations](https://youtu.be/rSMn_aU_XgA)   | Covers analytical, numerical, and graphical solutions for differential equations |
+| |  [Video 5.2: Solving Differential Equations](https://youtu.be/rSMn_aU_XgA)   | Covers analytical, numerical, and graphical solutions for differential equations |
+| |  [Video 5.3: Systems of Differential Equations](https://youtu.be/rSMn_aU_XgA)   | Continuous dynamical systems, phase portraits, eigenvalue dependence |
 | **Linear Algebra Review**|  Review Video: Coming soon   | Brief recap of key concepts of the last month |
 |  |  Linking to Neuro Video: Coming soon   | Goes through a neuroscience paper that uses linear algebra heavily |
