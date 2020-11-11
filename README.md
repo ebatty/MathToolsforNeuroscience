@@ -53,7 +53,7 @@ Video links below will take you to Youtube, tutorial links will open Google cola
 | |  [Video 3.2: Eigenstuff in neural circuits](https://youtu.be/j3tg9RSOh0o)        | Outline of using eigenvalues/vectors to understand dynamics of a small neural circuit |
 | |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week3/Week3Tutorial1.ipynb)                   | Describing transformations with eigenvectors, looking at eigenstuff of a squared matrix, complex eigenvalues, understanding neural circuit discrete dynamics using eigenvalues/eigenvectors |
 | **Week 4: Linear Algebra IV, Matrix Decomposition & Dimensionality Reduction**|  [Video 4.1: Special Matrices](https://youtu.be/kXXvUTnXW9w)   |  Covers diagonal, orthogonal, and symmetric matrices |
-| |  Video 4.2: Matrix decomposition & SVD   | |
+| |  [Video 4.2: Matrix decomposition & SVD](https://youtu.be/KHafaOoAS8w)   | Covers what matrix decomposition is/what we can use it for/and types, especially eigendecomposition and SVD |
 | |  [Video 4.3: Dimensionality Reduction in Neuroscience (NMA W1D5 Intro lecture)](https://youtu.be/zeBFyRaoVnQ)   | Byron Yu gives overview of using dimensionality reduction on neural population responses, discusses specific research, highlights different methods and when you might use each|
 | |  Video 4.4: PCA Coming Soon   | |
 | |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week4/Week4Tutorial1.ipynb)                   | Delving into SVD, implementing PCA and exploring correlation effects, PCA on MNIST images |
