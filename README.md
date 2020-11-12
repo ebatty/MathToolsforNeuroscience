@@ -65,3 +65,4 @@ Video links below will take you to Youtube, tutorial links will open Google cola
 | |  [Tutorial 2](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week5/Week5Tutorial2.ipynb)                   | Exploration of FitzHugh-Nagumo Model|
 | **Linear Algebra Review**|  Review Video: Coming soon   | Brief recap of key concepts of the last month |
 |  |  Linking to Neuro Video: Coming soon   | Goes through a neuroscience paper that uses linear algebra heavily |
+| **Week 6: Probability & Statistics I, Intro to Probability**| Coming soon |
