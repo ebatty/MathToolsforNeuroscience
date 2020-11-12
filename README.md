@@ -5,6 +5,8 @@
 
 Course contact: Eleanor_Batty@hms.harvard.edu
 
+**Scroll down to bottom for the materials**
+
 ### Description of course
 
 Numerical data analysis has become a nearly indispensable tool in modern neuroscience. This course aims to equip graduate students with the fundamental mathematical skills in quantitative modeling and data analysis necessary for neuroscience research (and for further computational neuroscience courses). **This course is essentially organized into three sections: one on linear algebra, one on probabiliy & statistics, and one on the basics of machine learning.**
