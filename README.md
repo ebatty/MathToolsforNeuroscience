@@ -38,7 +38,7 @@ Video links below will take you to Youtube, tutorial links will open Google cola
 | Topic | Content | Content description |
 |--|----------------------|---------------|
 | <img width=500/> |<img width=600/>|<img width=500/>|
-| **Week 1: Linear Algebra I, Vectors**| [Video 1.1: What is a vector?](https://youtu.be/YBCLN8NnrjM) \n [Notes](https://github.com/ebatty/MathToolsforNeuroscience/blob/updates/Week1/video11_notes.pdf)                       |  Why learn linear algebra, intuition behind vectors, definition of a vector |
+| **Week 1: Linear Algebra I, Vectors**| [Video 1.1: What is a vector?](https://youtu.be/YBCLN8NnrjM) <br>[Notes](https://github.com/ebatty/MathToolsforNeuroscience/blob/updates/Week1/video11_notes.pdf)                       |  Why learn linear algebra, intuition behind vectors, definition of a vector |
 |  |    [Video 1.2: Vector properties & operations](https://youtu.be/7AXpa4U4j-M)                        |  Vector length, unit & zero vectors, scalar multiplication, vector addition, dot product, neuroscience example|
 |  |    [Video 1.3: Vector spaces](https://youtu.be/kqaRSwyL050)                        |  Linear combinations, linear independence, spanning vectors, basis, vector spaces|
 | |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week1/Week1Tutorial1.ipynb)                   | Geometry of the dot product, neuron optimal stimuli, correlation coefficient |
