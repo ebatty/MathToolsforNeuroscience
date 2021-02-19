@@ -54,6 +54,7 @@ Video links below will take you to Youtube, tutorial links will open Google cola
 | |  [Tutorial 2](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week2/Week2Tutorial2.ipynb)                   | Properties of nonsquare matrices, changing bases |
 | **Week 3: Linear Algebra III, Eigenstuff**|  [Video 3.1: Eigenvectors and eigenvalues (3Blue1Brown Chapter 14)](https://youtu.be/PFDu9oVAE-g)    | Definition of eigenvectors/eigenvalues, how to find eigenvalues of a matrix, brief intro to matrix diagonalization |
 | |  [Video 3.2: Eigenstuff in neural circuits](https://youtu.be/j3tg9RSOh0o)        | Outline of using eigenvalues/vectors to understand dynamics of a small neural circuit |
+| | [Comprehension Questions](https://forms.gle/yTqdbzLVB9UVt4J88) | |
 | |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week3/Week3Tutorial1.ipynb)                   | Describing transformations with eigenvectors, looking at eigenstuff of a squared matrix, complex eigenvalues, understanding neural circuit discrete dynamics using eigenvalues/eigenvectors |
 | **Week 4: Linear Algebra IV, Matrix Decomposition & Dimensionality Reduction**|  [Video 4.1: Special Matrices](https://youtu.be/kXXvUTnXW9w)   |  Covers diagonal, orthogonal, and symmetric matrices |
 | |  [Video 4.2: Matrix decomposition & SVD](https://youtu.be/KHafaOoAS8w)   | Covers what matrix decomposition is/what we can use it for/and types, especially eigendecomposition and SVD |
