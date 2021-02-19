@@ -63,9 +63,12 @@ Video links below will take you to Youtube, tutorial links will open Google cola
 | | [Comprehension Questions](https://forms.gle/gKb77GpEU4ATpSpi8) | |
 | |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week4/Week4Tutorial1.ipynb)                   | Delving into SVD, implementing PCA and exploring correlation effects, PCA on MNIST images |
 | |  [Tutorial 2](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week4/Week4Tutorial2.ipynb)                   | Delving into SVD as low rank receptive field approximation |
+| | | |
 | **Week 5: Dynamical Systems & Differential Equations**|  [Video 5.1: Intro to Dynamical Systems](https://youtu.be/lxB_XdzhieU)  <br><br> [Notes](https://github.com/ebatty/MathToolsforNeuroscience/blob/updates/Week5/video51_notes.pdf)   |  What is a dynamical system and what are the types |
 | |  [Video 5.2: Solving Differential Equations](https://youtu.be/rSMn_aU_XgA)  <br><br> [Notes](https://github.com/ebatty/MathToolsforNeuroscience/blob/updates/Week5/video52_notes.pdf)   | Covers analytical, numerical, and graphical solutions for differential equations |
 | |  [Video 5.3: Systems of Differential Equations](https://youtu.be/lV8SoeAxLgM)   <br><br> [Notes](https://github.com/ebatty/MathToolsforNeuroscience/blob/updates/Week5/video53_notes.pdf)  | Continuous dynamical systems, phase portraits, eigenvalue dependence |
 | | [Comprehension Questions](https://forms.gle/omStmTpqo31zWyXB7) | |
 | |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week5/Week5Tutorial1.ipynb)                   | Dynamical system exploration concerning rate of ion channels opening |
 | |  [Tutorial 2](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week5/Week5Tutorial2.ipynb)                   | Exploration of FitzHugh-Nagumo Model|
+| | | |
+| **Week 6: Probability & Statistics I, Intro to Probability**|  ||
