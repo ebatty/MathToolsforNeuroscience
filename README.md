@@ -71,4 +71,4 @@ Video links below will take you to Youtube, tutorial links will open Google cola
 | |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week5/Week5Tutorial1.ipynb)                   | Dynamical system exploration concerning rate of ion channels opening |
 | |  [Tutorial 2](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week5/Week5Tutorial2.ipynb)                   | Exploration of FitzHugh-Nagumo Model|
 | <br><br>| | |
-| **Week 6: Probability & Statistics I, Intro to Probability**|  ||
+| **Week 6: Probability & Statistics I, Intro to Probability**| Read Chapters 1, 2, 3, and 5 of https://seeing-theory.brown.edu/ (they're brief)| Covers basic probability, probability distributions, and Bayesian inference|
