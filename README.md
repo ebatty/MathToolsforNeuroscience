@@ -38,9 +38,9 @@ Video links below will take you to Youtube, tutorial links will open Google cola
 | Topic | Content | Content description |
 |--|----------------------|---------------|
 | <img width=500/> |<img width=600/>|<img width=500/>|
-| **Week 1: Linear Algebra I, Vectors**| [Video 1.1: What is a vector?](https://youtu.be/YBCLN8NnrjM)                        |  Why learn linear algebra, intuition behind vectors, definition of a vector |
-|  |    [Video 1.2: Vector properties & operations](https://youtu.be/7AXpa4U4j-M)                        |  Vector length, unit & zero vectors, scalar multiplication, vector addition, dot product, neuroscience example|
-|  |    [Video 1.3: Vector spaces](https://youtu.be/kqaRSwyL050)                        |  Linear combinations, linear independence, spanning vectors, basis, vector spaces|
+| **Week 1: Linear Algebra I, Vectors**| [Video 1.1: What is a vector?](https://youtu.be/YBCLN8NnrjM) <br><br> [Notes](https://github.com/ebatty/MathToolsforNeuroscience/blob/updates/Week1/video11_notes.pdf)                       |  Why learn linear algebra, intuition behind vectors, definition of a vector |
+|  |    [Video 1.2: Vector properties & operations](https://youtu.be/7AXpa4U4j-M)   <br><br> [Notes](https://github.com/ebatty/MathToolsforNeuroscience/blob/updates/Week1/video12_notes.pdf)                        |  Vector length, unit & zero vectors, scalar multiplication, vector addition, dot product, neuroscience example|
+|  |    [Video 1.3: Vector spaces](https://youtu.be/kqaRSwyL050) <br><br> [Notes](https://github.com/ebatty/MathToolsforNeuroscience/blob/updates/Week1/video13_notes.pdf)                              |  Linear combinations, linear independence, spanning vectors, basis, vector spaces|
 | |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week1/Week1Tutorial1.ipynb)                   | Geometry of the dot product, neuron optimal stimuli, correlation coefficient |
 | |  [Tutorial 2](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week1/Week1Tutorial2.ipynb)                   | Vector sets |
 | **Week 2: Linear Algebra II, Matrices**|  [Video 2.1: Linear transformations and matrices (3Blue1Brown Essence of Linear Algebra Chapter 3)](https://youtu.be/kYB8IZa5AuE)  | Properties of linear transformations, how matrices represent them,  |
@@ -49,22 +49,23 @@ Video links below will take you to Youtube, tutorial links will open Google cola
 | |  [Video 2.4: The determinant (3Blue1Brown Chapter 6)](https://youtu.be/Ip3X9LOh2dk)    |  Intuition behind determinants, computation of 2x2 matrix determinant |
 | |  [Video 2.5:  Inverse matrices, column space, and null space (3Blue1Brown Chapter 7)](https://youtu.be/uQhTuRlWMxw)    |  Systems of linear equations, solving with inverse matrices, when do solutions exist, definition of rank,  how to think of column & null space geometrically|
 | |  [Video 2.6: Nonsquare matrices as transformations between dimensions (3Blue1Brown Chapter 8)](https://youtu.be/v8VSDg_WQlA)    |  Brief review of transformations in relation to nonsquare matrices |
+| | [Comprehension Questions](https://forms.gle/sR45h2Ja82aSq737A) | |
 | |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week2/Week2Tutorial1.ipynb)                   | Matrix multiplication by hand, thinking about transformations, encoding model matrices in the context of the invertible matrix theorem|
 | |  [Tutorial 2](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week2/Week2Tutorial2.ipynb)                   | Properties of nonsquare matrices, changing bases |
 | **Week 3: Linear Algebra III, Eigenstuff**|  [Video 3.1: Eigenvectors and eigenvalues (3Blue1Brown Chapter 14)](https://youtu.be/PFDu9oVAE-g)    | Definition of eigenvectors/eigenvalues, how to find eigenvalues of a matrix, brief intro to matrix diagonalization |
-| |  [Video 3.2: Eigenstuff in neural circuits](https://youtu.be/j3tg9RSOh0o)        | Outline of using eigenvalues/vectors to understand dynamics of a small neural circuit |
+| |  [Video 3.2: Eigenstuff in neural circuits](https://youtu.be/j3tg9RSOh0o) <br><br> [Notes](https://github.com/ebatty/MathToolsforNeuroscience/blob/updates/Week3/video32_notes.pdf)          | Outline of using eigenvalues/vectors to understand dynamics of a small neural circuit |
+| | [Comprehension Questions](https://forms.gle/yTqdbzLVB9UVt4J88) | |
 | |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week3/Week3Tutorial1.ipynb)                   | Describing transformations with eigenvectors, looking at eigenstuff of a squared matrix, complex eigenvalues, understanding neural circuit discrete dynamics using eigenvalues/eigenvectors |
-| **Week 4: Linear Algebra IV, Matrix Decomposition & Dimensionality Reduction**|  [Video 4.1: Special Matrices](https://youtu.be/kXXvUTnXW9w)   |  Covers diagonal, orthogonal, and symmetric matrices |
-| |  [Video 4.2: Matrix decomposition & SVD](https://youtu.be/KHafaOoAS8w)   | Covers what matrix decomposition is/what we can use it for/and types, especially eigendecomposition and SVD |
+| **Week 4: Linear Algebra IV, Matrix Decomposition & Dimensionality Reduction**|  [Video 4.1: Special Matrices](https://youtu.be/kXXvUTnXW9w)  <br><br> [Notes](https://github.com/ebatty/MathToolsforNeuroscience/blob/updates/Week4/video41_notes.pdf)   |  Covers diagonal, orthogonal, and symmetric matrices |
+| |  [Video 4.2: Matrix decomposition & SVD](https://youtu.be/KHafaOoAS8w)  <br><br> [Notes](https://github.com/ebatty/MathToolsforNeuroscience/blob/updates/Week4/video42_notes.pdf)   | Covers what matrix decomposition is/what we can use it for/and types, especially eigendecomposition and SVD |
 | |  [Video 4.3: Dimensionality Reduction in Neuroscience (NMA W1D5 Intro lecture)](https://youtu.be/zeBFyRaoVnQ)   | Byron Yu gives overview of using dimensionality reduction on neural population responses, discusses specific research, highlights different methods and when you might use each|
 | |  [Video 4.4: PCA](https://youtu.be/K7V_Z81H_Vw)  | What is PCA, how do we compute it, how does it relate to SVD |
+| | [Comprehension Questions](https://forms.gle/gKb77GpEU4ATpSpi8) | |
 | |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week4/Week4Tutorial1.ipynb)                   | Delving into SVD, implementing PCA and exploring correlation effects, PCA on MNIST images |
 | |  [Tutorial 2](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week4/Week4Tutorial2.ipynb)                   | Delving into SVD as low rank receptive field approximation |
-| **Week 5: Dynamical Systems & Differential Equations**|  [Video 5.1: Intro to Dynamical Systems](https://youtu.be/lxB_XdzhieU)   |  What is a dynamical system and what are the types |
-| |  [Video 5.2: Solving Differential Equations](https://youtu.be/rSMn_aU_XgA)   | Covers analytical, numerical, and graphical solutions for differential equations |
-| |  [Video 5.3: Systems of Differential Equations](https://youtu.be/lV8SoeAxLgM)   | Continuous dynamical systems, phase portraits, eigenvalue dependence |
+| **Week 5: Dynamical Systems & Differential Equations**|  [Video 5.1: Intro to Dynamical Systems](https://youtu.be/lxB_XdzhieU)  <br><br> [Notes](https://github.com/ebatty/MathToolsforNeuroscience/blob/updates/Week5/video51_notes.pdf)   |  What is a dynamical system and what are the types |
+| |  [Video 5.2: Solving Differential Equations](https://youtu.be/rSMn_aU_XgA)  <br><br> [Notes](https://github.com/ebatty/MathToolsforNeuroscience/blob/updates/Week5/video52_notes.pdf)   | Covers analytical, numerical, and graphical solutions for differential equations |
+| |  [Video 5.3: Systems of Differential Equations](https://youtu.be/lV8SoeAxLgM)   <br><br> [Notes](https://github.com/ebatty/MathToolsforNeuroscience/blob/updates/Week5/video53_notes.pdf)  | Continuous dynamical systems, phase portraits, eigenvalue dependence |
+| | [Comprehension Questions](https://forms.gle/omStmTpqo31zWyXB7) | |
 | |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week5/Week5Tutorial1.ipynb)                   | Dynamical system exploration concerning rate of ion channels opening |
 | |  [Tutorial 2](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week5/Week5Tutorial2.ipynb)                   | Exploration of FitzHugh-Nagumo Model|
-| **Linear Algebra Review**|  Review Video: Coming soon   | Brief recap of key concepts of the last month |
-|  |  Linking to Neuro Video: Coming soon   | Goes through a neuroscience paper that uses linear algebra heavily |
-| **Week 6: Probability & Statistics I, Intro to Probability**| Coming soon |
