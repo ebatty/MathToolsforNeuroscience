@@ -77,3 +77,4 @@ Video links below will take you to Youtube, tutorial links will open Google cola
 | **Week 7: Probability & Statistics II, Intro to Statistics**|  [Video 7.1: Descriptive Statistics](https://youtu.be/pkJjG-pbqHA)  |  Descriptive vs inferential statistics, measures of central tendency, dispersion, and shape |
 | |  [Video 7.2: Overview of Statistical Inference](https://youtu.be/VZDJfR99yAo)    | Covers probability vs statistics, estimation vs hypothesis testing |
 | |  [Video 7.3: Point Estimators Examples & Goodness](https://youtu.be/3MyV1oxahC0)    | Point estimators, bias, variance, consistency, population mean & variance estimators |
+| |  [Video 7.4: Maximum Likelihood Estimation](https://youtu.be/k3P-3mLGyHo)    | Likelihood defintion, maximum likelihood estimator of firing rate, numerical methods|
