@@ -60,6 +60,7 @@ Video links below will take you to Youtube, tutorial links will open Google cola
 | |  [Video 4.2: Matrix decomposition & SVD](https://youtu.be/KHafaOoAS8w)  <br><br> [Notes](https://github.com/ebatty/MathToolsforNeuroscience/blob/updates/Week4/video42_notes.pdf)   | Covers what matrix decomposition is/what we can use it for/and types, especially eigendecomposition and SVD |
 | |  [Video 4.3: Dimensionality Reduction in Neuroscience (NMA W1D5 Intro lecture)](https://youtu.be/zeBFyRaoVnQ)   | Byron Yu gives overview of using dimensionality reduction on neural population responses, discusses specific research, highlights different methods and when you might use each|
 | |  [Video 4.4: PCA](https://youtu.be/K7V_Z81H_Vw)  | What is PCA, how do we compute it, how does it relate to SVD |
+| | [Comprehension Questions](https://forms.gle/gKb77GpEU4ATpSpi8) | |
 | |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week4/Week4Tutorial1.ipynb)                   | Delving into SVD, implementing PCA and exploring correlation effects, PCA on MNIST images |
 | |  [Tutorial 2](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week4/Week4Tutorial2.ipynb)                   | Delving into SVD as low rank receptive field approximation |
 | **Week 5: Dynamical Systems & Differential Equations**|  [Video 5.1: Intro to Dynamical Systems](https://youtu.be/lxB_XdzhieU)   |  What is a dynamical system and what are the types |
