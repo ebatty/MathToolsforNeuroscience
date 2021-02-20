@@ -85,3 +85,5 @@ Video links below will take you to Youtube, tutorial links will open Google cola
 | **Week 8: Probability & Statistics III, Statistical Encoding Models**|  [Video 8.1: What are encoding & decoding?](https://youtu.be/xG4fe_v2NfU)    | Broad intro to encoding/decoding |
 | |  [Video 8.2: Statistical Encoding Models](https://youtu.be/DJG0cYA8h5M)   | Spike triggered averages, linear-nonlinear-Poisson models, gradient descent |
 | | [Comprehension Questions](https://forms.gle/mcijrJG3iX9kitgi8) | |
+| |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week8/Week8Tutorial1.ipynb)                   | Compute STA of retinal data, implement gradient descent by hand to compute LNP parameters |
+| |  [Tutorial 2](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week8/Week8Tutorial2.ipynb)                   | Play with LNP filters and see resulting dynamics|
