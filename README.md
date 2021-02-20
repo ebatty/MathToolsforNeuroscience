@@ -79,3 +79,4 @@ Video links below will take you to Youtube, tutorial links will open Google cola
 | |  [Video 7.3: Point Estimators Examples & Goodness](https://youtu.be/3MyV1oxahC0)    | Point estimators, bias, variance, consistency, population mean & variance estimators |
 | |  [Video 7.4: Maximum Likelihood Estimation](https://youtu.be/k3P-3mLGyHo)    | Likelihood defintion, maximum likelihood estimator of firing rate, numerical methods|
 | |  [Video 7.5: Bayesian Inference](https://youtu.be/FeikJ4qeAp0)  <br><br> [Notes](https://github.com/ebatty/MathToolsforNeuroscience/blob/master/Week7/video75_notes.pdf)   | Frequentist vs Bayesian probability, priors, Bayes estimators & risk|
+| | [Comprehension Questions](https://forms.gle/PSSG7uFcnc5hyxqg8) | |
