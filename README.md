@@ -80,3 +80,5 @@ Video links below will take you to Youtube, tutorial links will open Google cola
 | |  [Video 7.4: Maximum Likelihood Estimation](https://youtu.be/k3P-3mLGyHo)    | Likelihood defintion, maximum likelihood estimator of firing rate, numerical methods|
 | |  [Video 7.5: Bayesian Inference](https://youtu.be/FeikJ4qeAp0)  <br><br> [Notes](https://github.com/ebatty/MathToolsforNeuroscience/blob/master/Week7/video75_notes.pdf)   | Frequentist vs Bayesian probability, priors, Bayes estimators & risk|
 | | [Comprehension Questions](https://forms.gle/PSSG7uFcnc5hyxqg8) | |
+| |  [Tutorial 1](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week7/Week7Tutorial1.ipynb)                   | Clarify correlation, Bayesian decoding, MLE derivation|
+| |  [Tutorial 2](https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/master/Week7/Week7Tutorial2.ipynb)                   | Normal distribution point estimators|
