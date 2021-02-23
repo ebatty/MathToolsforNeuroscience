@@ -30,11 +30,11 @@ There are three components to the course: video lectures, comprehension question
 **Tutorials**: Each week has 1 - 2 tutorials, or problem sets. These are Google colab notebooks with exercises where you might be asked to do computations by hand, engage with interactive demos, or code. They are designed to review the video material and in some cases introduce new concepts. They are not designed for repetitive problem solving (i.e. you will not be asked to solve a matrix equation by hand 100 times...). 
 
 ### Other resources
-Helpful for before this course: Basic Introduction to Maths and Python for Neuroscience by John Butler [https://github.com/john-s-butler-dit/Basic-Introduction-to-Python]
+Helpful for before this course: [Basic Introduction to Maths and Python for Neuroscience by John Butler](https://github.com/john-s-butler-dit/Basic-Introduction-to-Python)
 
-Similar course: Mathematical Tools for Neural and Cognitive Science by Eero Simoncelli & Mike Landy [https://www.cns.nyu.edu/~eero/math-tools/]
+Similar course: [Mathematical Tools for Neural and Cognitive Science by Eero Simoncelli & Mike Landy](https://www.cns.nyu.edu/~eero/math-tools/)
 
-A good follow-up to learn computational neuroscience: Neuromatch Academy [https://github.com/NeuromatchAcademy/course-content]
+A good follow-up to learn computational neuroscience: [Neuromatch Academy](https://github.com/NeuromatchAcademy/course-content)
 
 
 ### The materials
