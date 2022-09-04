@@ -64,6 +64,6 @@ launch_buttons:
   colab_url                 : https://colab.research.google.com # The URL of Google Colab (https://colab.research.google.com)
 
 # repository:
-#   url                       : https://github.com/QMBC-Python/QMBC-Python.github.io  # The URL to your book's repository
+#   url                       : https://github.com/ebatty/MathToolsforNeuroscience # The URL to your book's repository
 #   path_to_book              : ""  # A path to your book's folder, relative to the repository root.
-#   branch                    : main # Which branch of the repository should be used when creating links
+#   branch                    : jupyterbook # Which branch of the repository should be used when creating links
