@@ -1,0 +1,13 @@
+# In _toc.yml
+format: jb-book
+root: intro
+parts:
+  - caption: Linear Algebra & Dynamical Systems
+    chapters:
+    - file: Week1/Overview.md
+      sections:
+      - file: Week1/KeyConcepts.md
+      - file: Week1/Video11.ipynb
+      - file: Week1/Video12.ipynb
+      - file: Week1/Video13.ipynb
+      - file: Week1/Week1Tutorial1.ipynb
