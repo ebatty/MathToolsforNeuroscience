@@ -1,7 +1,0 @@
-numpy
-scipy
-matplotlib
-ipywidgets
-plotly
-decorator==5.0.9
-jupyter-book
