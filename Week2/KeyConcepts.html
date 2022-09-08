@@ -56,8 +56,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Video 1.1: What is a vector?" href="Video11.html" />
-    <link rel="prev" title="Week 1: Vectors" href="Overview.html" />
+    <link rel="next" title="Video 2.1: Linear transformations and matrices (3Blue1Brown)" href="Video21.html" />
+    <link rel="prev" title="Week 2: Matrices" href="Overview.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -118,12 +118,54 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="Overview.html">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week1/Overview.html">
    Week 1: Vectors
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/KeyConcepts.html">
+     Key concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Video11.html">
+     Video 1.1: What is a vector?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Video12.html">
+     Video 1.2: Vector properties &amp; operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Video13.html">
+     Video 1.3: Vector spaces
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Week1Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Week1Tutorial2.html">
+     Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="Overview.html">
+   Week 2: Matrices
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -134,69 +176,27 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Video11.html">
-     Video 1.1: What is a vector?
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Video12.html">
-     Video 1.2: Vector properties &amp; operations
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Video13.html">
-     Video 1.3: Vector spaces
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Week1Tutorial1.html">
-     Tutorial 1
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Week1Tutorial2.html">
-     Tutorial 2
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Week2/Overview.html">
-   Week 2: Matrices
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Week2/KeyConcepts.html">
-     Key concepts
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Week2/Video21.html">
+    <a class="reference internal" href="Video21.html">
      Video 2.1: Linear transformations and matrices (3Blue1Brown)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../Week2/Video22.html">
+    <a class="reference internal" href="Video22.html">
      Video 2.2: Matrix multiplication as composition(3Blue1Brown)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../Week2/Video23.html">
+    <a class="reference internal" href="Video23.html">
      Video 2.3: The determinant (3Blue1Brown)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../Week2/Video24.html">
+    <a class="reference internal" href="Video24.html">
      Video 2.4: Inverse matrices, column space, and null space (3Blue1Brown)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../Week2/Video25.html">
+    <a class="reference internal" href="Video25.html">
      Video 2.5: Nonsquare matrices as transformations between dimensions (3Blue1Brown)
     </a>
    </li>
@@ -275,7 +275,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/Week1/KeyConcepts.md"
+        <a href="../_sources/Week2/KeyConcepts.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -335,18 +335,23 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vectors">
-   Vectors
+  <a class="reference internal nav-link" href="#linear-transformations-and-matrices">
+   Linear transformations and matrices
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vector-operations">
-   Vector operations
+  <a class="reference internal nav-link" href="#matrix-multiplication">
+   Matrix multiplication
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vector-spaces">
-   Vector spaces
+  <a class="reference internal nav-link" href="#determinants">
+   Determinants
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inverse-matrices-column-space-and-null-space">
+   Inverse matrices, column space, and null space
   </a>
  </li>
 </ul>
@@ -369,18 +374,23 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vectors">
-   Vectors
+  <a class="reference internal nav-link" href="#linear-transformations-and-matrices">
+   Linear transformations and matrices
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vector-operations">
-   Vector operations
+  <a class="reference internal nav-link" href="#matrix-multiplication">
+   Matrix multiplication
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vector-spaces">
-   Vector spaces
+  <a class="reference internal nav-link" href="#determinants">
+   Determinants
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inverse-matrices-column-space-and-null-space">
+   Inverse matrices, column space, and null space
   </a>
  </li>
 </ul>
@@ -395,52 +405,72 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="key-concepts">
 <h1>Key concepts<a class="headerlink" href="#key-concepts" title="Permalink to this headline">#</a></h1>
-<section id="vectors">
-<h2>Vectors<a class="headerlink" href="#vectors" title="Permalink to this headline">#</a></h2>
+<section id="linear-transformations-and-matrices">
+<h2>Linear transformations and matrices<a class="headerlink" href="#linear-transformations-and-matrices" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
-<li><p>Vectors are ordered lists of numbers that can also be viewed geometrically (as arrows)</p></li>
+<li><p>A matrix is basically a table of numbers.</p>
+<ul>
+<li><p>We can represent matrices with numpy arrays, which we create as a list of rows: <code class="docutils literal notranslate"><span class="pre">np.array([[4,</span> <span class="pre">1,</span> <span class="pre">2],</span> <span class="pre">[3,</span> <span class="pre">2,</span> <span class="pre">0]])</span></code></p></li>
 </ul>
-</section>
-<section id="vector-operations">
-<h2>Vector operations<a class="headerlink" href="#vector-operations" title="Permalink to this headline">#</a></h2>
-<ul class="simple">
-<li><p>Length of a vector: <span class="math notranslate nohighlight">\(||\bar{x}|| = \sqrt{\sum_{i=1}^N x_i^2} = \sqrt{\bar{x}\cdot \bar{x}}\)</span></p></li>
-<li><p>Unit vectors have length = 1. To make a unit vector version of <span class="math notranslate nohighlight">\(\bar{x}\)</span>: <span class="math notranslate nohighlight">\(\hat{x} = \frac{\bar{x}}{||\bar{x}||}\)</span></p></li>
-<li><p>Zero vectors (<span class="math notranslate nohighlight">\(\bar{0}\)</span>) have all components equal to 0</p></li>
-<li><p>Scalar multiplication of a vector:
-<span class="math notranslate nohighlight">\(
-a\bar{x} = \begin{bmatrix}
-ax_1 \\ ax_2 \\ \vdots \\ ax_N
-\end{bmatrix}
-\)</span></p></li>
-<li><p>Vector addition:
-<span class="math notranslate nohighlight">\(\bar{x} + \bar{y} = \begin{bmatrix}
-       x_{1} + y_1 \\ x_{2} + y_2\\ \vdots \\ x_{N} + y_N 
-\end{bmatrix}\)</span></p></li>
-<li><p>Dot product: <span class="math notranslate nohighlight">\(\bar{x} \cdot \bar{y} = \sum_{i=1}^N x_iy_i\)</span></p></li>
-</ul>
-</section>
-<section id="vector-spaces">
-<h2>Vector spaces<a class="headerlink" href="#vector-spaces" title="Permalink to this headline">#</a></h2>
-<ul class="simple">
-<li><p>Linear combination: building one vector as the sum of scaled multiples of other vectors</p></li>
-<li><p>The span of a set of vectors, <span class="math notranslate nohighlight">\(Span\{\bar{v}_1, \bar{v}_2, ...\}\)</span>, is the set of all linear combinations of those vectors</p></li>
-<li><p>A set of non-zero vectors is linearly dependent if one member of the set is a linear combination of the others, otherwise they are linearly independent.</p></li>
-<li><p>A basis for a given space is a set of linearly independent vectors that spans the space.</p></li>
-<li><p>A vector space V is a collection of vectors for which 2 operations are defined, addition and multiplication by a scalar, that satisfy the below axioms for all vectors in V. If <span class="math notranslate nohighlight">\(\bar{x}, \bar{y},\)</span> and <span class="math notranslate nohighlight">\(\bar{z}\)</span> are any vectors in V:</p>
-<ol class="simple">
-<li><p><span class="math notranslate nohighlight">\(\bar{x} + \bar{y}\)</span> is in V</p></li>
-<li><p><span class="math notranslate nohighlight">\(\bar{x} + \bar{y} = \bar{y} + \bar{x}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\((\bar{x} + \bar{y}) + \bar{z} = \bar{x} + (\bar{y} + \bar{z})\)</span></p></li>
-<li><p>Zero vector exists in V such that <span class="math notranslate nohighlight">\(\bar{x} + \bar{0} = \bar{x}\)</span></p></li>
-<li><p>The inverse <span class="math notranslate nohighlight">\(-\bar{x}\)</span> exists such that <span class="math notranslate nohighlight">\(\bar{x} + (-\bar{x}) = \bar{0}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(c\bar{x}\)</span> is in V</p></li>
-<li><p><span class="math notranslate nohighlight">\(c(\bar{x} + \bar{y}) = c\bar{x} + c\bar{y}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\((c+d)\bar{x} = c\bar{x} + d\bar{x}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(c(d\bar{x}) = (cd)\bar{x})\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(1\bar{x} = \bar{x}\)</span></p></li>
-</ol>
 </li>
+<li><p>Linear transformations take in an input vector and outputs a transformed vector. Under a linear transformation, all grid line remain parallel and evenly spaced and the origin remains fixed (it must preserve vector addition and scalar multiplication).</p></li>
+<li><p>Matrices represent linear transformations: each column corresponds to where the corresponding standard basis vector ends up after the transformation</p></li>
+<li><p>We can think of the matrix vector multiplication <span class="math notranslate nohighlight">\(A\bar{x}=\bar{b}\)</span> as a linear transformation where <span class="math notranslate nohighlight">\(A\)</span> acts on <span class="math notranslate nohighlight">\(\bar{x}\)</span> to produce <span class="math notranslate nohighlight">\(\bar{b}\)</span>.  An alternate view is to think of it as solving a system of linear equations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">np.linalg.solve</span></code> solves matrix vector equations like the above</p></li>
+<li><p>As an example, solving <span class="math notranslate nohighlight">\(A\bar{x}=\bar{b}\)</span> is equivalent to solving the system of linear equations:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{align} 2x_1 + 3x_2 &amp;= 6 \\ x_1 + 4x_2 &amp;= 1 \end{align}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{if } A = \begin{bmatrix}
+2 &amp; 3 \\
+1 &amp; 4\
+\end{bmatrix}, \bar{b} =\begin{bmatrix}
+6 \\
+1\
+\end{bmatrix}\end{split}\]</div>
+</section>
+<section id="matrix-multiplication">
+<h2>Matrix multiplication<a class="headerlink" href="#matrix-multiplication" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>We can envision matrix multiplication as the composition of transformations. If C = AB, element <span class="math notranslate nohighlight">\(c_{ij}\)</span>  (the element of C in the ith row and jth column) equals the dot product of the ith row of A and the jth column of B.</p>
+<ul>
+<li><p>There are several ways to do matrix multiplication in Python: we can use <code class="docutils literal notranslate"><span class="pre">np.dot(A,</span> <span class="pre">B)</span></code>, <code class="docutils literal notranslate"><span class="pre">np.matmul(A,</span> <span class="pre">B)</span></code> or use a special operator &#64; so <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">&#64;</span> <span class="pre">B</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="determinants">
+<h2>Determinants<a class="headerlink" href="#determinants" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>The determinant of a matrix (det A) is a scalar value that can be viewed as describing the area changes induced by the corresponding linear transformation. It is negative if the linear transformation reverses the orientation of the space.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">np.linalg.det(A)</span></code> computes the determinant</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="inverse-matrices-column-space-and-null-space">
+<h2>Inverse matrices, column space, and null space<a class="headerlink" href="#inverse-matrices-column-space-and-null-space" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>We can sometimes take the inverse of a matrix so that <span class="math notranslate nohighlight">\(A^{-1}A = I\)</span> where <span class="math notranslate nohighlight">\(I\)</span> is the identity matrix (all zeros except for ones on the diagonal).</p>
+<ul>
+<li><p>We can use <code class="docutils literal notranslate"><span class="pre">np.linalg.inv(A)</span></code> to compute <span class="math notranslate nohighlight">\(A^{-1}\)</span> when it exists</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">np.eye(d)</span></code> gives us the identity matrix of dimension d</p></li>
+</ul>
+</li>
+<li><p>The column space of a matrix is the span of the columns of the matrix. This is equivalent to the range of the linear transformation where, in informal language, the range is everywhere that can be “gotten to” by the transformation. In other words, the range is the set of all vectors that the linear transformation maps to.</p></li>
+<li><p>The rank of a matrix is the dimension of the column space.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">np.linalg.matrix_rank(A)</span></code> computes the rank</p></li>
+</ul>
+</li>
+<li><p>The null space of a matrix is the set of all vectors that land on the origin after the resulting transformation. In other words, it is the set of all solutions of <span class="math notranslate nohighlight">\(A\bar{x} = \bar{0}\)</span>.</p>
+<ul>
+<li><p>You can use <code class="docutils literal notranslate"><span class="pre">scipy.linalg.null_space</span></code> to find a basis for the null space of a matrix.</p></li>
+</ul>
+</li>
+<li><p>If the matrix A is <span class="math notranslate nohighlight">\(m\)</span> x <span class="math notranslate nohighlight">\(n\)</span>, the null space must be a subspace of <span class="math notranslate nohighlight">\(R^n\)</span> and the column space must be a subspace of <span class="math notranslate nohighlight">\(R^m\)</span>.</p></li>
 </ul>
 </section>
 </section>
@@ -458,7 +488,7 @@ ax_1 \\ ax_2 \\ \vdots \\ ax_N
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./Week1"
+            path: "./Week2"
         },
         predefinedOutput: true
     }
@@ -476,13 +506,13 @@ ax_1 \\ ax_2 \\ \vdots \\ ax_N
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Week 1: Vectors</p>
+            <p class="prev-next-title">Week 2: Matrices</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="Video11.html" title="next page">
+    <a class='right-next' id="next-link" href="Video21.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Video 1.1: What is a vector?</p>
+        <p class="prev-next-title">Video 2.1: Linear transformations and matrices (3Blue1Brown)</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

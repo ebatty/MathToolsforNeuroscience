@@ -1,0 +1,667 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Tutorial 2 &#8212; Mathematical Tools for Neuroscientists</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Week 2: Matrices" href="../Week2/Overview.html" />
+    <link rel="prev" title="Tutorial 1" href="Week1Tutorial1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Mathematical Tools for Neuroscientists</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Algebra &amp; Dynamical Systems
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="Overview.html">
+   Week 1: Vectors
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="KeyConcepts.html">
+     Key concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Video11.html">
+     Video 1.1: What is a vector?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Video12.html">
+     Video 1.2: Vector properties &amp; operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Video13.html">
+     Video 1.3: Vector spaces
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Week1Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week2/Overview.html">
+   Week 2: Matrices
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/KeyConcepts.html">
+     Key concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Video21.html">
+     Video 2.1: Linear transformations and matrices (3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Video22.html">
+     Video 2.2: Matrix multiplication as composition(3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Video23.html">
+     Video 2.3: The determinant (3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Video24.html">
+     Video 2.4: Inverse matrices, column space, and null space (3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Video25.html">
+     Video 2.5: Nonsquare matrices as transformations between dimensions (3Blue1Brown)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/jupyterbook/Week1/Week1Tutorial2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/Week1/Week1Tutorial2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Tutorial 2
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-1-figuring-out-a-basis">
+   Exercise 1: Figuring out a basis
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-2-determing-dependence">
+   Exercise 2: Determing dependence
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-linear-independence-vs-dependence">
+     A) Linear independence vs dependence
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-orthogonal-vectors">
+     B) Orthogonal vectors
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-span">
+     C) Span
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#d-basis">
+     D) Basis
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-advanced-exercise-3-vector-projections">
+   (Optional, advanced) Exercise 3: Vector Projections
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Tutorial 2</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Tutorial 2
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-1-figuring-out-a-basis">
+   Exercise 1: Figuring out a basis
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-2-determing-dependence">
+   Exercise 2: Determing dependence
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-linear-independence-vs-dependence">
+     A) Linear independence vs dependence
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-orthogonal-vectors">
+     B) Orthogonal vectors
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-span">
+     C) Span
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#d-basis">
+     D) Basis
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-advanced-exercise-3-vector-projections">
+   (Optional, advanced) Exercise 3: Vector Projections
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <p><a href="https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/jupyterbook/Week1/Week1Tutorial2.ipynb" target="_parent"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="tutorial-2">
+<h1>Tutorial 2<a class="headerlink" href="#tutorial-2" title="Permalink to this headline">#</a></h1>
+<p><strong>Linear Algebra I: Vectors</strong></p>
+<p><strong>[insert your name]</strong></p>
+<p><strong>Important reminders</strong>: Before starting, click “File -&gt; Save a copy in Drive”. Produce a pdf for submission by “File -&gt; Print” and then choose “Save to PDF”.</p>
+<p>To complete this tutorial, you should have watched Video 1.1: Vectors, Video 1.2: Vector operations, and Video 1.3: Vector spaces.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>   
+
+<span class="c1"># Plotting parameters</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">22</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="exercise-1-figuring-out-a-basis">
+<h1>Exercise 1: Figuring out a basis<a class="headerlink" href="#exercise-1-figuring-out-a-basis" title="Permalink to this headline">#</a></h1>
+<p>Let’s say we are looking at the firing rates of 3 neurons. We can represent their activity in a 3D plot, as below. It turns out that due to their tightly-linked interactions, they always fire in such a way that the point in 3D space falls along a 2D plane (that passes through the origin). Basically, every single data point we record of the firing rates of the 3 neurons falls on that plane. This is represented by the blue plane in the figure below. This 2D plane is a subspace of all of 3-D space (R3).</p>
+<p>A) How many basis vectors would you need for the 2D plane? How many components would each basic vector have?</p>
+<p>B) How many numbers would you need to be able to fully describe the state of the 3 neuron population at a given time?</p>
+<p><em>YOUR ANSWER HERE</em></p>
+<p>Execute this cell to see figure</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Execute this cell to see figure</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># add axes</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mf">.7</span><span class="o">*</span><span class="n">xx</span> <span class="o">+</span> <span class="o">-</span><span class="mf">.2</span><span class="o">*</span><span class="n">yy</span>
+
+<span class="c1"># plot the plane</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">ylim</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">zlim</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">xlabel</span> <span class="o">=</span> <span class="s1">&#39;Neuron 1 Firing Rate&#39;</span><span class="p">,</span>  <span class="n">ylabel</span> <span class="o">=</span> <span class="s1">&#39;Neuron 2 Firing Rate&#39;</span><span class="p">,</span> <span class="n">zlabel</span> <span class="o">=</span> <span class="s1">&#39;Neuron 3 Firing Rate&#39;</span><span class="p">);</span>
+<span class="c1">#ax.invert_xaxis()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Week1Tutorial2_6_0.png" src="../_images/Week1Tutorial2_6_0.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="exercise-2-determing-dependence">
+<h1>Exercise 2: Determing dependence<a class="headerlink" href="#exercise-2-determing-dependence" title="Permalink to this headline">#</a></h1>
+<p>Let’s say we have four vectors:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \mathbf{a} = \begin{bmatrix}
+    4 \\ 2 \\ 0
+\end{bmatrix},  \mathbf{b} = \begin{bmatrix}
+    1 \\ 0 \\ 3, 
+\end{bmatrix}, \mathbf{c} = \begin{bmatrix}
+    5 \\ 2 \\ 3
+\end{bmatrix}, \mathbf{d} = \begin{bmatrix}
+    3 \\ 3 \\ 2
+\end{bmatrix}\end{split}\]</div>
+<p>Check out this visualization prepared by Oğul Can Yurdakul to better see the vectors: https://www.geogebra.org/3d/hherq78z!</p>
+<ol class="simple">
+<li><p>Are these vectors linearly independent or dependent? Why?</p></li>
+<li><p>What is the span of the set of vectors <span class="math notranslate nohighlight">\(\{\mathbf{a}, \mathbf{b}, \mathbf{c}, \mathbf{d}\}\)</span>?</p></li>
+<li><p>What is the span of the set of vectors <span class="math notranslate nohighlight">\(\{\mathbf{a}, \mathbf{b}, \mathbf{c}\}\)</span>?</p></li>
+<li><p>What is the span of a set just consisting of vector <span class="math notranslate nohighlight">\(\{\mathbf{a}\)</span>} (in general terms)?</p></li>
+<li><p>What is the span of the set of vectors <span class="math notranslate nohighlight">\(\{\mathbf{a}, \mathbf{b}\)</span>} (in general terms)?</p></li>
+</ol>
+<section id="a-linear-independence-vs-dependence">
+<h2>A) Linear independence vs dependence<a class="headerlink" href="#a-linear-independence-vs-dependence" title="Permalink to this headline">#</a></h2>
+<p>Are these vectors linearly independent or dependent? Why?</p>
+<p><strong>Your text answer here</strong></p>
+</section>
+<section id="b-orthogonal-vectors">
+<h2>B) Orthogonal vectors<a class="headerlink" href="#b-orthogonal-vectors" title="Permalink to this headline">#</a></h2>
+<p>Are vectors <span class="math notranslate nohighlight">\(\bar{a}\)</span> and <span class="math notranslate nohighlight">\(\bar{b}\)</span> orthogonal? How do you know?</p>
+<p><strong>Your text answer here</strong></p>
+</section>
+<section id="c-span">
+<h2>C) Span<a class="headerlink" href="#c-span" title="Permalink to this headline">#</a></h2>
+<p>i) What is <span class="math notranslate nohighlight">\(Span\{\bar{a}, \bar{b}, \bar{c}, \bar{d}\}\)</span>?</p>
+<p>ii) What is <span class="math notranslate nohighlight">\(Span\{\bar{a}, \bar{b}, \bar{c}\}\)</span>?</p>
+<p>iii) What is <span class="math notranslate nohighlight">\(Span\{\bar{a}\}\)</span>?</p>
+<p><strong>Your text/math answer here</strong></p>
+</section>
+<section id="d-basis">
+<h2>D) Basis<a class="headerlink" href="#d-basis" title="Permalink to this headline">#</a></h2>
+<p>Can you make a basis for <span class="math notranslate nohighlight">\(R^3\)</span> based on the above vectors? What is it?</p>
+<p><strong>Your text answer here</strong></p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="optional-advanced-exercise-3-vector-projections">
+<h1>(Optional, advanced) Exercise 3: Vector Projections<a class="headerlink" href="#optional-advanced-exercise-3-vector-projections" title="Permalink to this headline">#</a></h1>
+<p>We want to find the projection of one vector onto another, by which we essentially mean the component of a vector that lies along another vector. For two vectors <span class="math notranslate nohighlight">\(\bar{a}\)</span> and <span class="math notranslate nohighlight">\(\bar{b}\)</span>, can you come up with the formula (and proof of that formula) for the projection of <span class="math notranslate nohighlight">\(\bar{b}\)</span> onto <span class="math notranslate nohighlight">\(\bar{a}\)</span> (the green vector below)?</p>
+<p>![Screen Shot 2021-09-09 at 1.56.47 PM.png](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdEAAAD9CAYAAADj2k1iAAABPGlDQ1BJQ0MgUHJvZmlsZQAAKJFjYGDiSSwoyGFhYGDIzSspCnJ3UoiIjFJgf8rACYQ8DOIMJonJxQWOAQE+QCUMMBoVfLvGwAiiL+uCzCqLZGp7/nLL92CL8pbZW9kbMNWjAK6U1OJkIP0HiOOTC4pKGBgYY4Bs5fKSAhAbpF+kCOgoIHsKiJ0OYa8AsZMg7D1gNSFBzkD2BSBbIDkjMQXIfgBk6yQhiacjsaH2ggCrkbmTIQF3kgxKUitKQLRzfkFlUWZ6RomCIzB0UhU885L1dBSMDIyANoLCGqL6sxg4DBnFTiHEilYxMFjXMzAwfUOIRT9jYFhzg4FBcD9CTMONgUEcGB77ygsSixLhDmD8xlKcZmwEYfMUAb354///z7IMDOy7GBj+Fv3//3vu//9/lzAwMN9kYDhQCABexl7OPYlnvwAAAFZlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA5KGAAcAAAASAAAARKACAAQAAAABAAAB0aADAAQAAAABAAAA/QAAAABBU0NJSQAAAFNjcmVlbnNob3QME4PjAAAB1mlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczpleGlmPSJodHRwOi8vbnMuYWRvYmUuY29tL2V4aWYvMS4wLyI+CiAgICAgICAgIDxleGlmOlBpeGVsWERpbWVuc2lvbj40NjU8L2V4aWY6UGl4ZWxYRGltZW5zaW9uPgogICAgICAgICA8ZXhpZjpVc2VyQ29tbWVudD5TY3JlZW5zaG90PC9leGlmOlVzZXJDb21tZW50PgogICAgICAgICA8ZXhpZjpQaXhlbFlEaW1lbnNpb24+MjUzPC9leGlmOlBpeGVsWURpbWVuc2lvbj4KICAgICAgPC9yZGY6RGVzY3JpcHRpb24+CiAgIDwvcmRmOlJERj4KPC94OnhtcG1ldGE+CivuuNUAAC9qSURBVHgB7Z15dBTXved/2qVWa99YJYFYxCKx7zs2OI4TYwPGYIeZeOLjNyfJzJy8M3+YyXsnJ4lzwstkcibJcWKPk5fzHGMDBu8OthWbfSdmR+wgAUKAFtRqSa2lpfnd6m7RLaqk3qq6qvp7c0h33XvrLp/b1rdu1b3fiunhQAggAAIgAAIgAAIBE4gN+AycAAIgAAIgAAIgIBGAiOKHAAIgAAIgAAJBEoCIBgkOp4EACIAACIAARBS/ARAAARAAARAIkgBENEhwOA0EQAAEQAAEIKL4DYAACIAACIBAkAQgokGCw2kgUHXPQX/ZVUMHLt4HDBAAgSglABGN0oFHt0Mn0NjSSYcv36drd9tCLwwlgAAIGJIARNSQw4ZGgwAIgAAI6IEARFQPo4A2gAAIgAAIGJJAvCFbjUaDgM4IdHX30JlqO1XVtVFmajyNKkilodlJOmslmgMCIBBuAhDRcBNFeVFHoLmti37zSRVdvdva2/cY/rZ8Ug6tmF5AseIAAQRAwJQEIKKmHFZ0SksCJ6qaKduaQP/jG0U0siCFbtQ76K97a+jzk/VkSYynx1hMEUAABMxJAM9EzTmu6JWGBOJ4pvnfWUDHDUulpIRYGjXIQv/tsUKKi4mhilP11N7ZrWFrUBUIgICWBCCiWtJGXaYkMLEwjQZlJvr0LTc9kSYWWsne3kXX72ELjA8cHICAiQhARE00mOhKZAj0FVBPK/JYSEW4Y+vwROETBEDAZAQgoiYbUHRHewLiuadcSEmMk6LbO3A7V44P4kDADAQgomYYRfQhogRa+ZatXLjPjkYieGakcnkQBwIgYGwCEFFjjx9arwMC1+46HmpFD8dcuePa8lLQ53npQ5kRAQIgYFgCEFHDDh0arhcCl++00Cne5uId9l9opJrGdpowzEqDM2G64M0G30HATATkH+aYqYfoCwioTCAtOZ7e+PImzR+XRcNzknkG2kYHWESTebvL6lkFKteO4kEABCJJACIaSfqo2xQEHinLIfFc9MvTDdTJ9n8ijMi30AuLhlB+hu/WF1N0GJ0AARDoJRDTw6H3CF9AAASCJiD8c283tFN2WiKlJuFJSdAgcSIIGIgARNRAg4WmgoAaBG43dNHgbNyUUoMtyjQ/AfyXY/4xRg9BwIdAfbOTzt/ooAs32knchvreY5k+6TgAARDwnwBE1H9WyAkChiRga3XShZsddP5mO13mz9p6175W5+2Paf6EFO7TfzJkv9BoENADAYioHkYBbQCBMBJo7+yhSp5lnmfBvMzCeeOOy/ShbxVDrDaKi7X0jcYxCIBAAAQgogHAQlYQ0CMBsTRQiKaYbV7k27RXa9oHbOY3ZqXR4Y/qOd+gAfMiAwiAgDIBiKgyG6SAgG4JXKrpZNF00EX3bNPp9L+po4cn0dNzhYj6fw5yggAIyBOAiMpzQSwI6IpA1b1OOl/dLonmlVsd1NYenKl9HHvir1uSIfWtuLiYCgpgBqGrgUZjDEcAW1wMN2RocDQQENtOxDNNsYL2Motmc0sAU81+AK17NJMWl+E5aD+IkAQCARHATDQgXMgMAuoQqLc5+bkmi6ZYQcui2dAk/2aYUGqfMS4FAhoKQJwLAjIEIKIyUBAFAloSELPOV966S13hmWzKNj0nI56+sxT7QWXhIBIEQiAAb7IQ4OFUEAgHAeEWtGqR6zllOMqTK2PtknRKTozxSXrttdfoyuUrPnE4AAEQCIwARDQwXsgNAqoQWDoplSaPFsYH4Q/LZ6ZR+Yjkhwq+fv06Ndt9X+H2UCZEgAAI9EsAItovHiSCgHYE1i1Op9RkXj4bxlAyLIlWzUsLY4koCgRAwJsARNSbBr6DQAQJZFrjaPWi9LC1IJb/637OvZ1FrtCqqiq5aMSBAAgEQAAiGgAsZAUBtQnMHZ9CsyaGZwvKmiWZNCxXee1gXl6e2t1B+SBgegLYJ2r6IUYHjUbAwd63P/3rvZC2uUwrTaGXHs8yWtfRXhAwHAHMRA03ZGiw2QkIV6H8TOUZ5ED9z0qPw3aWgSAhHQTCRCD4/1LD1AAUAwIg8IDAqesO2rrLRvcagzdbWMvPQS1JvttZHtSAbyAAAuEkgJloOGmiLBAIgcDWvTZ69f2GkAR02QwrTR758HYWuWa9/vrrVFtbK5eEOBAAAT8JQET9BIVsIKAWgYs1HfTK2/foy2P2kKoYOSSJVs/3f3Xvjh07IKIhEcfJIECE27n4FYBABAl8dKiZPj2obHgweUwKZabG0a7jAwvsuqX+C6iny5MnT/Z8xScIgEAQBCCiQUDDKSAQKoEbdZ20mZ99Xua3tMiF+PhYac/oknLXdpeqO510rZ+Xba9ZnEGFeQlyRSEOBEBARQIQURXhomgQkCPwxdd22r7bJpckxZUWJ9NaNl0Qnrqe8Cy7GW3kW75yYerYFHpkSqpcEuJAAARUJoB9oioDRvEg4CFQx687e2dnE5256vBEPfS5gp9pfpMXB8mFHfzM9ANefOQdMtPi6F+/k0/WZKzG9eaC7yCgFYEHl7pa1Yh6QCAKCew50yrNPh0d3bK9HzE4idbwbHPkIOVbso9Pt/JLujuokrfBeMKzfBsXAuqhgU8Q0J4AZqLaM0eNUUSgxdFDb++8T8fOtyn2+jF+y8pKP03ia3n/6Ctv1VFnVzc9Ms1KaxYGvphIsSFIAAEQCJgARDRgZDgBBPwjcPRiG23lZ582u/zbtgfnJtCz/OxzXGGSfwW6c+081UqHzrXQhrXBe9+K/aEVFRW0fv36gOpGZhAAAV8CuJ3rywNHIBAyASffsRWzz30sdkph4WQrPc8vyg4miBW7xQXKt339KVOI6Pbt2yGi/sBCHhDohwBEtB84SAKBQAmcdtv23VWw7RO+tmsWZdDUUf65CinVPyJEEVUqF/EgAAKBEYCIBsYLuUFAkcC7vHL27/24Ds0ab6F17GubkoiVtIoQkQACBiMAETXYgKG5+iNwuaaTtuy6T9VsiCAXUpNjaRXPPufxu0L1FEpLS/XUHLQFBAxJAAuLDDlsaLReCHx8pJk+2a9s2zdpdAqt460rWVZ+v5mOgt1upzu1d6hkVImOWoWmgIDxCEBEjTdmaLEOCNys7+LZZxNdrJa37RPvBF3Ns8+lk+AkpIPhQhNAQDUCuJ2rGloUbFYCFWwGv32PjXrkfRNobBHb9vHsc4iXbZ9ZWaBfIBDtBCCi0f4LQP/9JlDfzLZ9PPs8ffmBY1Dfk59k274nFGz7+uaN5LHY4tJib8Ht3EgOAuo2BQGIqCmGEZ1Qm8C+s220bXcTtbXLTz+LByewbV8mlfRj26d2GwMpXxgtnD17ljZu3BjIacgLAiDQhwBEtA8QHIKAN4HWdpdt39FKZdu+5Wzbt8pP2z7vsvEdBEDA+AQgosYfQ/RAJQLHLjnYtq+Jmvg2rlwYlBtPzy7MoPFFgdn2yZWFOBAAAWMSgIgac9zQahUJ9PQQbWLbvr0nlW37Fkxy2fbFwDdBxZFA0SCgfwIQUf2PEVqoIYEzVe3S7PMOb2GRC+L9ncK2b9ro0Gz75MrWMq6srIwKCgq0rBJ1gYApCWCfqCmHFZ0KhsC2fc1UcVTZOGHmODZOWJJJliRMP4Phi3NAwIwEMBM146iiTwERuHLbZdtXVStv25eSFCsZJ8yfoC/bvoA6icwgAAKqEICIqoIVhRqFwCdH7PTxfptic8v5bSvrFmdQNt/GRQABEACBvgQgon2J4DgqCNxy2/ZdULDti40lWsUrbx+dYk7bvpdffpkmTJiA94lGxa8dnVSTAERUTbooW5cEvjzeQtv2NFG3vG8CjSlMYtu+DBqag/88dDmAaBQI6IgA/kroaDDQFHUJNLht+071Y9v3bTZN+BabJyCAAAiAgD8EIKL+UEIewxPYf85l29fqkJ9+FrJd37Ns2zeK7fsQQAAEQMBfAhBRf0khnyEJtHUI274mOnJO2ThhGRvGr2bj+GgKxcXF2CcaTQOOvqpGAPtEVUOLgiNN4B982/Zdtu1rtMnb9hXwM89n2DihDLZ9kR4q1A8ChiWAmahhhw4N74/App022nPCrphl/iQLPc/GCbHwTVBkhAQQAIGBCUBEB2aEHAYicI63rGzh2WdtnbxtX4bbtm+6wW37DDQkaCoImJoARNTUwxtdnXtvfzN9fkTZtm862/Y9x4uHUpMx/Xzttddo2aPL8FLu6PpPBL1VgQBEVAWoKFJbAlfZrm/LLhtdv90uW3FyorDtS6cFEy2y6dEYee7cOZo9e3Y0dh19BoGwEoCIhhUnCtOawKdH7fTRPmXbvrKRybR2SQblpsO2z3tsqqurvQ/xHQRAIEgCENEgweG0yBK43dBFm3n2eb7KIdsQccN2Jc8+l0+1yqYjEgRAAATCQQAiGg6KKENTAl+dZNs+XjzklN+5QqOHu2z7huXi5600MKWlpZRmhTOTEh/Eg4C/BLBP1F9SyBdxAo12pzT7PHGpTbEtT8xJoydnQxwUASEBBEAgrARwqR5WnChMLQIHJNs+G7U45KefwwuEbV8GjR6SqFYTUC4IgAAIPEQAIvoQEkToiYDDbdt3uB/bvkenW+mZBdFl26enMUJbQCCaCfBbExFAQJ8EjrNt30//eo+UBDQ/K55+8HQ2BDSI4duwYQPZ7cqOTkEUiVNAICoJYCYalcOu/06/zStvdx9X/iM/r9xl2xeHy8CgBrOyspKsVqxcDgoeTgIBLwIQUS8Y+Bp5ApU3hG2fjW7f65RtTLo1jtbw1pUZY1Jk0xEJAiAAAloSgIhqSRt19Uvg/QPN9NlhZdu+aaVs27cknazJME7oF+QAibW1tQPkQDIIgIC/BCCi/pJCPtUIXLvjsu27ViNv25fktu1bCNu+sIwBRDQsGFEICEgEsE8UP4SIEvjbMTt9uFfZtm+iZNuXTnnpuN6L6EChchAAAVkC+MskiwWRahOobXTZ9lVel7ftE/UL277HYNun9lCgfBAAgRAIQERDgIdTgyOw81Qr2/bZqKurW7aAUcK2jwV0eF6CbDoiQQAEQEAvBCCiehmJKGjH/RaXbd/xi8q2fd9ky74VbN2HoB4B8Uy0oqKC1q9fr14lKBkEooQARDRKBjrS3Tx4vo228d5Pe5u8bd+wfGHbl05jhiZFuqmmr1+I6Pbt2yGiph9pdFALAhBRLShHcR3tnT309q4mOnSmVZHCI9OstGYhbPsUAamQUFhYqEKpKBIEoo8ARDT6xlyzHp+46qCtPPusb+qSrTM3M57W8Oxz0ohk2XREqkfAYrGoVzhKBoEoIgARjaLB1rKr77B47urHtm9umYWe47euJMSL12cjgAAIgIAxCWCfqDHHTbetPs+2fVt55e0tBdu+tNQ4Ws0rb2ePhW1fpAZRGM/fqb1DJaNKItUE1AsCpiEAETXNUEa+Ix+wbd+Ofmz7prJwruPbt+kW2PZFfrTQAhAAgXAQwO3ccFCM8jKq2LZvM9++vapg25eYECvNPhfxLVwEEAABEDATAYiomUYzAn357B92en+Psm3feF40tJZnnwW8iAhBHwTEFpcWewtu5+pjONAKgxPAXzaDD2Ckmn/nvsu279w1Zdu+p3nbyjd4+wqCvggIo4WzZ8/Sxo0b9dUwtAYEDEgAImrAQYt0k3edbqXtvHioo1Petq9kWJJknFAE275IDxXqBwEQUJkARFRlwGYq3tbqJLF15esLyrZ9j7Nt31Ow7TPTsKMvIAAC/RCAiPYDB0kPCBxi4RSm8c3sfysXhrpt+8bCtk8Oj+7iiouLddcmNAgEjEgAImrEUdOwzR1dPTz7bKIDfAtXKSzm557rYNunhEd38WVlZbprExoEAkYlgH2iRh05Ddp9khcNCdu+Ol5EJBdyMly2fZP5xdkIIAACIBCNBDATjcZR96PPm3nbyk7evqIU5kx02fYlJsC2T4kR4kEABMxPACJq/jEOqIcXb7XTFp593rzbKXteWkocreJ9n3NKYdsnCwiRIAACUUUAIhpVw91/Zz882Ex/O9SsmGnKGJdtXwb73yIYl8DLL79MEyZMwPtEjTuEaLmOCEBEdTQYkWpKNZvFi9nn5Zvtsk1IiHfZ9i0uh22fLCBEggAIRC0BiGjUDr2r45/zc8/3+rHtG1fssu0blIWfSpT/VNB9EAABGQL4yygDJRqi7vGKW2GccLYf276nFqTT49Nh2xcNvwf0EQRAIDgCENHguBn6rN1u2752Bdu+kUOSaA0vHhpRkGDofqLx8gSWLl1K+fn58omIBQEQCIgA9okGhMvYme1s2/c2uw7947yybd83ZqXR03PTjN1RtB4EQAAENCKAmahGoCNdzeGLbfSusO2zy9v2DWGz+GcXpVPp8KRINxX1gwAIgIBhCEBEDTNUwTVU3LF9Z+d92n9K2bZv0RQrPce3bxFAAARAAAQCIxAbWHbkNhKBU9cd9NM37yoKaDbb9v3XFdkQUCMNahja+uKLL9KVy1fCUBKKAAEQwEzUpL+BrXtt9OUxZdu+2Wzbt25xBiXDts+kvwDlbtXV1fFtfWVTDeUzkQICINCXAES0LxGDH1+q6WDjhCa6cUfeti+VbftW863bubDtM/hIo/kgAAJ6IAAR1cMohKkNH7Fl36ds3acUJo922fZlWmHbp8QI8SAAAiAQCAGIaCC0dJr3Rp3Ltu/SDXnbvvi4WFq1KI2WTkrVaQ/QLC0JlJaWUpoV25i0ZI66zEsA+0QNPrZffG2n7bx1RSmUFrls+wZn43pJiRHiQQAEQCBYAvjLGiy5CJ9XZ3Py1pUmOnPVodiSFfPT6ZszYNunCAgJIAACIBAiAYhoiAAjcfreM620jWefjg7eBCoTigcn0bO8eGjkINj2yeBBFAiAAAiEjQD2iYYNpfoFtTh66I0djfRWxX1FAX1sZhptWJsDAVV/OAxbw4YNGwzbdjQcBPRGADNRvY2IQnuOum37mhRs+wbnJtAatu0bXwjbPgWEiHYTqKysBAsQAIEwEYCIhgmkWsV08x3bTWzbt68f276Fk630/BLY9qk1BmYq98SJE2bqDvoCAhEnABGN+BAoN+D09XbaysYJdxu7ZDNlpcfx7DODpo5Klk1HJAiAAAiAgLoEIKLq8g269G37bFRxVNm2b+Z4Cz23JINSEmOCrgMnggAIgAAIhEYA+0RD4xf2sy/fFsYJ96m6Vt62z5IcS6t59jlvfErY60aBIAACIAACgRHATDQwXqrm/vhIM32yX9m2b5Lbti8Ltn2qjgMKBwEQAAF/CUBE/SWlYr6b9V2SafzFannbvji2ul3Fs89HYNun4iigaBAAARAInABENHBmYT3j78dbaNueJuqR902gsUVJtJZfWTYEtn1h5R6thdXW1tKBAwdo5cqV0YoA/QaBsBKA2UJYcfpfWH2zk179uIHe5dW3SgL6JNv2/fPKHAio/1iRcwACQkSPHDkyQC4kgwAI+EsAM1F/SYUx376zbWzb10Rt7fLTzyK263t2cSaVDIZtXxixoygQAAEQCDsBiGjYkSoX2NreQ2+zccLRyjbFTMtnpNGq+XhNlSIgJIAACICAjghARDUajGOXHPQuzz7v821cuTAoJ56e4cVDE/kZKAIIqEXg9OnTahWNckEgKglgn6jKw97T47Lt23uyVbGmBZNctn0x8E1QZISE8BAQz0Rb7C1UMqokPAWiFBCIcgIQURV/AGeq2LaPZ593eAuLXMhMc9n2TRsN2z45PogDARAAAb0TwO1clUZo+75m+uKosnHCjHEpbNuXSZYkTD9VGgIUCwIgAAKqE4CIhhnxFbdtX5WCbV9Kksu2b/4E2PaFGT2K84MAbuf6AQlZQCAAAhDRAGANlPWTI3b6eL9NMVs5v21FGCfk8G1cBBCIBIGKigo6e/Ysbdy4MRLVo04QMB0BiGgYhrSGn3lu5mefF/gZqFyIYUuL1Qsz6NEpqXLJiAMBTQnk5eVpWh8qAwEzE4CIhji6X55k2z4W0G75nSs0ptBl2zeUt7AggIAeCOTn5+uhGWgDCJiCAP6yBzmMDXYnbd5lo5OXlI0TvjUvjb49E8YJQSLGaSAAAiCgewIQ0SCGaP85l21fq0Petq/Qbds3CrZ9QdDFKWoSKCsrU7N4lA0CUUcA+0QDGPK2DmHb10RHzikbJyybYaXVbByPAAIgAAIgYH4CmIn6OcZfX3ZIxgmNNvmHn/n8zHMN2/aVwbbPT6LIBgIgAALGJwAR9WMMN+200Z4TdsWc8ydZ6Hk2ToiFb4IiIySAAAiAgBkJQET7GdVz1cK2z0a36zplc2VYhW1fOk0fA+MEWUCI1B2Bl19+mSZMmEDr16/XXdvQIBAwIgGIqMKovbe/mT4/omzbN73UZduXmozppwJCRIMACICA6QlARPsM8VW269vCW1eu35Y3TkhOFLZ96bRgoqXPmTgEARAAARCINgIQUa8R/9tRO324T9m2r2wk2/YtyaDcdNj2eWHDV4MRKCgoMFiL0VwQ0C8BiCiPze0Gtu3j2ef5KofiSK3i2efyqVbFdCSAgBEILF26lMrLy43QVLQRBAxBIOr3iX7Ftn3b2bavS37nCo0e7rLtG5aL6w1D/KLRSBAAARDQkEDUKkOj27bvRD+2fU/MSaMnZ8O2T8PfI6oCARAAAUMRiEoRPSDZ9tmoxSE//RxekEDP8ivLRg9JNNRgorEgAAIgAALaEuCXdEVPcLBt379X3Kf/+LxRUUAfnW6lf3kuDwIaPT+LqOrpU089RSdOnIiqPqOzIKAmgaiZiR6/yrZ9vHiooalLlmdeFtv2LU6n8uJk2XREggAIgAAIgEBfAlEhom+zeO4+rmzbN6/cZdsXF1Xz8r4/BRyDAAiAAAgESsDUIlp5w2XbV3NP3rYvnW37hHHCLNj2Bfq7QX4QAAEQAAEmYFoRff9AM312WNm2b5pk25dO1mQYJ+C/hOghUFpaSmlWrDiPnhFHT9UmYLp9otfuuGz7rtXI2/YluW37FsK2T+3fFsoHARAAAdMTMNVMdMcxO32wV9m2b8KIZFrHi4fyMk3VbdP/SNFBEAABENArAVOoSW2jy7av8rqybd/Khen02DTY9un1h4h2gQAIgIARCRh+PerOU630ylt1pCSgo4Yl0Y+/kwcBNeKvE20OK4Ha2lrasGFDWMtEYSAQ7QQMOxNtanHSO7x15fjFNsUx/CZb9q1g6z4EEAABIiGilZWVQAECIBBGAoYU0YPn22gbC6i9Td62b1i+sO1LpzFDk8KICkWBQPgJnKg5TElxSTSuYHL4C0eJUUtg//79NHr0aMrPz49aBlp13FAi2t7Zw7PPJjp4plWRzxJ+7rmWn38igIARCHR3O+nfvvwxDckaTrOLFtLckY9Qbire92mEsdNzG7u7u+mll16iKVOm0KJFi2jx4sV6bq6h22YYET3htu2rV7Dty+UVt8K2bxKvwEUAAaMQ6O7plppa03iD3mvcRO+d2ETlw6bRnBFLaE7xEqN0A+3UGQEhoiIcP35c+vfGG2/QvHnzJDEdP368zlpr7OYYYp+oePa5qx/bvrllFnqO37qSEB9j7NFA66OOwOHq3fTH3b+S7bc1OY1mFS+keSOW0sjcUtk8iAQBOQJfffUV/e53v5NLoqKiIpo/fz4tWbKEcnNzZfMg0n8Cup6JXmDbvi27bXRLwbYvLdVl2zd7bIr/PUZOENARAc+MQa5JdkczfXn+U+lfcW4JzR6xiAX1UUpLypDLjjgQ6CXQ3++qqqqKxL9NmzbRtGnTpNu9Cxcu7D0XXwIjoNuZ6AcHm2nHIWXbvpEFDlo0uoUsST0UFxdHsbGxvf/EcUxMjM+xJ13E983vSROfnjSRDwEE1Caw/2oFvbH//wZUzfSiOfzsdClNHTY3oPOQOXoIfPHFF/SHP/zB7w5brVZpdiqenQprSAT/CehyJlrf7OTbty0P9cKZfIh6+F6/49YhOnr+Ih3dRdTTw9l6WPDEp3gMIB2LT/7i/t7jSXfncZ3jyRvjLsN9zB8ieERYfHq+e8S273F/8YHkFeXI5feO84h8f3m98/RtW980T9ne8XJxnvq880llx/DFC7/+xlOPJ12pDE8+8emd10U9+v7f6X4mGkjPj1UdJPEvOzWXZo5YQPN4MdLwjBEDFiG2uJw6dYqWL18+YF5kMDaB/maicj2z2+302WefSf9GjBghCerSpUspKytLLjvivAjodia672wb/fWLRq+mErVn/xNRrOuBuU9COA9418wDkRXi3ON1zBUJIZbyuIW7V6jdaZJ4szB7Czp/9y3TfdzNJ/ucL1OmKEcqyyP2fc8R6a7zHtThaovr2F2md3ukNnryeNXp006R7qnTlZf/X5UgBNcjup5PIbLe373FN5D4UPJ6i7x3/Z7vomxPHu84z3fvNO92eMdfsB+nPXd3hMx1RPZomjp0Ls0avoiSE1Ikdt71iO+nT5+mzZs308aNG0OuDwXom8COHTvo9ddfD7mRM2bMIHGrd8GCBSGXNVABLS0ttG/fPrpw4QJVV1fTsGHDaOzYsdJFn/j96jXoVkR7+A/9f355G6UMmiexa76yhRJn/V2vHM3fLiH2PiIrxLfPBYZIl8TaS5iF5rsvFKQvLPgPjuXKFGU8uFAQFxmu/H3KlOpxnf9A7B+cJ53j1RafOr3L9JTDca4LGk8ZXu105/EtwytdnBtkSCxykmW6qCA8oYffOd9RHUMdN2LJWSdvSOYReW9h9/4ul+6JE59yeZXi/c0r/kgOlNf7oqBvfd5p3uV44uXivMvw5BNx0j+ZOyz9leF9vue7yB+p8Omnn5JYkRuukJ6e3nu7d8yYMeEqtrecPXv20AsvvEBXr17tjfN8mTp1Kn344YeSqHri9PSpWxF1Op20es3zlDnxn6j58rvU1VpDmSvl3wuqJ6BoSxQSECLKOvhAZP2/wIjhZ/qxqeowczYJMY2hThbU7tbI/UFXp3fGKNUjyh4B9nx64j2fcvFycSK/P/F3796l69evqwJp5MiR0sxU3O7NyAh9kdv9+/clgWxtbaXf/OY3tGzZMuk2sphN//a3v5XuoPzwhz+k3//+96r0J9RCdSuinZ2dtHfvXhL39sWstMvJrzi792qo/cX5IBCVBDpvs6DyDLXzpn5vi0XlwBi807NmzZJu94o9qMGGV199lYRIfve736W//OUvPsVs27aNnnnmGWkV8bFjx3zS9HKgWxHtC6jD2U5Hq/aQ2Jze1eOUPrvFJ4tsN9/DEgs0pGOn+9M7H7vCiPOk9N5znOSUzn3w+SBPD5frfQ6fy8ddnjLc53XzbUdXme6ypfi+ca7jvv3BMQhEgkBPhxBTvuV7I46cDZidRmIMzFhnZmamdLtXuCMJu8FAg81mo/j4eLJYLD6nnj9/nsaNGyeVefHiRZ80vRzocnWuHJxE9hedN3KZXJIh4oRAO1nsJdFnQXZKFwIuoe7q5niPQIt84lgSZHGOyMP/pHN8j11lijQh4q5zRP7eCwp3fO+xdIHhuZhwX4xIedx1SPW40j0XGFK73HW7LhhkLjBEne5yXJ9chnT8oC7XRQkuMCL9Y02KSaLMnCzeGpZJCQ6La5zEWHn9E3d+vI/Fd7m4geI954hPBHMTEAIogngMF0wQz1zFYiLxbPTcuXMkxFO8LEF8ihBsucG0JdBzDCOigXZMb/ljxUKFmEReXay3lkW+PUoXGEL8pQsK2QsM98VC7wVJPxcY7ouUgS8wxMWEEP5wXmCIPrgudFwXRL4XGG2dbdTO/9QMmZYcEntLZxYuoDH5E9WsSrZsj5iKP4Te3z1CLeJEmudYfHrn9Rx70pXLEGx9y5ErW5QjFq95xuXhcn3L8dTnySedL9NmT7x3Ps93pTI86d6fweT1nCM+tQqpqakkbucK9yOx+CfYIPr+/e9/n/70pz/1iqUwzhe+v+vWraOf/OQnwRatyXmGuZ2rCQ1UAgIaE/jg1Fv0wcl3wl6rJclK0wpn0Uw2tS8bPF0qX+wTbbG3UMmokrDXhwL1QcAjplu3bqUtW7aEvVFixjlz5kzJhzeU56DeDRMi+bOf/YxGjRpFv/jFL6Syhw4dKmUR212E+YPYuyq3cte7nEh9x0w0UuRRLwgwAXGLPFwhIS6BphSxcPKMc/rw+Q8VW1FRIcVBRB9CY5oIsXJXbLEJdxCzwrlz50qLiJKSwvuKSbF4SIQ333yT5syZ49N0cWtXBNzO9cGCAxAAAQ8Bccs61DB5+AyaUTSfX6W2hOJilf+Arl+/PtSqcL5BCIRDdMQMUIiaMFtQ07nI4XBIVG/evOlD9969e/TjH/9Yiuvo6PBJ09MBZqJ6Gg20JeoIiOekwYTxg8v5Oec8ml28mCwJ1mCKwDkmJhDss9Hi4mJJOIVD0ZAhQzQhtHLlSvr1r39NP/rRj6Q9oWLWe/ToURK3pIWLUVpaGjU0NFBXV5e0gleTRgVQCUQ0AFjICgLhJiAWVfgbRuWPpemFbO1XtJiyLHiFlb/cojFfIL+rgoICmj17trRAKJjtKaHyfeWVV0hscfnzn/9MP//5z6XiUlJSpH2jv/zlL+nFF18kccv3888/pyeeeCLU6sJ+PkQ07EhRIAj4T2CgZ6LDsoullbWzChfR4PTh/heMnFFNYCARFU5DQjjF4qDy8vKIshLPWIXP769+9Su6cuUKiTfKlJSU9D7bfffddyPavoEqh4gORAjpIKAiAbGdpm/ITxvEwjmXZvILuYuzAt+43rc8HEcfATkRTUxMlLakCOEUAqq3IIQ9lK0ykeoPRDRS5FEvCDABz0w005LNW1J4L2fRAhqbXwY2IBASAe9notOnT5dW1go3ITVW7obUUBOcDBE1wSCiC8YlIET0nx/5CZUPmWncTqDluiMgZqIvvfSSZBQvFuYgqEcAZgvqsUXJIAACIAACJicAEzqTD7DW3dt97TP6pHIzObr8s7I7W/u1lP+WrUrrpqI+EAABEAiZAEQ0ZIQowJvAlfpzdPbu19TV3ekdrfi9tvmGlL+prVExDxJAAARAQK8E8ExUryNj0HaNy59EQx0jKCGOzfYRQAAEQMDkBCCiJh9grbs3p/ARratEfSAAAiAQMQIQ0YihV6die4eNbtquU75lCKUnZ9D1xkt0m2+ZZqfk0cjssZSSkOpTsbCdu1R/ljL4/ZI5lkFUeec4OZxtNDpnImV7ueLYO5roWsMlami7R8nxKZRvHULFmaMohl/x5h1EfdL52ePZxzWwn1drp52u1l+gura7lJdSQEXZJWRNzPAuHt9BAARAQFcEAvsrp6umozFyBMQzxg/PvkViRnit4SLV2m9IYibeyxnD/5tZuJgWj3i899SOLoeUf1zeZGrptFH1/atS2rGb++n7c/6XdM7hG7to3/WKh55zDrIOp2+NW8vim9db3ldXPqZ7LbX0gzn/wgKY3hs/0Jfb9mraefUTEhcBniBuCT8+9hkalzfJE4VPEAABENAVAYioroYjfI05VP0VpfPscv2UH9CQ9EKqa7lLH1e+TYerd/IsdRCNL5jiU9nlBtcrh6YPmUexcfGUxgIoRPf8vZO06+rfKDUhTRLMwswSautopaM399KJ2wdp88n/Ry/O/J+UFBfa65GO3dxHouw15S/yDDqTLtedo88vvUcfndtEmVOy2PKu0Ke9OAABEAABPRDwvRenhxahDWEjsLrseyygRVxeDOWmFtAz5f9FmpV+dmk79X17SKezgx4tWUGPjF5BS0Y+QdOHLaB2Zzt9cfF96fw15d+jsblllBJvkW7zPjbmaSormM4zxyY6UPX3kNuckZQlCWhe6iAW5GSaUDCVlo96Wip37/UvQi4fBYAACICAGgQgompQ1UGZ4vlnbmq+T0vE88XRORNICGYd33LtG8bkTfSJume/TW1drTQie4z0DNQnkQ9mFy6Voq7WV/ZNCvh42rB5FBfj+y7MCTxbFs9fr9+/3GuPF3DBOAEEQAAEVCQAEVURbiSLzuUZnVzISsmRou801/gkiwVHQrC8Q0PrXekw11LgHd37PcuSIwlfY1s99cgYqfdm9OOLXB1i0VJGSrZUdmNbgx+lIAsIgAAIaEsAIqotb81qS0mwyNaV6N6/2dbV4pNuifddtSsSWzqbpTwpCb7i6jlRPDNNjE+Wbg13dIf25vm+Au6pIznOVXen0+GJwicIgAAI6IYARFQ3QxHehrR0uASwb6m2dtfqV7FFZaCQnpQtZbE5mmSzCleits4WaTYqnmOGEtoUbAJt7felYjPdM+hQ6sC5IAACIBBuAhDRcBPVSXk1vNVFLtxquiZFD7IOlUv2ictx7xN1ndPjkyYObrjLyrXK3zp+6IR+Imps1Q+likVLTY5GsiRY+Vaz/Mz6oZMQAQIgAAIaEoCIaghby6puNV2nK30W/Jy98zXdbbnNW0lGPmS6INe2QWnDpNW991rv0Ne3DvlkESt3d1/bIcWVFczwSQvm4ETNIRLPVh+EHtp1ZYe0oGgGrxRGAAEQAAE9EsA+UT2OShjaFMuLct47+yZNHTqH8lOHkJjpnbx9mDKSs2nF+O/4WUMMLRu1gjad+CNVXH6fbtmuURG7FLXyLdxTtUdZ9Op4K8x8mjZ0rp/l9ZMthujtE69R+eAZkknDxbrTkttSriWfIKL9cEMSCIBARAlARCOKX73KJ+RPpZTEVPrHrf0k3IqE+09JzjhazHtAxe1Rf4OYjb4w7UdsfLCdKu+epHN3T/CpMZTHK3YXjnhMckbyt6z+8n27dB0dubmHDlZ9ST38v1je7jIhfwotG7MyYPvA/upBGgiAAAiEkwBeyh1Omjoo6zL74G4/8x9UPmiGZJknBLSet6rk8IwuUC/bvt0RC4lEWcIJqa8Hryfvvx/9PyRu//5wzr9SamKaJ9rvT/Ee0ibeziLMIUJtr9+VIiMIgAAIBEkAM9EgwRnlNCFE/qzE9ac/8bEJVDDAgqR2NnIQQWnLykD1iPOS0wZe9DRQOUgHARAAAS0IQES1oBwFdTS01lFday2JLSliBvpgFtlDx3nRkHiGanPclzx5ZxctoVKYykfBrwJdBAHzE4CImn+MVe9hOxshvHH0f3M9rm0w04bO663zcv152nvtM8kXVyxq+rrmIH16fiuNyhlPYmaLAAIgAAJGJgARNfLoybRdLAR6cvzzlMWCpVUQz13nFT9KXc5OGpZRxAI5obfqQXxr9rnJP5B8fDv4Vq94o4xk0sCevGl4V2gvJ3wBARAwJgGIqDHHTbHVwmRe6/dvitW+84uWybYpkZ2MDlXtpKuNF6id310qRF6Enu5u2fyIBAEQAAEjEYCIGmm0DNjWPVd30G37TVo18QXp5d02diD64+Ffum/8GrBDaDIIgAAIeBGAY5EXDHwNPwGHs42EYUKOJU8q/OitvdKns9sZ/spQIgiAAAhoTAD7RDUGHm3V3bXX0CfnN/Nz0C42fXDSxEHT6Nyd47Sk5Akak+v7/tJoY4P+ggAIGJ8ARNT4Y2iIHrR22iUTeWFHiAACIAACZiEAETXLSKIfIAACIAACmhPAtEBz5KgQBEAABEDALAQgomYZSfQDBEAABEBAcwIQUc2Ro0IQAAEQAAGzEICImmUk0Q8QAAEQAAHNCUBENUeOCkEABEAABMxCACJqlpFEP0AABEAABDQnABHVHDkqBAEQAAEQMAsBiKhZRhL9AAEQAAEQ0JwARFRz5KgQBEAABEDALAQgomYZSfQDBEAABEBAcwIQUc2Ro0IQAAEQAAGzEICImmUk0Q8QAAEQAAHNCUBENUeOCkEABEAABMxCACJqlpFEP0AABEAABDQnABHVHDkqBAEQAAEQMAsBiKhZRhL9AAEQAAEQ0JwARFRz5KgQBEAABEDALAQgomYZSfQDBEAABEBAcwIQUc2Ro0IQAAEQAAGzEICImmUk0Q8QAAEQAAHNCUBENUeOCkEABEAABMxCACJqlpFEP0AABEAABDQnABHVHDkqBAEQAAEQMAsBiKhZRhL9AAEQAAEQ0JwARFRz5KgQBEAABEDALAQgomYZSfQDBEAABEBAcwIQUc2Ro0IQAAEQAAGzEICImmUk0Q8QAAEQAAHNCUBENUeOCkEABEAABMxCACJqlpFEP0AABEAABDQnABHVHDkqBAEQAAEQMAsBiKhZRhL9AAEQAAEQ0JwARFRz5KgQBEAABEDALAQgomYZSfQDBEAABEBAcwIQUc2Ro0IQAAEQAAGzEPj/+Otgql7QWzQAAAAASUVORK5CYII=)</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ebatty/MathToolsforNeuroscience",
+            ref: "jupyterbook",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Week1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Week1Tutorial1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Tutorial 1</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../Week2/Overview.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 2: Matrices</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Ella Batty<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
