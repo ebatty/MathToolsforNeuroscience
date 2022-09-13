@@ -20,3 +20,4 @@ parts:
       - file: Week2/Video23.ipynb
       - file: Week2/Video24.ipynb
       - file: Week2/Video25.ipynb
+      - file: Week2/Week2Tutorial1.ipynb
