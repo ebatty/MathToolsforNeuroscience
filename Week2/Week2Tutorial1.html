@@ -1,0 +1,1455 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Tutorial 1 &#8212; Mathematical Tools for Neuroscientists</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Video 2.5: Nonsquare matrices as transformations between dimensions (3Blue1Brown)" href="Video25.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Mathematical Tools for Neuroscientists</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Algebra &amp; Dynamical Systems
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week1/Overview.html">
+   Week 1: Vectors
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/KeyConcepts.html">
+     Key concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Video11.html">
+     Video 1.1: What is a vector?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Video12.html">
+     Video 1.2: Vector properties &amp; operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Video13.html">
+     Video 1.3: Vector spaces
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Week1Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Week1Tutorial2.html">
+     Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="Overview.html">
+   Week 2: Matrices
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="KeyConcepts.html">
+     Key concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Video21.html">
+     Video 2.1: Linear transformations and matrices (3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Video22.html">
+     Video 2.2: Matrix multiplication as composition(3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Video23.html">
+     Video 2.3: The determinant (3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Video24.html">
+     Video 2.4: Inverse matrices, column space, and null space (3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Video25.html">
+     Video 2.5: Nonsquare matrices as transformations between dimensions (3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Tutorial 1
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/jupyterbook/Week2/Week2Tutorial1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/Week2/Week2Tutorial1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Tutorial 1
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plotting-functions">
+     Plotting functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-1-computation-corner">
+   Exercise 1: Computation corner
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-matrix-multiplication">
+     A) Matrix multiplication
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-matrix-multiplication">
+     B) Matrix multiplication
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-optional-transpose">
+     C) (Optional) Transpose
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-2-thinking-about-transformations">
+   Exercise 2: Thinking about transformations
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-reflection-across-x2-axis">
+     A) Reflection across x2 axis
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-projection-onto-x1">
+     B) Projection onto x1
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-optional-figuring-out-the-transformation-from-a-matrix">
+     C) (Optional) Figuring out the transformation from a matrix
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extra-info-matrix-inverse-transformation">
+     Extra info: Matrix inverse transformation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3-encoding-model-matrices">
+   Exercise 3: Encoding model matrices
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-rewriting-linear-systems-of-equations-to-matrix-equation">
+     A) Rewriting linear systems of equations to matrix equation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-solving-a-matrix-equation">
+     B) Solving a matrix equation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-solving-another-matrix-equation">
+     C) Solving another matrix equation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#d-calculate-the-rank-of-f-g">
+     D) Calculate the rank of F/G
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#e-linearly-independent-or-dependent-columns">
+     E) Linearly independent or dependent columns
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#f-finding-the-null-space">
+     F) Finding the null space
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#g-describing-the-populations-of-neurons">
+     G) Describing the populations of neurons
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extra-info-invertible-matrix-theorem">
+     Extra info: Invertible matrix theorem
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#invertible-matrix-theorem">
+       <strong>
+        Invertible matrix theorem
+       </strong>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Tutorial 1</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Tutorial 1
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plotting-functions">
+     Plotting functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-1-computation-corner">
+   Exercise 1: Computation corner
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-matrix-multiplication">
+     A) Matrix multiplication
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-matrix-multiplication">
+     B) Matrix multiplication
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-optional-transpose">
+     C) (Optional) Transpose
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-2-thinking-about-transformations">
+   Exercise 2: Thinking about transformations
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-reflection-across-x2-axis">
+     A) Reflection across x2 axis
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-projection-onto-x1">
+     B) Projection onto x1
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-optional-figuring-out-the-transformation-from-a-matrix">
+     C) (Optional) Figuring out the transformation from a matrix
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extra-info-matrix-inverse-transformation">
+     Extra info: Matrix inverse transformation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3-encoding-model-matrices">
+   Exercise 3: Encoding model matrices
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-rewriting-linear-systems-of-equations-to-matrix-equation">
+     A) Rewriting linear systems of equations to matrix equation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-solving-a-matrix-equation">
+     B) Solving a matrix equation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-solving-another-matrix-equation">
+     C) Solving another matrix equation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#d-calculate-the-rank-of-f-g">
+     D) Calculate the rank of F/G
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#e-linearly-independent-or-dependent-columns">
+     E) Linearly independent or dependent columns
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#f-finding-the-null-space">
+     F) Finding the null space
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#g-describing-the-populations-of-neurons">
+     G) Describing the populations of neurons
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extra-info-invertible-matrix-theorem">
+     Extra info: Invertible matrix theorem
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#invertible-matrix-theorem">
+       <strong>
+        Invertible matrix theorem
+       </strong>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <p><a href="https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/jupyterbook/Week2/Week2Tutorial1.ipynb" target="_parent"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="tutorial-1">
+<h1>Tutorial 1<a class="headerlink" href="#tutorial-1" title="Permalink to this headline">#</a></h1>
+<p><strong>Linear Algebra II, Matrices</strong></p>
+<p><strong>[insert your name]</strong></p>
+<p><strong>Important reminders</strong>: Before starting, click “File -&gt; Save a copy in Drive”. Produce a pdf for submission by “File -&gt; Print” and then choose “Save to PDF”.</p>
+<p>To complete this tutorial, you should have watched Videos 2.1 through 2.5.</p>
+<p><strong>Credits:</strong>
+The videos you watched for this week were from 3Blue1Brown. Some elements of this problem set are from or inspired by https://openedx.seas.gwu.edu/courses/course-v1:GW+EngComp4+2019/about. In particular, we are using their <code class="docutils literal notranslate"><span class="pre">plot_linear_transformation</span></code> and <code class="docutils literal notranslate"><span class="pre">plot_linear_transformations</span></code> functions, and the demonstration of the additional transformation of a matrix inverse (end of Exercise 2)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">scipy.linalg</span>
+
+<span class="c1"># Plotting parameters</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">22</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="plotting-functions">
+<h2>Plotting functions<a class="headerlink" href="#plotting-functions" title="Permalink to this headline">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Plotting functions</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span><span class="p">,</span> <span class="n">eig</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span><span class="p">,</span> <span class="n">ticker</span><span class="p">,</span> <span class="n">get_backend</span><span class="p">,</span> <span class="n">rc</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">cycle</span>
+
+<span class="n">_int_backends</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GTK3Agg&#39;</span><span class="p">,</span> <span class="s1">&#39;GTK3Cairo&#39;</span><span class="p">,</span> <span class="s1">&#39;MacOSX&#39;</span><span class="p">,</span> <span class="s1">&#39;nbAgg&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;Qt4Agg&#39;</span><span class="p">,</span> <span class="s1">&#39;Qt4Cairo&#39;</span><span class="p">,</span> <span class="s1">&#39;Qt5Agg&#39;</span><span class="p">,</span> <span class="s1">&#39;Qt5Cairo&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;TkAgg&#39;</span><span class="p">,</span> <span class="s1">&#39;TkCairo&#39;</span><span class="p">,</span> <span class="s1">&#39;WebAgg&#39;</span><span class="p">,</span> <span class="s1">&#39;WX&#39;</span><span class="p">,</span> <span class="s1">&#39;WXAgg&#39;</span><span class="p">,</span> <span class="s1">&#39;WXCairo&#39;</span><span class="p">]</span>
+<span class="n">_backend</span> <span class="o">=</span> <span class="n">get_backend</span><span class="p">()</span>   <span class="c1"># get current backend name</span>
+
+<span class="c1"># shrink figsize and fontsize when using %matplotlib notebook</span>
+<span class="k">if</span> <span class="n">_backend</span> <span class="ow">in</span> <span class="n">_int_backends</span><span class="p">:</span>
+    <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">fig_scale</span> <span class="o">=</span> <span class="mf">0.75</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">fig_scale</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">grey</span> <span class="o">=</span> <span class="s1">&#39;#808080&#39;</span>
+<span class="n">gold</span> <span class="o">=</span> <span class="s1">&#39;#cab18c&#39;</span>   <span class="c1"># x-axis grid</span>
+<span class="n">lightblue</span> <span class="o">=</span> <span class="s1">&#39;#0096d6&#39;</span>  <span class="c1"># y-axis grid</span>
+<span class="n">green</span> <span class="o">=</span> <span class="s1">&#39;#008367&#39;</span>  <span class="c1"># x-axis basis vector</span>
+<span class="n">red</span> <span class="o">=</span> <span class="s1">&#39;#E31937&#39;</span>    <span class="c1"># y-axis basis vector</span>
+<span class="n">darkblue</span> <span class="o">=</span> <span class="s1">&#39;#004065&#39;</span>
+
+<span class="n">pink</span><span class="p">,</span> <span class="n">yellow</span><span class="p">,</span> <span class="n">orange</span><span class="p">,</span> <span class="n">purple</span><span class="p">,</span> <span class="n">brown</span> <span class="o">=</span> <span class="s1">&#39;#ef7b9d&#39;</span><span class="p">,</span> <span class="s1">&#39;#fbd349&#39;</span><span class="p">,</span> <span class="s1">&#39;#ffa500&#39;</span><span class="p">,</span> <span class="s1">&#39;#a35cff&#39;</span><span class="p">,</span> <span class="s1">&#39;#731d1d&#39;</span>
+
+<span class="n">quiver_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;angles&#39;</span><span class="p">:</span> <span class="s1">&#39;xy&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;scale_units&#39;</span><span class="p">:</span> <span class="s1">&#39;xy&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;scale&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                 <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mf">0.012</span><span class="p">}</span>
+
+<span class="n">grid_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+               <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">set_rc</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s1">&#39;serif&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+        <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+        <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;axes&#39;</span><span class="p">,</span> <span class="n">axisbelow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">titlesize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="nd">@set_rc</span>
+<span class="k">def</span> <span class="nf">plot_vector</span><span class="p">(</span><span class="n">vectors</span><span class="p">,</span> <span class="n">tails</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Draw 2d vectors based on the values of the vectors and the position of their tails.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    vectors : list.</span>
+<span class="sd">        List of 2-element array-like structures, each represents a 2d vector.</span>
+<span class="sd">    </span>
+<span class="sd">    tails : list, optional.</span>
+<span class="sd">        List of 2-element array-like structures, each represents the coordinates of the tail</span>
+<span class="sd">        of the corresponding vector in vectors. If None (default), all tails are set at the</span>
+<span class="sd">        origin (0,0). If len(tails) is 1, all tails are set at the same position. Otherwise,</span>
+<span class="sd">        vectors and tails must have the same length.</span>
+<span class="sd">    </span>
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; v = [(1, 3), (3, 3), (4, 6)]</span>
+<span class="sd">    &gt;&gt;&gt; plot_vector(v)      # draw 3 vectors with their tails at origin</span>
+<span class="sd">    &gt;&gt;&gt; t = [numpy.array((2, 2))]</span>
+<span class="sd">    &gt;&gt;&gt; plot_vector(v, t)   # draw 3 vectors with their tails at (2,2)</span>
+<span class="sd">    &gt;&gt;&gt; t = [[3, 2], [-1, -2], [3, 5]]</span>
+<span class="sd">    &gt;&gt;&gt; plot_vector(v, t)   # draw 3 vectors with 3 different tails</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>   
+    <span class="n">vectors</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vectors</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">vectors</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Each vector should have 2 elements.&quot;</span>  
+    <span class="k">if</span> <span class="n">tails</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">tails</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tails</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">tails</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Each tail should have 2 elements.&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">tails</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">vectors</span><span class="p">)</span>
+    
+    <span class="c1"># tile vectors or tails array if needed</span>
+    <span class="n">nvectors</span> <span class="o">=</span> <span class="n">vectors</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">ntails</span> <span class="o">=</span> <span class="n">tails</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">nvectors</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">ntails</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">vectors</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">vectors</span><span class="p">,</span> <span class="p">(</span><span class="n">ntails</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="n">ntails</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">nvectors</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">tails</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">tails</span><span class="p">,</span> <span class="p">(</span><span class="n">nvectors</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">tails</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">vectors</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;vectors and tail must have a same shape&quot;</span>
+
+    <span class="c1"># calculate xlimit &amp; ylimit</span>
+    <span class="n">heads</span> <span class="o">=</span> <span class="n">tails</span> <span class="o">+</span> <span class="n">vectors</span>
+    <span class="n">limit</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">tails</span><span class="p">,</span> <span class="n">heads</span><span class="p">))))</span>
+    <span class="n">limit</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">limit</span> <span class="o">*</span> <span class="mf">1.2</span><span class="p">)</span>   <span class="c1"># add some margins</span>
+    
+    <span class="n">figsize</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span> <span class="o">*</span> <span class="n">fig_scale</span>
+    <span class="n">figure</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+    <span class="n">axis</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">tails</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">tails</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">vectors</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">vectors</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">darkblue</span><span class="p">,</span> 
+                  <span class="n">angles</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="n">scale_units</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">axis</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="n">limit</span><span class="p">,</span> <span class="n">limit</span><span class="p">])</span>
+    <span class="n">axis</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="n">limit</span><span class="p">,</span> <span class="n">limit</span><span class="p">])</span>
+    <span class="n">axis</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+
+    <span class="c1"># if xticks and yticks of grid do not match, choose the finer one</span>
+    <span class="n">xticks</span> <span class="o">=</span> <span class="n">axis</span><span class="o">.</span><span class="n">get_xticks</span><span class="p">()</span>
+    <span class="n">yticks</span> <span class="o">=</span> <span class="n">axis</span><span class="o">.</span><span class="n">get_yticks</span><span class="p">()</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="n">xticks</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">xticks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">dy</span> <span class="o">=</span> <span class="n">yticks</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">yticks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">)),</span> <span class="mi">1</span><span class="p">)</span>   <span class="c1"># grid interval is always an integer</span>
+    <span class="n">loc</span> <span class="o">=</span> <span class="n">ticker</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="n">base</span><span class="p">)</span>
+    <span class="n">axis</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span>
+    <span class="n">axis</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span>
+    <span class="n">axis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">grid_params</span><span class="p">)</span>
+    
+    <span class="c1"># show x-y axis in the center, hide frames</span>
+    <span class="n">axis</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+    <span class="n">axis</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+    <span class="n">axis</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    <span class="n">axis</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+
+<span class="nd">@set_rc</span>
+<span class="k">def</span> <span class="nf">plot_transformation_helper</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="o">*</span><span class="n">vectors</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; A helper function to plot the linear transformation defined by a 2x2 matrix.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    axis : class matplotlib.axes.Axes.</span>
+<span class="sd">        The axes to plot on.</span>
+
+<span class="sd">    matrix : class numpy.ndarray.</span>
+<span class="sd">        The 2x2 matrix to visualize.</span>
+
+<span class="sd">    *vectors : class numpy.ndarray.</span>
+<span class="sd">        The vector(s) to plot along with the linear transformation. Each array denotes a vector&#39;s</span>
+<span class="sd">        coordinates before the transformation and must have a shape of (2,). Accept any number of vectors. </span>
+<span class="sd">    </span>
+<span class="sd">    unit_vector : bool, optional.</span>
+<span class="sd">        Whether to plot unit vectors of the standard basis, default to True.</span>
+<span class="sd">    </span>
+<span class="sd">    unit_circle: bool, optional.</span>
+<span class="sd">        Whether to plot unit circle, default to False.</span>
+<span class="sd">    </span>
+<span class="sd">    title: str, optional.</span>
+<span class="sd">        Title of the plot.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;the input matrix must have a shape of (2,2)&quot;</span>
+    <span class="n">grid_range</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">grid_range</span><span class="p">,</span> <span class="n">grid_range</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">X_</span><span class="p">,</span> <span class="n">Y_</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">I</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">J</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">I</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">X_</span> <span class="o">+</span> <span class="n">J</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">Y_</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">I</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">X_</span> <span class="o">+</span> <span class="n">J</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">Y_</span>
+    <span class="n">origin</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        
+    <span class="c1"># draw grid lines</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="n">c</span><span class="o">=</span><span class="n">gold</span><span class="p">,</span> <span class="o">**</span><span class="n">grid_params</span><span class="p">)</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span> <span class="n">Y</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">lightblue</span><span class="p">,</span> <span class="o">**</span><span class="n">grid_params</span><span class="p">)</span>
+    
+    <span class="c1"># draw (transformed) unit vectors</span>
+    <span class="k">if</span> <span class="n">unit_vector</span><span class="p">:</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">origin</span><span class="p">,</span> <span class="p">[</span><span class="n">I</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">I</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">color</span><span class="o">=</span><span class="n">green</span><span class="p">,</span> <span class="o">**</span><span class="n">quiver_params</span><span class="p">)</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">origin</span><span class="p">,</span> <span class="p">[</span><span class="n">J</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">J</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">color</span><span class="o">=</span><span class="n">red</span><span class="p">,</span> <span class="o">**</span><span class="n">quiver_params</span><span class="p">)</span>
+
+    <span class="c1"># draw optional vectors</span>
+    <span class="n">color_cycle</span> <span class="o">=</span> <span class="n">cycle</span><span class="p">([</span><span class="n">pink</span><span class="p">,</span> <span class="n">darkblue</span><span class="p">,</span> <span class="n">orange</span><span class="p">,</span> <span class="n">purple</span><span class="p">,</span> <span class="n">brown</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">vectors</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">vector</span> <span class="ow">in</span> <span class="n">vectors</span><span class="p">:</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">color_cycle</span><span class="p">)</span>
+            <span class="n">vector_</span> <span class="o">=</span> <span class="n">matrix</span> <span class="o">@</span> <span class="n">vector</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">axis</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">origin</span><span class="p">,</span> <span class="p">[</span><span class="n">vector_</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">vector_</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="o">**</span><span class="n">quiver_params</span><span class="p">)</span>
+
+    <span class="c1"># draw optional unit circle</span>
+    <span class="k">if</span> <span class="n">unit_circle</span><span class="p">:</span>
+        <span class="n">alpha</span> <span class="o">=</span>  <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">numpy</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">41</span><span class="p">)</span>
+        <span class="n">circle</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">alpha</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">alpha</span><span class="p">)))</span>
+        <span class="n">circle_trans</span> <span class="o">=</span> <span class="n">matrix</span> <span class="o">@</span> <span class="n">circle</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">circle_trans</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">circle_trans</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">red</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+
+    <span class="c1"># hide frames, set xlimit &amp; ylimit, set title</span>
+    <span class="n">limit</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">axis</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+    <span class="n">axis</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+    <span class="n">axis</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">axis</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">axis</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    <span class="n">axis</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    <span class="n">axis</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="n">limit</span><span class="p">,</span> <span class="n">limit</span><span class="p">])</span>
+    <span class="n">axis</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="n">limit</span><span class="p">,</span> <span class="n">limit</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
+<span class="nd">@set_rc</span>
+<span class="k">def</span> <span class="nf">plot_linear_transformation</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="o">*</span><span class="n">vectors</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Plot the linear transformation defined by a 2x2 matrix using the helper</span>
+<span class="sd">    function plot_transformation_helper(). It will create 2 subplots to visualize some</span>
+<span class="sd">    vectors before and after the transformation.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    matrix : class numpy.ndarray.</span>
+<span class="sd">        The 2x2 matrix to visualize.</span>
+
+<span class="sd">    *vectors : class numpy.ndarray.</span>
+<span class="sd">        The vector(s) to plot along with the linear transformation. Each array denotes a vector&#39;s</span>
+<span class="sd">        coordinates before the transformation and must have a shape of (2,). Accept any number of vectors.</span>
+<span class="sd">    </span>
+<span class="sd">    unit_vector : bool, optional.</span>
+<span class="sd">        Whether to plot unit vectors of the standard basis, default to True.</span>
+<span class="sd">    </span>
+<span class="sd">    unit_circle: bool, optional.</span>
+<span class="sd">        Whether to plot unit circle, default to False.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">figsize</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span> <span class="o">*</span> <span class="n">fig_scale</span>
+    <span class="n">figure</span><span class="p">,</span> <span class="p">(</span><span class="n">axis1</span><span class="p">,</span> <span class="n">axis2</span><span class="p">)</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+    <span class="n">plot_transformation_helper</span><span class="p">(</span><span class="n">axis1</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="o">*</span><span class="n">vectors</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="n">unit_vector</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="n">unit_circle</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Before transformation&#39;</span><span class="p">)</span>
+    <span class="n">plot_transformation_helper</span><span class="p">(</span><span class="n">axis2</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="o">*</span><span class="n">vectors</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="n">unit_vector</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="n">unit_circle</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;After transformation&#39;</span><span class="p">)</span>
+
+<span class="nd">@set_rc</span>
+<span class="k">def</span> <span class="nf">plot_linear_transformations</span><span class="p">(</span><span class="o">*</span><span class="n">matrices</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Plot the linear transformation defined by a sequence of n 2x2 matrices using the helper</span>
+<span class="sd">    function plot_transformation_helper(). It will create n+1 subplots to visualize some</span>
+<span class="sd">    vectors before and after each transformation.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    *matrices : class numpy.ndarray.</span>
+<span class="sd">        The 2x2 matrices to visualize. Accept any number of matrices.</span>
+<span class="sd">    </span>
+<span class="sd">    unit_vector : bool, optional.</span>
+<span class="sd">        Whether to plot unit vectors of the standard basis, default to True.</span>
+<span class="sd">    </span>
+<span class="sd">    unit_circle: bool, optional.</span>
+<span class="sd">        Whether to plot unit circle, default to False.</span>
+<span class="sd">      </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nplots</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">matrices</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">nx</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">ny</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="n">nplots</span><span class="o">/</span><span class="n">nx</span><span class="p">)</span>
+    <span class="n">figsize</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="o">*</span><span class="n">nx</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">ny</span><span class="p">])</span> <span class="o">*</span> <span class="n">fig_scale</span>
+    <span class="n">figure</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nplots</span><span class="p">):</span>  <span class="c1"># fig_idx </span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">matrix_trans</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Before transformation&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">matrix_trans</span> <span class="o">=</span> <span class="n">matrices</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">@</span> <span class="n">matrix_trans</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;After </span><span class="si">{}</span><span class="s1"> transformation&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;After </span><span class="si">{}</span><span class="s1"> transformations&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">plot_transformation_helper</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="o">//</span><span class="n">nx</span><span class="p">,</span> <span class="n">i</span><span class="o">%</span><span class="k">nx</span>], matrix_trans, unit_vector=unit_vector, unit_circle=unit_circle, title=title)
+    <span class="c1"># hide axes of the extra subplot (only when nplots is an odd number)</span>
+    <span class="k">if</span> <span class="n">nx</span><span class="o">*</span><span class="n">ny</span> <span class="o">&gt;</span> <span class="n">nplots</span><span class="p">:</span>
+        <span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+        
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="exercise-1-computation-corner">
+<h1>Exercise 1: Computation corner<a class="headerlink" href="#exercise-1-computation-corner" title="Permalink to this headline">#</a></h1>
+<p>For each computation below, please calculate it 1) by-hand and 2) using code. Check that the answers match! For by-hand calculation, please show some work when possible. For example, for matrix multiplication, write out the computation of each element in the resulting matrix so it looks something like this:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A = \begin{bmatrix}
+5*2+4*1 &amp;  3*5+1*2  \\
+0*1+1*2 &amp; 3*2+4*5 \\
+\end{bmatrix} \end{split}\]</div>
+<p>Note that these are completely made up numbers for demonstration purposes - the above numbers don’t make sense for a matrix multiplication.</p>
+<section id="a-matrix-multiplication">
+<h2>A) Matrix multiplication<a class="headerlink" href="#a-matrix-multiplication" title="Permalink to this headline">#</a></h2>
+<p>Please compute C = AB where $<span class="math notranslate nohighlight">\(A = \begin{bmatrix}
+5 &amp;  3  \\
+0 &amp; 2 \\
+\end{bmatrix}, B = \begin{bmatrix}
+1 &amp;  5  \\
+4 &amp; 3 \\
+\end{bmatrix} \)</span>$</p>
+<p><strong>Your math answer</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code answer</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="b-matrix-multiplication">
+<h2>B) Matrix multiplication<a class="headerlink" href="#b-matrix-multiplication" title="Permalink to this headline">#</a></h2>
+<p>Please compute Z = XY where $<span class="math notranslate nohighlight">\(X = \begin{bmatrix}
+3 &amp;  2 &amp; 1 \\
+1 &amp; 2 &amp; 7 \\
+\end{bmatrix}, Y = \begin{bmatrix}
+0 &amp;  1  \\
+2 &amp; 4 \\
+5 &amp; 1 \\
+\end{bmatrix} \)</span>$</p>
+<p>Before computing, figure out what the dimensions of Z will be (no need to explicitly answer this)</p>
+<p><strong>Your math answer</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code answer</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="c-optional-transpose">
+<h2>C) (Optional) Transpose<a class="headerlink" href="#c-optional-transpose" title="Permalink to this headline">#</a></h2>
+<p><strong>Please come back to this problem if you complete the rest of the tutorial during class time.</strong></p>
+<p>The <strong>tranpose</strong> of a matrix flips a matrix over its diagonal, changing the rows to columns and the columns to rows. We denote the transpose of matrix X with <span class="math notranslate nohighlight">\(X^T\)</span>. In numpy, we can get the transpose of an array X with <code class="docutils literal notranslate"><span class="pre">X.T</span></code>.</p>
+<p>First, write out the transpose of X from part B yourself and then produce it using code.</p>
+<p><strong>Your math answer</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code answer</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You could not compute <span class="math notranslate nohighlight">\(X^TY\)</span> - why not?</p>
+<p><strong>Your text answer</strong></p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="exercise-2-thinking-about-transformations">
+<h1>Exercise 2: Thinking about transformations<a class="headerlink" href="#exercise-2-thinking-about-transformations" title="Permalink to this headline">#</a></h1>
+<p>In the video <em>Linear transformations and matrices</em>, you learned that a matrix corresponding to a rotation by 90 degrees is $<span class="math notranslate nohighlight">\(X = \begin{bmatrix}
+0 &amp;  -1  \\
+1 &amp; 0 \\
+\end{bmatrix}\)</span><span class="math notranslate nohighlight">\( You also saw that one matrix for which the transformation is horizontal shear is \)</span><span class="math notranslate nohighlight">\(X = \begin{bmatrix}
+1 &amp;  1  \\
+0 &amp; 1 \\
+\end{bmatrix}\)</span>$</p>
+<p>In this exercise, we will think about some other types of transformations. We will use  <code class="docutils literal notranslate"><span class="pre">plot_linear_transformation(X)</span></code> to see the grid before and after the transformation corresponding to matrix <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<p><strong>Remember to think about where your basis vectors should end up! Then your matrix consists of the transformed basis vectors. Drawing out what you want to happen can help</strong></p>
+<section id="a-reflection-across-x2-axis">
+<h2>A) Reflection across x2 axis<a class="headerlink" href="#a-reflection-across-x2-axis" title="Permalink to this headline">#</a></h2>
+<p>Come up with a matrix <span class="math notranslate nohighlight">\(A\)</span> for which the corresponding linear transformation is reflection through the <span class="math notranslate nohighlight">\(x_2\)</span> axis (flipping across the <span class="math notranslate nohighlight">\(x_2\)</span> axis). For example, <span class="math notranslate nohighlight">\(\bar{x} = \begin{bmatrix}
+1 \\
+5  \\
+\end{bmatrix}\)</span> should become <span class="math notranslate nohighlight">\(\bar{b} = \begin{bmatrix}
+-1 \\
+5  \\
+\end{bmatrix}\)</span> when multiplied with <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">plot_linear_transformation</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">A</span> <span class="o">=</span> <span class="o">...</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">plot_linear_transformation</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="nn">Cell In [2], line 45,</span> in <span class="ni">set_rc.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;axes&#39;</span><span class="p">,</span> <span class="n">axisbelow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">titlesize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">45</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">Cell In [2], line 220,</span> in <span class="ni">plot_linear_transformation</span><span class="nt">(matrix, unit_vector, unit_circle, *vectors)</span>
+<span class="g g-Whitespace">    </span><span class="mi">218</span> <span class="n">figure</span><span class="p">,</span> <span class="p">(</span><span class="n">axis1</span><span class="p">,</span> <span class="n">axis2</span><span class="p">)</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">219</span> <span class="n">plot_transformation_helper</span><span class="p">(</span><span class="n">axis1</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="o">*</span><span class="n">vectors</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="n">unit_vector</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="n">unit_circle</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Before transformation&#39;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">220</span> <span class="n">plot_transformation_helper</span><span class="p">(</span><span class="n">axis2</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="o">*</span><span class="n">vectors</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="n">unit_vector</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="n">unit_circle</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;After transformation&#39;</span><span class="p">)</span>
+
+<span class="nn">Cell In [2], line 45,</span> in <span class="ni">set_rc.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;axes&#39;</span><span class="p">,</span> <span class="n">axisbelow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">titlesize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">45</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">Cell In [2], line 147,</span> in <span class="ni">plot_transformation_helper</span><span class="nt">(axis, matrix, unit_vector, unit_circle, title, *vectors)</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span> <span class="nd">@set_rc</span>
+<span class="g g-Whitespace">    </span><span class="mi">122</span> <span class="k">def</span> <span class="nf">plot_transformation_helper</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="o">*</span><span class="n">vectors</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span>     <span class="sd">&quot;&quot;&quot; A helper function to plot the linear transformation defined by a 2x2 matrix.</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span><span class="sd">     </span>
+<span class="g g-Whitespace">    </span><span class="mi">125</span><span class="sd">     Parameters</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">146</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">147</span>     <span class="k">assert</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;the input matrix must have a shape of (2,2)&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span>     <span class="n">grid_range</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span>     <span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">grid_range</span><span class="p">,</span> <span class="n">grid_range</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="ne">AttributeError</span>: &#39;ellipsis&#39; object has no attribute &#39;shape&#39;
+</pre></div>
+</div>
+<img alt="../_images/Week2Tutorial1_20_1.png" src="../_images/Week2Tutorial1_20_1.png" />
+</div>
+</div>
+<p>Would you expect the determinant of A to be positive or negative? Why? Would you expect the absolute value of the determinant to be greater than 1, less than 1, or equal to 1. Why?</p>
+<p><strong>Your text answer</strong></p>
+</section>
+<section id="b-projection-onto-x1">
+<h2>B) Projection onto x1<a class="headerlink" href="#b-projection-onto-x1" title="Permalink to this headline">#</a></h2>
+<p>Come up with a matrix <span class="math notranslate nohighlight">\(A\)</span> for which the corresponding linear transformation is projecting onto the <span class="math notranslate nohighlight">\(x_1\)</span> axis. For example, <span class="math notranslate nohighlight">\(\bar{x} = \begin{bmatrix}
+1 \\
+5  \\
+\end{bmatrix}\)</span> should become <span class="math notranslate nohighlight">\(\bar{b} = \begin{bmatrix}
+1 \\
+0  \\
+\end{bmatrix}\)</span> when multiplied with <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">plot_linear_transformation</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">A</span> <span class="o">=</span> <span class="o">...</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">plot_linear_transformation</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="nn">Cell In [2], line 45,</span> in <span class="ni">set_rc.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;axes&#39;</span><span class="p">,</span> <span class="n">axisbelow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">titlesize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">45</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">Cell In [2], line 220,</span> in <span class="ni">plot_linear_transformation</span><span class="nt">(matrix, unit_vector, unit_circle, *vectors)</span>
+<span class="g g-Whitespace">    </span><span class="mi">218</span> <span class="n">figure</span><span class="p">,</span> <span class="p">(</span><span class="n">axis1</span><span class="p">,</span> <span class="n">axis2</span><span class="p">)</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">219</span> <span class="n">plot_transformation_helper</span><span class="p">(</span><span class="n">axis1</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="o">*</span><span class="n">vectors</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="n">unit_vector</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="n">unit_circle</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Before transformation&#39;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">220</span> <span class="n">plot_transformation_helper</span><span class="p">(</span><span class="n">axis2</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="o">*</span><span class="n">vectors</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="n">unit_vector</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="n">unit_circle</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;After transformation&#39;</span><span class="p">)</span>
+
+<span class="nn">Cell In [2], line 45,</span> in <span class="ni">set_rc.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;axes&#39;</span><span class="p">,</span> <span class="n">axisbelow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">titlesize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">45</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">Cell In [2], line 147,</span> in <span class="ni">plot_transformation_helper</span><span class="nt">(axis, matrix, unit_vector, unit_circle, title, *vectors)</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span> <span class="nd">@set_rc</span>
+<span class="g g-Whitespace">    </span><span class="mi">122</span> <span class="k">def</span> <span class="nf">plot_transformation_helper</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="o">*</span><span class="n">vectors</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span>     <span class="sd">&quot;&quot;&quot; A helper function to plot the linear transformation defined by a 2x2 matrix.</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span><span class="sd">     </span>
+<span class="g g-Whitespace">    </span><span class="mi">125</span><span class="sd">     Parameters</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">146</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">147</span>     <span class="k">assert</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;the input matrix must have a shape of (2,2)&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span>     <span class="n">grid_range</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span>     <span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">grid_range</span><span class="p">,</span> <span class="n">grid_range</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="ne">AttributeError</span>: &#39;ellipsis&#39; object has no attribute &#39;shape&#39;
+</pre></div>
+</div>
+<img alt="../_images/Week2Tutorial1_24_1.png" src="../_images/Week2Tutorial1_24_1.png" />
+</div>
+</div>
+<p>Would you expect the determinant of A to be positive or negative? Why? Would you expect the absolute value of the determinant to be greater than 1, less than 1, or equal to 1. Why?</p>
+<p><strong>Your text answer</strong></p>
+</section>
+<section id="c-optional-figuring-out-the-transformation-from-a-matrix">
+<h2>C) (Optional) Figuring out the transformation from a matrix<a class="headerlink" href="#c-optional-figuring-out-the-transformation-from-a-matrix" title="Permalink to this headline">#</a></h2>
+<p><strong>Please come back to this problem if you complete the rest of the tutorial during class time.</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A = \begin{bmatrix}
+3 &amp;  1  \\
+0 &amp; 3 \\
+\end{bmatrix}\end{split}\]</div>
+<p>Try to answer the below questions without looking at the plot of the transformation, but feel free to do so if you get stuck</p>
+<p>i) This matrix is a composition of two basic transformations, where possible basic transformations are reflection, contraction, expansion, horizontal shear, vertical shear, and projection.  What are the two basic transformations it is a composition of? (Hint: does this matrix look at all like either of the two in the description below Exercise 2?)</p>
+<p>ii) Would you expect the determinant of A to be positive or negative? Why? Would you expect the absolute value of the determinant to be greater than 1, less than 1, or equal to 1. Why?</p>
+<p>iii) Rewrite A as a matrix multiplication of two matrices where each matrix corresponds to one of the basic transformations.</p>
+<p><strong>Your text answer</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+<span class="c1">#plot_linear_transformation(A)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="extra-info-matrix-inverse-transformation">
+<h2>Extra info: Matrix inverse transformation<a class="headerlink" href="#extra-info-matrix-inverse-transformation" title="Permalink to this headline">#</a></h2>
+<p>We know that the inverse of a matrix essentially “undoes” the transformation of the matrix. Let’s see this in action. We will plot the transformation of A then the additional transformation of <span class="math notranslate nohighlight">\(A^{-1}\)</span> - the resulting plot should look like the original.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">A_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+<span class="n">plot_linear_transformations</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">A_inv</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">A_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plot_linear_transformations</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">A_inv</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;M&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="exercise-3-encoding-model-matrices">
+<h1>Exercise 3: Encoding model matrices<a class="headerlink" href="#exercise-3-encoding-model-matrices" title="Permalink to this headline">#</a></h1>
+<p>Let’s say we have a population of 3 visual neurons that respond to 3 pixel images. Each neural response is a weighted sum of the pixel image: we used this type of model in Week 1 Part 1 Exercise 2. We will now allow the pixels to have negative values.</p>
+<p>We will look at two different populations of 3 neurons with different weights from the pixels: population f and population g. Below, we have the system of linear equations that dictates the neuron models for each population. <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>, and <span class="math notranslate nohighlight">\(x_3\)</span> correspond to the pixel values. <span class="math notranslate nohighlight">\(r_{f1}\)</span>, <span class="math notranslate nohighlight">\(r_{f2}\)</span>, and <span class="math notranslate nohighlight">\(r_{f3}\)</span> correspond to the responses of neurons 1, 2, and 3 in population f. <span class="math notranslate nohighlight">\(r_{g1}\)</span>, <span class="math notranslate nohighlight">\(r_{g2}\)</span>, and <span class="math notranslate nohighlight">\(r_{g3}\)</span> correspond to the responses of neurons 1, 2, and 3 in population g.</p>
+<p>Population f:
+$<span class="math notranslate nohighlight">\(\begin{align}
+x_1 + 3x_2 + 4x_3 &amp;= r_{f1} \\
+2x_1 + x_2 + 4x_3 &amp;= r_{f2} \\
+x_1 + 5x_2 + 6x_3 &amp;= r_{f3} \\
+\end{align}\)</span>$</p>
+<p>Population g:
+$<span class="math notranslate nohighlight">\(\begin{align}
+x_2 + x_3 &amp;= r_{g1} \\
+6x_1 + 10x_2 &amp;= r_{g2} \\
+3x_1 + 6x_2 + x_3 &amp;= r_{g3} \\
+\end{align}\)</span>$</p>
+<section id="a-rewriting-linear-systems-of-equations-to-matrix-equation">
+<h2>A) Rewriting linear systems of equations to matrix equation<a class="headerlink" href="#a-rewriting-linear-systems-of-equations-to-matrix-equation" title="Permalink to this headline">#</a></h2>
+<p>We want to rewrite the above system of equations for each population in the matrix equation <span class="math notranslate nohighlight">\(F\bar{x} = \bar{r}_f\)</span> where <span class="math notranslate nohighlight">\(\bar{x}\)</span> is the image and <span class="math notranslate nohighlight">\(\bar{r}_f\)</span> is the vector of neural responses in population f. What is F?</p>
+<p>We will do the same for population g: <span class="math notranslate nohighlight">\(G\bar{x} = \bar{r}_g\)</span> where <span class="math notranslate nohighlight">\(\bar{r}_g\)</span> is the vector of neural responses in population g. What is G?</p>
+<p><strong>Your math answer</strong></p>
+<p>We started with the linear system of equations view but, as always, we can think about this matrix equation in terms of a linear transformation. In particular matrices F and G are transforming vectors from a “pixel basis”, where each element of a vector represents one pixel to a “neural basis” where each element represents the response of one neuron.</p>
+</section>
+<section id="b-solving-a-matrix-equation">
+<h2>B) Solving a matrix equation<a class="headerlink" href="#b-solving-a-matrix-equation" title="Permalink to this headline">#</a></h2>
+<p>We will now try to solve the matrix equation to find <span class="math notranslate nohighlight">\(\bar{x}\)</span> for a given <span class="math notranslate nohighlight">\(\bar{r}_f\)</span>. What does this correspond to in the neuroscience setting (aka what is <span class="math notranslate nohighlight">\(\bar{x}\)</span> here)?</p>
+<p><strong>Your text answer</strong></p>
+<p>Find <span class="math notranslate nohighlight">\(\bar{x}\)</span> if $<span class="math notranslate nohighlight">\(\bar{r}_f = \begin{bmatrix}
+1 \\
+1 \\
+2 \\
+\end{bmatrix}\)</span>$</p>
+<p>We will use two different coding methods: you will first use <code class="docutils literal notranslate"><span class="pre">np.linalg.inv</span></code>, and then <code class="docutils literal notranslate"><span class="pre">np.linalg.solve</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define F</span>
+<span class="n">F</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="c1"># Define r_f</span>
+<span class="n">r_f</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="c1"># Find x using np.linalg.inv</span>
+<span class="n">x_using_inv</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="c1"># Find x using np.linalg.solve</span>
+<span class="n">x_using_solve</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="c1"># Check each method resulted in the same x</span>
+<span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">x_using_inv</span><span class="p">,</span> <span class="n">x_using_solve</span><span class="p">)):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solutions match&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;PROBLEM: Solutions do not match!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">14</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">x_using_solve</span> <span class="o">=</span> <span class="o">...</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># Check each method resulted in the same x</span>
+<span class="ne">---&gt; </span><span class="mi">14</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">x_using_inv</span><span class="p">,</span> <span class="n">x_using_solve</span><span class="p">)):</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span>   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solutions match&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File &lt;__array_function__ internals&gt;:180,</span> in <span class="ni">isclose</span><span class="nt">(*args, **kwargs)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/numpy/core/numeric.py:2372,</span> in <span class="ni">isclose</span><span class="nt">(a, b, rtol, atol, equal_nan)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2369</span>     <span class="n">dt</span> <span class="o">=</span> <span class="n">multiarray</span><span class="o">.</span><span class="n">result_type</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2370</span>     <span class="n">y</span> <span class="o">=</span> <span class="n">asanyarray</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2372</span> <span class="n">xfin</span> <span class="o">=</span> <span class="n">isfinite</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2373</span> <span class="n">yfin</span> <span class="o">=</span> <span class="n">isfinite</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2374</span> <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">xfin</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span><span class="n">yfin</span><span class="p">):</span>
+
+<span class="ne">TypeError</span>: ufunc &#39;isfinite&#39; not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule &#39;&#39;safe&#39;&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="c-solving-another-matrix-equation">
+<h2>C) Solving another matrix equation<a class="headerlink" href="#c-solving-another-matrix-equation" title="Permalink to this headline">#</a></h2>
+<p>Try to repeat the steps in B for population g where
+$<span class="math notranslate nohighlight">\(\bar{r}_g = \begin{bmatrix}
+1 \\
+1 \\
+2 \\
+\end{bmatrix}\)</span>$</p>
+<p>What problem do you run into?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define G</span>
+<span class="n">G</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="c1"># Define r_g</span>
+<span class="n">r_g</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="c1"># Find x using np.linalg.inv</span>
+<span class="n">x_using_inv</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="c1"># Find x using np.linalg.solve</span>
+<span class="n">x_using_solve</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="c1"># Check each method resulted in the same x</span>
+<span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">x_using_inv</span><span class="p">,</span> <span class="n">x_using_solve</span><span class="p">)):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solutions match&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;PROBLEM: Solutions do not match!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">14</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">x_using_solve</span> <span class="o">=</span> <span class="o">...</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># Check each method resulted in the same x</span>
+<span class="ne">---&gt; </span><span class="mi">14</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">x_using_inv</span><span class="p">,</span> <span class="n">x_using_solve</span><span class="p">)):</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span>   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solutions match&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File &lt;__array_function__ internals&gt;:180,</span> in <span class="ni">isclose</span><span class="nt">(*args, **kwargs)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/numpy/core/numeric.py:2372,</span> in <span class="ni">isclose</span><span class="nt">(a, b, rtol, atol, equal_nan)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2369</span>     <span class="n">dt</span> <span class="o">=</span> <span class="n">multiarray</span><span class="o">.</span><span class="n">result_type</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2370</span>     <span class="n">y</span> <span class="o">=</span> <span class="n">asanyarray</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2372</span> <span class="n">xfin</span> <span class="o">=</span> <span class="n">isfinite</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2373</span> <span class="n">yfin</span> <span class="o">=</span> <span class="n">isfinite</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2374</span> <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">xfin</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span><span class="n">yfin</span><span class="p">):</span>
+
+<span class="ne">TypeError</span>: ufunc &#39;isfinite&#39; not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule &#39;&#39;safe&#39;&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="d-calculate-the-rank-of-f-g">
+<h2>D) Calculate the rank of F/G<a class="headerlink" href="#d-calculate-the-rank-of-f-g" title="Permalink to this headline">#</a></h2>
+<p>First think: from the video <em>Inverse Matrices, column space, and null space</em>, we know that if a n x n matrix is invertible, the matrix is not “squishing” space: all of <span class="math notranslate nohighlight">\(R^n\)</span> can be reached via the transformation. Based on this, what do you expect the ranks of F and G to be based on parts B/C? (no need to explicitly answer, just discuss)</p>
+<p>Now compute the rank of each below and see if you were right.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rank_F</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">rank_G</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The rank of F is &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">rank_F</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The rank of G is &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">rank_G</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The rank of F is Ellipsis
+The rank of G is Ellipsis
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="e-linearly-independent-or-dependent-columns">
+<h2>E) Linearly independent or dependent columns<a class="headerlink" href="#e-linearly-independent-or-dependent-columns" title="Permalink to this headline">#</a></h2>
+<p>Are the columns of F linearly dependent of independent? How do you know? How about the columns of G? How do you know? (Hint: use the words rank and column space in your answer)</p>
+<p><strong>Your text answer</strong></p>
+</section>
+<section id="f-finding-the-null-space">
+<h2>F) Finding the null space<a class="headerlink" href="#f-finding-the-null-space" title="Permalink to this headline">#</a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">scipy.linalg.null_space</span></code> to find the basis of the null spaces for F and G.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F_null_space</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">G_null_space</span> <span class="o">=</span> <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the above computation, what is the dimension of the null space for F? For G? What does the null space correspond to in our neuroscience setting?</p>
+<p><strong>Your text answer</strong></p>
+</section>
+<section id="g-describing-the-populations-of-neurons">
+<h2>G) Describing the populations of neurons<a class="headerlink" href="#g-describing-the-populations-of-neurons" title="Permalink to this headline">#</a></h2>
+<p>So what does all this matrix examination tell us about the neural processing in populations f and g? Obviously this is a toy system but let’s think about it.</p>
+<p>i) What is the dimensionality of the population of neural responses in population f? How about in g?</p>
+<p>ii) If we wanted to decode images from the corresponding neural responses, would we always be able to completely recover the image when looking at population f? How about population g? What does this tell us about the information loss of the neural processing?</p>
+<p>iii) If the columns of a matrix are linearly dependent, then the rows also are. What does this mean for the neural weights in population g?</p>
+<p><strong>Your text answer</strong></p>
+</section>
+<section id="extra-info-invertible-matrix-theorem">
+<h2>Extra info: Invertible matrix theorem<a class="headerlink" href="#extra-info-invertible-matrix-theorem" title="Permalink to this headline">#</a></h2>
+<p>You may have noticed that F and G have a lot of differences in terms of invertibility, the rank, the dimension of the null space, the linear dependence of columns, etc.  There is a theorem that sums up a lot of these concepts: the <strong>invertible matrix theorem</strong>. This theorem essentially sorts square matrices into two types - invertible and not-invertible - and notes a whole bunch of qualities of each type.</p>
+<p>Take a look at the below theorem. If you have time and really want to consolidate your knowledge, think through for each statement why they’re either all true or all false. A lot of the theorem stems from what you already know as it is based on definitions or basic concepts.  You do not need to memorize this theorem but it is helpful to remember that these two types of matrices exist.</p>
+<p>The below is an informal, incomplete encapsulation of the invertible matrix theorem (aka I’m not including every single statement):</p>
+<section id="invertible-matrix-theorem">
+<h3><strong>Invertible matrix theorem</strong><a class="headerlink" href="#invertible-matrix-theorem" title="Permalink to this headline">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(A\)</span> be a square n x n matrix. The following statements are either all true or all false for this matrix:</p>
+<p>a) <span class="math notranslate nohighlight">\(A\)</span> is an invertible matrix</p>
+<p>b) The equation <span class="math notranslate nohighlight">\(A\bar{x} = \bar{b}\)</span> has only the trivial solution (aka only true if <span class="math notranslate nohighlight">\(\bar{x} = \bar{0}\)</span>).</p>
+<p>c) The columns of <span class="math notranslate nohighlight">\(A\)</span> form a linearly independent set.</p>
+<p>d) The equation <span class="math notranslate nohighlight">\(A\bar{x} = \bar{b}\)</span> has at least one solution for each <span class="math notranslate nohighlight">\(\bar{b}\)</span> in <span class="math notranslate nohighlight">\(R^n\)</span>.</p>
+<p>e) The columns of A span <span class="math notranslate nohighlight">\(R^n\)</span></p>
+<p>f) <span class="math notranslate nohighlight">\(A^T\)</span> is an invertible matrix</p>
+<p>g) The columns of A form a basis of <span class="math notranslate nohighlight">\(R^n\)</span></p>
+<p>h) Col A (the column space of A) = <span class="math notranslate nohighlight">\(R^n\)</span></p>
+<p>i) rank A = n</p>
+<p>j) Nul A (the null space of A) = {<span class="math notranslate nohighlight">\(\bar{0}\)</span>}</p>
+<p>k) dim Nul A (the dimension of the null space) = 0</p>
+<p>l) The determinant of A is not 0</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ebatty/MathToolsforNeuroscience",
+            ref: "jupyterbook",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Week2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Video25.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Video 2.5: Nonsquare matrices as transformations between dimensions (3Blue1Brown)</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Ella Batty<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
