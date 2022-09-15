@@ -1,1 +1,1 @@
-# Dynamical Systems I: Discrete Dynamics & Eigenstuff
+# Week 3: Discrete Dynamics & Eigenstuff
