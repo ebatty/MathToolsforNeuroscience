@@ -22,3 +22,8 @@ parts:
       - file: Week2/Video25.ipynb
       - file: Week2/Week2Tutorial1.ipynb
       - file: Week2/Week2Tutorial2.ipynb
+    - file: Week3/Overview.md
+      sections:
+      - file: Week3/Video31.ipynb
+      - file: Week3/Video32.ipynb
+      - file: Week3/Video33.ipynb
