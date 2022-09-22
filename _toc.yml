@@ -28,3 +28,4 @@ parts:
       - file: Week3/Video32.ipynb
       - file: Week3/Video33.ipynb
       - file: Week3/Week3Tutorial1.ipynb
+      - file: Week3/Week3Tutorial2.ipynb
