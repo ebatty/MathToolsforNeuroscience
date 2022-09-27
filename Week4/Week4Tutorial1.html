@@ -1,0 +1,1339 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Tutorial 1 &#8212; Mathematical Tools for Neuroscientists</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Video 4.4: Systems of differential equations" href="Video44.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Mathematical Tools for Neuroscientists</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Algebra &amp; Dynamical Systems
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week1/Overview.html">
+   Week 1: Vectors
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/KeyConcepts.html">
+     Key concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Video11.html">
+     Video 1.1: What is a vector?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Video12.html">
+     Video 1.2: Vector properties &amp; operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Video13.html">
+     Video 1.3: Vector spaces
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Week1Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Week1Tutorial2.html">
+     Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week2/Overview.html">
+   Week 2: Matrices
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/KeyConcepts.html">
+     Key concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Video21.html">
+     Video 2.1: Linear transformations and matrices (3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Video22.html">
+     Video 2.2: Matrix multiplication as composition(3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Video23.html">
+     Video 2.3: The determinant (3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Video24.html">
+     Video 2.4: Inverse matrices, column space, and null space (3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Video25.html">
+     Video 2.5: Nonsquare matrices as transformations between dimensions (3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Week2Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Week2Tutorial2.html">
+     Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week3/Overview.html">
+   Week 3: Discrete Dynamics &amp; Eigenstuff
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week3/Video31.html">
+     Video 3.1: Intro to Dynamical Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week3/Video32.html">
+     Video 3.2: Discrete Dynamical Neural Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week3/Video33.html">
+     Video 3.3: Eigenvalues and eigenvectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week3/Week3Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week3/Week3Tutorial2.html">
+     Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="Overview.html">
+   Week 4: Continuous Dynamical Systems &amp; Differential Equations
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="Video41.html">
+     Video 4.1: Eigenvalues &amp; Discrete Dynamical Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Video42.html">
+     Video 4.2: Review of Differentiation &amp; Integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Video43.html">
+     Video 4.3: Solving differential equations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Video44.html">
+     Video 4.4: Systems of differential equations
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Tutorial 1
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/jupyterbook/Week4/Week4Tutorial1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/Week4/Week4Tutorial1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Tutorial 1
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-concept-review-coding-tips">
+   Key concept review &amp; coding tips
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dynamical-systems">
+     Dynamical systems
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#differential-equations">
+     Differential equations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-1-defining-the-differential-equation">
+   Exercise 1: Defining the differential equation
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-rate-of-change-of-the-proportion-of-open-channels">
+     A) Rate of change of the proportion of open channels
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#answer">
+       <strong>
+        Answer
+       </strong>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-proportion-of-channels-opening">
+     B) Proportion of channels opening
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       <strong>
+        Answer
+       </strong>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-proportion-of-channels-closing">
+     C) Proportion of channels closing
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       <strong>
+        Answer
+       </strong>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#d-getting-dp-o-dt">
+     D) Getting dP_o/dt
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       <strong>
+        Answer
+       </strong>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-2-graphical-solution-assessing-critical-points-and-stability">
+   Exercise 2: Graphical solution: assessing critical points and stability
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-plotting-derivative-vs-variable">
+     A) Plotting derivative vs variable
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-identifying-equilibrium-points-and-stability">
+     B) Identifying equilibrium points and stability
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       <strong>
+        Answer
+       </strong>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-describing-potential-trajectories">
+     C) Describing potential trajectories
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       <strong>
+        Answer
+       </strong>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional-d-getting-the-critical-point-for-any-value-of-alpha-and-beta">
+     (Optional) D) Getting the critical point for any value of alpha and beta
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       <strong>
+        Answer
+       </strong>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3-numerical-solution-implementing-euler-s-method-and-examining-trajectories">
+   Exercise 3: Numerical solution: implementing Euler’s method and examining trajectories
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-complete-the-function-below-to-integrate-our-differential-equation-numerically">
+     A) Complete the function below to integrate our differential equation numerically
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-checking-our-intuition">
+     B) Checking our intuition
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-euler-integration-accuracy">
+     C) Euler integration accuracy
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       <strong>
+        Answer
+       </strong>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional-d-playing-around-with-alpha-beta">
+     (Optional) D) Playing around with alpha/beta
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-exercise-4-analytical-solution-integrating-the-differential-equation">
+   (Optional) Exercise 4: Analytical solution: integrating the differential equation
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     <strong>
+      Answer
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Tutorial 1</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Tutorial 1
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-concept-review-coding-tips">
+   Key concept review &amp; coding tips
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dynamical-systems">
+     Dynamical systems
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#differential-equations">
+     Differential equations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-1-defining-the-differential-equation">
+   Exercise 1: Defining the differential equation
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-rate-of-change-of-the-proportion-of-open-channels">
+     A) Rate of change of the proportion of open channels
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#answer">
+       <strong>
+        Answer
+       </strong>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-proportion-of-channels-opening">
+     B) Proportion of channels opening
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       <strong>
+        Answer
+       </strong>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-proportion-of-channels-closing">
+     C) Proportion of channels closing
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       <strong>
+        Answer
+       </strong>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#d-getting-dp-o-dt">
+     D) Getting dP_o/dt
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       <strong>
+        Answer
+       </strong>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-2-graphical-solution-assessing-critical-points-and-stability">
+   Exercise 2: Graphical solution: assessing critical points and stability
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-plotting-derivative-vs-variable">
+     A) Plotting derivative vs variable
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-identifying-equilibrium-points-and-stability">
+     B) Identifying equilibrium points and stability
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       <strong>
+        Answer
+       </strong>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-describing-potential-trajectories">
+     C) Describing potential trajectories
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       <strong>
+        Answer
+       </strong>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional-d-getting-the-critical-point-for-any-value-of-alpha-and-beta">
+     (Optional) D) Getting the critical point for any value of alpha and beta
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       <strong>
+        Answer
+       </strong>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3-numerical-solution-implementing-euler-s-method-and-examining-trajectories">
+   Exercise 3: Numerical solution: implementing Euler’s method and examining trajectories
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-complete-the-function-below-to-integrate-our-differential-equation-numerically">
+     A) Complete the function below to integrate our differential equation numerically
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-checking-our-intuition">
+     B) Checking our intuition
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-euler-integration-accuracy">
+     C) Euler integration accuracy
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       <strong>
+        Answer
+       </strong>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional-d-playing-around-with-alpha-beta">
+     (Optional) D) Playing around with alpha/beta
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-exercise-4-analytical-solution-integrating-the-differential-equation">
+   (Optional) Exercise 4: Analytical solution: integrating the differential equation
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     <strong>
+      Answer
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <p><a href="https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/jupyterbook/Week4/Week4Tutorial1.ipynb" target="_parent"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="tutorial-1">
+<h1>Tutorial 1<a class="headerlink" href="#tutorial-1" title="Permalink to this headline">#</a></h1>
+<p><strong>Dynamical Systems II: Continuous Dynamical Systems &amp; Differential Equations</strong></p>
+<p><strong>[insert your name]</strong></p>
+<p><strong>Important reminders</strong>: Before starting, click “File -&gt; Save a copy in Drive”. Produce a pdf for submission by “File -&gt; Print” and then choose “Save to PDF”.</p>
+<p>To complete this tutorial, you should have watched Videos 4.1-4.4.</p>
+<p>Imports</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Imports</span>
+
+<span class="c1"># Imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>  <span class="c1"># interactive display</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plotting functions</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Plotting functions</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span><span class="p">,</span> <span class="n">eig</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span><span class="p">,</span> <span class="n">ticker</span><span class="p">,</span> <span class="n">get_backend</span><span class="p">,</span> <span class="n">rc</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">cycle</span>
+
+
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/NeuromatchAcademy/course-content/master/nma.mplstyle&quot;</span><span class="p">)</span>
+
+<span class="n">classic</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span>
+
+<span class="k">def</span> <span class="nf">plot_derivative_vs_variable</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dx</span><span class="p">):</span>
+
+  <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+  <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+  <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+  <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;P$_o$&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\frac</span><span class="si">{dP_o}{dt}</span><span class="s1">$&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">plot_trajectories</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">numerical_P</span><span class="p">,</span> <span class="n">init_Po</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
+
+  <span class="c1"># Get analytical solution</span>
+  <span class="n">analytical_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mf">.01</span><span class="p">)</span>
+  <span class="n">C</span> <span class="o">=</span> <span class="n">init_Po</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">/</span><span class="p">(</span><span class="n">alpha</span> <span class="o">+</span> <span class="n">beta</span><span class="p">)</span>
+  <span class="n">analytical_P</span> <span class="o">=</span> <span class="n">alpha</span><span class="o">/</span><span class="p">(</span><span class="n">alpha</span> <span class="o">+</span> <span class="n">beta</span><span class="p">)</span> <span class="o">+</span> <span class="n">C</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">alpha</span><span class="o">+</span><span class="n">beta</span><span class="p">)</span><span class="o">*</span><span class="n">analytical_t</span><span class="p">)</span>
+
+  <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+  <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">analytical_t</span><span class="p">,</span> <span class="n">analytical_P</span><span class="p">,</span><span class="s1">&#39;#33D396&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+  <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">numerical_P</span><span class="p">,</span> <span class="s1">&#39;#1F59EB&#39;</span><span class="p">)</span>
+  
+  <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time (ms)&#39;</span><span class="p">,</span> <span class="n">ylabel</span> <span class="o">=</span> <span class="s1">&#39;Probability of channel open&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Analytical&#39;</span><span class="p">,</span><span class="s1">&#39;Numerical&#39;</span><span class="p">])</span>
+  
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="key-concept-review-coding-tips">
+<h1>Key concept review &amp; coding tips<a class="headerlink" href="#key-concept-review-coding-tips" title="Permalink to this headline">#</a></h1>
+<section id="dynamical-systems">
+<h2>Dynamical systems<a class="headerlink" href="#dynamical-systems" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>System concerned with movement of point over time in some relevant geometrical space</p></li>
+<li><p>The state of a dynamical system is a complete snapshot of the system at that point in time.</p></li>
+<li><p>The state space is the relevant geometrical space in which to model the state evolving (the set of all possible states)</p></li>
+<li><p>Are discrete or continuous depending on how the evolution rules are defined</p></li>
+<li><p>Discrete dyanmical systems have step-like update rules: <span class="math notranslate nohighlight">\(x_{n+1} = F(x_n)\)</span></p></li>
+<li><p>Continuous dyanmical systems have differential equations governing the evolution: <span class="math notranslate nohighlight">\(\frac{dx}{dt} = F(x, t)\)</span></p></li>
+</ul>
+</section>
+<section id="differential-equations">
+<h2>Differential equations<a class="headerlink" href="#differential-equations" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Equations that relate functions and their derivatives (<span class="math notranslate nohighlight">\(\frac{dx}{dt} = F(x, t)\)</span>)</p></li>
+<li><p>Can sometimes compute the analytical solution <span class="math notranslate nohighlight">\(x(t)\)</span> by integration and solving for constants using the initial condition. This is not always possible.</p></li>
+<li><p>Can numerically approximate specific trajectories (corresponding to different initial conditions) using Euler’s method, which is based on the update rule
+$<span class="math notranslate nohighlight">\( x(t+\Delta t) = F(x, t)\Delta t + x(t)\)</span>$</p></li>
+<li><p>Can understand the system graphically by plotting a direction field (tangent lines on x vs t graph)</p></li>
+<li><p>Can also understand the system graphically by plotting <span class="math notranslate nohighlight">\(\frac{dx}{dt}\)</span> vs x and analyzing critical/equilibrium points</p></li>
+<li><p>Critical/equilbrium points occur at x for which <span class="math notranslate nohighlight">\(\frac{dx}{dt} = 0\)</span>. They are either stable (attractors) or unstable (repellers) depening on the derivative sign to either side</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="exercise-1-defining-the-differential-equation">
+<h1>Exercise 1: Defining the differential equation<a class="headerlink" href="#exercise-1-defining-the-differential-equation" title="Permalink to this headline">#</a></h1>
+<p><strong>Note: please try this out first but ask for help if you get stuck!  Don’t spend too long on this exercise - it’s a bit tricky and we’re happy to take you through it. Also, when you have a solution to part D, call us in to check it’s correct as the rest of the tutorial depends on it</strong></p>
+<p>Throughout this tutorial, we will be working on a specific dynamical system concerning ion channel kinetics.</p>
+<p>Let’s say that we have a population of ion channels of the same type, which are individually either open or closed. There is some rate at which the channels open, dependent on the voltage of the cell, <span class="math notranslate nohighlight">\(\alpha(V)\)</span> and some rate at which they close, <span class="math notranslate nohighlight">\(\beta(V)\)</span>. These would be in units 1/ms (essentially the number of times in a ms that a gate which is open closes and vice versa) and can be found empirically. We suddenly step the voltage to one that opens channels and keep it at that voltage. Although <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> are normally voltage-dependent, we will treat them as constants from here on out since we are holding the voltage steady.</p>
+<p>We need to introduce two more variables before writing out a differential equation that defines our system: <span class="math notranslate nohighlight">\(P_o\)</span> is the proportion of channels that are open (or equivalently the probability that a particular channel is open) and <span class="math notranslate nohighlight">\(P_c\)</span> is the the proportion of closed channels (or equivalently the probability that a particular channel is closed).</p>
+<p>We will now write out a differential equation to model what happens when we step to a certain voltage. In particular, we want to figure out how the proportion of open channels, <span class="math notranslate nohighlight">\(P_o\)</span>, changes over time. This means we want to find a differential equation <span class="math notranslate nohighlight">\(\frac{dP_o}{dt} = ...\)</span>. We will take you through this process step by step.</p>
+<p>Fun fact: this system is very important for the Hodgkin-Huxley model, although we need to add in voltage dependence for that.</p>
+<section id="a-rate-of-change-of-the-proportion-of-open-channels">
+<h2>A) Rate of change of the proportion of open channels<a class="headerlink" href="#a-rate-of-change-of-the-proportion-of-open-channels" title="Permalink to this headline">#</a></h2>
+<p>Let’s say <span class="math notranslate nohighlight">\(P(opening)\)</span> is the proportion of channels opening over some tiny time step and <span class="math notranslate nohighlight">\(P(closing)\)</span> is the proportion of channels closing.</p>
+<p>How does the rate of change of the proportion of open channels (<span class="math notranslate nohighlight">\(\frac{dP_o}{dt}\)</span>) relate to <span class="math notranslate nohighlight">\(P(opening)\)</span> and <span class="math notranslate nohighlight">\(P(closing)\)</span>?</p>
+<section id="answer">
+<h3><strong>Answer</strong><a class="headerlink" href="#answer" title="Permalink to this headline">#</a></h3>
+<p><font color='green'><span style="font-size:larger;">
+Fill in your math answer here (if in latex) so it is green. Use <br> <br>  for line breaks
+</font> </span></p>
+</section>
+</section>
+<section id="b-proportion-of-channels-opening">
+<h2>B) Proportion of channels opening<a class="headerlink" href="#b-proportion-of-channels-opening" title="Permalink to this headline">#</a></h2>
+<p>Write out an equation for the proportion of channels opening over some small time step. (Assume we’ll later multiply with dt so no need to write a small time step here)</p>
+<div class="math notranslate nohighlight">
+\[ P(opening) = ...\]</div>
+<p>Hints: Note that <span class="math notranslate nohighlight">\(P(opening)\)</span> is different from <span class="math notranslate nohighlight">\(P(open)\)</span>. What state does the channel need to be in at the start of the time step for it to open? Relevant variables might be <span class="math notranslate nohighlight">\(\alpha\)</span>, <span class="math notranslate nohighlight">\(\beta\)</span>, <span class="math notranslate nohighlight">\(P_o\)</span>, and <span class="math notranslate nohighlight">\(P_c\)</span>.</p>
+<section id="id1">
+<h3><strong>Answer</strong><a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p><font color='green'><span style="font-size:larger;">
+Fill in your math answer here (if in latex) so it is green. Use <br> <br>  for line breaks
+</font> </span></p>
+</section>
+</section>
+<section id="c-proportion-of-channels-closing">
+<h2>C) Proportion of channels closing<a class="headerlink" href="#c-proportion-of-channels-closing" title="Permalink to this headline">#</a></h2>
+<p>Write an equation for the <span class="math notranslate nohighlight">\(P(closing)\)</span>. Should resemble that in part A (essentially a sort of inverse of part A).</p>
+<div class="math notranslate nohighlight">
+\[P(closing) = \]</div>
+<section id="id2">
+<h3><strong>Answer</strong><a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p><font color='green'><span style="font-size:larger;">
+Fill in your math answer here (if in latex) so it is green
+</font> </span></p>
+</section>
+</section>
+<section id="d-getting-dp-o-dt">
+<h2>D) Getting dP_o/dt<a class="headerlink" href="#d-getting-dp-o-dt" title="Permalink to this headline">#</a></h2>
+<p>Substitute what you equated <span class="math notranslate nohighlight">\(P(opening)\)</span> and <span class="math notranslate nohighlight">\(P(closing)\)</span> to in part B/C in the equation for <span class="math notranslate nohighlight">\(\frac{dP_o}{dt}\)</span> from part A.</p>
+<p>Use the fact that the proportion of closed channels equals 1 minus the proportion of open channels (<span class="math notranslate nohighlight">\(P_c = 1 - P_o\)</span>) to further simplify. Write out the equation as simply as possible.</p>
+<p>Your equation should be a first order linear differential equation.</p>
+<section id="id3">
+<h3><strong>Answer</strong><a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<p><font color='green'><span style="font-size:larger;">
+Fill in your math answer here (if in latex) so it is green. Use <br> <br>  for line breaks
+</font> </span></p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="exercise-2-graphical-solution-assessing-critical-points-and-stability">
+<h1>Exercise 2: Graphical solution: assessing critical points and stability<a class="headerlink" href="#exercise-2-graphical-solution-assessing-critical-points-and-stability" title="Permalink to this headline">#</a></h1>
+<p>We’ll now try and understand what’s happening in our system through graphical methods.</p>
+<section id="a-plotting-derivative-vs-variable">
+<h2>A) Plotting derivative vs variable<a class="headerlink" href="#a-plotting-derivative-vs-variable" title="Permalink to this headline">#</a></h2>
+<p>We will first plot a graph of <span class="math notranslate nohighlight">\(\frac{dP_o}{dt}\)</span> vs <span class="math notranslate nohighlight">\(P_o\)</span> to determine critical points. So far, we have used general variables <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> for representing the rates of opening and closing, but let’s define them numerically now:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \alpha = 0.3 \\
+\beta = 0.1 \end{split}\]</div>
+<p>Note that below we’re allowing <span class="math notranslate nohighlight">\(P_o\)</span> to be negative - this doesn’t really make sense as it is a probability but we want to fully understand the associated dynamical system.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set parameters</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">.3</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">.1</span>
+
+<span class="c1"># We will evalute dP_o/dt on a span of possible P_o values</span>
+<span class="n">Po</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">.1</span><span class="p">)</span>
+
+<span class="c1"># Fill in your code here to compute dPo/dt for all Po above</span>
+<span class="n">dPo_dt</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="c1"># Uncomment below to use plotting function plot_derivative_vs_variable</span>
+<span class="c1"># plot_derivative_vs_variable(Po, dPo_dt)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="b-identifying-equilibrium-points-and-stability">
+<h2>B) Identifying equilibrium points and stability<a class="headerlink" href="#b-identifying-equilibrium-points-and-stability" title="Permalink to this headline">#</a></h2>
+<p>i) What is the critical/equilibrium point for this system with these values of <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>? Why?</p>
+<p>ii) What is the stability of this critical point? Why?</p>
+<p>iii) What does the equilibrium point correspond to in this system? (aka bring it back to the neuro)</p>
+<section id="id4">
+<h3><strong>Answer</strong><a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<p><font color='green'><span style="font-size:larger;">
+Fill in your text answer here so it is green. Use <br> <br>  for line breaks
+</font> </span></p>
+</section>
+</section>
+<section id="c-describing-potential-trajectories">
+<h2>C) Describing potential trajectories<a class="headerlink" href="#c-describing-potential-trajectories" title="Permalink to this headline">#</a></h2>
+<p>Based on the answers in part B, let’s predict what some trajectories in this system might look like. Be specific - will it rise or fall and where will it end up after a long time. You are welcome to describe these in words or sketch out a labeled graph.</p>
+<p>i) What will the trajectory look like if the initial <span class="math notranslate nohighlight">\(P_o\)</span> is negative?</p>
+<p>ii) What will the trajectory look like if the initial <span class="math notranslate nohighlight">\(P_o\)</span> is above 0 but below the critical point?</p>
+<p>iii) What will the trajectory look like if the initial <span class="math notranslate nohighlight">\(P_o\)</span> is above the critical point?</p>
+<section id="id5">
+<h3><strong>Answer</strong><a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<p><font color='green'><span style="font-size:larger;">
+Fill in your text answer here so it is green. Use <br> <br>  for line breaks
+</font> </span></p>
+</section>
+</section>
+<section id="optional-d-getting-the-critical-point-for-any-value-of-alpha-and-beta">
+<h2>(Optional) D) Getting the critical point for any value of alpha and beta<a class="headerlink" href="#optional-d-getting-the-critical-point-for-any-value-of-alpha-and-beta" title="Permalink to this headline">#</a></h2>
+<p>We used specific values of <span class="math notranslate nohighlight">\(\alpha\)</span> an <span class="math notranslate nohighlight">\(\beta\)</span> and got a numerical critical point.</p>
+<p>i) We could write the critical point in terms of <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> though - what would it be?</p>
+<p>ii) If the rate of opening was faster, would the critical point be higher or lower? Does this make sense intuitively?</p>
+<section id="id6">
+<h3><strong>Answer</strong><a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<p><font color='green'><span style="font-size:larger;">
+Fill in your text/math answer here so it is green. Use <br> <br>  for line breaks
+</font> </span></p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="exercise-3-numerical-solution-implementing-euler-s-method-and-examining-trajectories">
+<h1>Exercise 3: Numerical solution: implementing Euler’s method and examining trajectories<a class="headerlink" href="#exercise-3-numerical-solution-implementing-euler-s-method-and-examining-trajectories" title="Permalink to this headline">#</a></h1>
+<p>We’ll now look at some specific trajectories by numerically approximation the system using Euler’s method.  This sytem does have an analytical solution so we will compare the accuracy of our numerical approximation to the analytical solution. If the numerical approximation is good enough, it can be hard to see the analytical solution line, although it is a bit wider to help. If you are interested in finding out how to compute this analytical solution try Exercise 4!</p>
+<section id="a-complete-the-function-below-to-integrate-our-differential-equation-numerically">
+<h2>A) Complete the function below to integrate our differential equation numerically<a class="headerlink" href="#a-complete-the-function-below-to-integrate-our-differential-equation-numerically" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prob_open_euler_integration</span><span class="p">(</span><span class="n">init_Po</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Numerically approximate the solution of the differential equation governing </span>
+<span class="sd">  ion channel kinetics given an initial condition for a duration T. </span>
+
+<span class="sd">  Args:</span>
+<span class="sd">    init_Po (scalar): value of Po at start of simulation (at time = 0)</span>
+<span class="sd">    dt (scalar): timestep of the simulation</span>
+<span class="sd">    T (scalar): total duration of the simulation</span>
+<span class="sd">    alpha (scalar): rate of change of ion channel opening</span>
+<span class="sd">    beta (scalar): rate of change of ion channel closing</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">    ndarray, ndarray: Po and the time t at each step</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+
+  <span class="c1"># Initialize variables</span>
+  <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+  <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+  <span class="n">P</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">init_Po</span> <span class="c1"># This is Po at time 0</span>
+
+  <span class="c1"># Step through time</span>
+  <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+
+    <span class="c1"># for each point in time, compute dP_dt from P[n]</span>
+    <span class="n">dP_dt</span> <span class="o">=</span> <span class="o">...</span>
+
+    <span class="c1"># Update P[n+1] based on P[n] and dP_dt</span>
+    <span class="n">P</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span>
+
+  <span class="k">return</span> <span class="n">P</span><span class="p">,</span> <span class="n">t</span>
+
+
+<span class="n">init_Po</span> <span class="o">=</span> <span class="mf">.4</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">.01</span> <span class="c1"># step size is .01 ms</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># run simulation for 50 ms</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">.3</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">.1</span>
+
+<span class="n">numerical_P</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">prob_open_euler_integration</span><span class="p">(</span><span class="n">init_Po</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+
+<span class="n">plot_trajectories</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">numerical_P</span><span class="p">,</span> <span class="n">init_Po</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">39</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">.3</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span> <span class="n">beta</span> <span class="o">=</span> <span class="mf">.1</span>
+<span class="ne">---&gt; </span><span class="mi">39</span> <span class="n">numerical_P</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">prob_open_euler_integration</span><span class="p">(</span><span class="n">init_Po</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span> <span class="n">plot_trajectories</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">numerical_P</span><span class="p">,</span> <span class="n">init_Po</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+
+<span class="nn">Cell In [4], line 28,</span> in <span class="ni">prob_open_euler_integration</span><span class="nt">(init_Po, dt, T, alpha, beta)</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span>   <span class="n">dP_dt</span> <span class="o">=</span> <span class="o">...</span>
+<span class="g g-Whitespace">     </span><span class="mi">27</span>   <span class="c1"># Update P[n+1] based on P[n] and dP_dt</span>
+<span class="ne">---&gt; </span><span class="mi">28</span>   <span class="n">P</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span>
+<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="k">return</span> <span class="n">P</span><span class="p">,</span> <span class="n">t</span>
+
+<span class="ne">TypeError</span>: float() argument must be a string or a number, not &#39;ellipsis&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="b-checking-our-intuition">
+<h2>B) Checking our intuition<a class="headerlink" href="#b-checking-our-intuition" title="Permalink to this headline">#</a></h2>
+<p>Use this demo to look at the trajectory given different initial conditions. Try out all three types outlined in 2C and verify your answers there were correct.</p>
+<p>You don’t need any answer here, just try out the demo.</p>
+<p>Execute this cell for the demo</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Execute this cell for the demo</span>
+
+<span class="nd">@widgets</span><span class="o">.</span><span class="n">interact</span>
+<span class="k">def</span> <span class="nf">plot_euler_integration</span><span class="p">(</span><span class="n">init_Po</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">.1</span><span class="p">)</span> <span class="p">):</span>
+  <span class="n">dt</span> <span class="o">=</span> <span class="mf">.01</span> <span class="c1"># step size is .01 ms</span>
+  <span class="n">T</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># run simulation for 50 ms</span>
+  <span class="n">alpha</span> <span class="o">=</span> <span class="mf">.3</span>
+  <span class="n">beta</span> <span class="o">=</span> <span class="mf">.1</span>
+
+  <span class="n">numerical_P</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">prob_open_euler_integration</span><span class="p">(</span><span class="n">init_Po</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+
+
+  <span class="n">plot_trajectories</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">numerical_P</span><span class="p">,</span> <span class="n">init_Po</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "9bc22ec15f4b4db28872a6466e30feab"}
+</script></div>
+</div>
+</section>
+<section id="c-euler-integration-accuracy">
+<h2>C) Euler integration accuracy<a class="headerlink" href="#c-euler-integration-accuracy" title="Permalink to this headline">#</a></h2>
+<p>Use the interactive demo below to assess the accuracy of the numerical approximation for different step sizes (values of dt), then answer the questions below.</p>
+<p>Execute this cell for the demo</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Execute this cell for the demo</span>
+
+<span class="nd">@widgets</span><span class="o">.</span><span class="n">interact</span>
+<span class="k">def</span> <span class="nf">plot_euler_integration</span><span class="p">(</span><span class="n">dt</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">SelectionSlider</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;</span><span class="si">%g</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">i</span>,i) for i in np.arange(0.001, 5.001, 0.01)])):
+  <span class="c1"># Have to do this clunky word around to show small values in slider accurately</span>
+  <span class="c1"># (from https://github.com/jupyter-widgets/ipywidgets/issues/259)</span>
+  <span class="n">init_Po</span> <span class="o">=</span> <span class="mf">.4</span>
+  <span class="n">T</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># run simulation for 50 ms</span>
+  <span class="n">alpha</span> <span class="o">=</span> <span class="mf">.3</span>
+  <span class="n">beta</span> <span class="o">=</span> <span class="mf">.1</span>
+
+  <span class="n">numerical_P</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">prob_open_euler_integration</span><span class="p">(</span><span class="n">init_Po</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+
+  <span class="n">plot_trajectories</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">numerical_P</span><span class="p">,</span> <span class="n">init_Po</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "49c55852e50e4b6693bd9089526f9162"}
+</script></div>
+</div>
+<p>i) Does the approximation get better or worse with larger steps?</p>
+<p>ii) Why?</p>
+<section id="id7">
+<h3><strong>Answer</strong><a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<p><font color='green'><span style="font-size:larger;">
+Fill in your text answer here so it is green. Use <br> <br>  for line breaks
+</font> </span></p>
+</section>
+</section>
+<section id="optional-d-playing-around-with-alpha-beta">
+<h2>(Optional) D) Playing around with alpha/beta<a class="headerlink" href="#optional-d-playing-around-with-alpha-beta" title="Permalink to this headline">#</a></h2>
+<p>Change alpha and beta and see how the equilibrium solution and speed at which the system converges changes</p>
+<p>Execute this cell for the demo</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Execute this cell for the demo</span>
+
+<span class="nd">@widgets</span><span class="o">.</span><span class="n">interact</span>
+<span class="k">def</span> <span class="nf">plot_euler_integration</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">.01</span><span class="p">),</span> <span class="n">beta</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">.01</span><span class="p">)):</span>
+  <span class="c1"># Have to do this clunky word around to show small values in slider accurately</span>
+  <span class="c1"># (from https://github.com/jupyter-widgets/ipywidgets/issues/259)</span>
+  <span class="n">init_Po</span> <span class="o">=</span> <span class="mf">.5</span>
+  <span class="n">T</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># run simulation for 50 ms</span>
+  <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+  <span class="n">numerical_P</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">prob_open_euler_integration</span><span class="p">(</span><span class="n">init_Po</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+
+  <span class="n">plot_trajectories</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">numerical_P</span><span class="p">,</span> <span class="n">init_Po</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "4e8ae52a3f884583bb112cd37e7b7128"}
+</script></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="optional-exercise-4-analytical-solution-integrating-the-differential-equation">
+<h1>(Optional) Exercise 4: Analytical solution: integrating the differential equation<a class="headerlink" href="#optional-exercise-4-analytical-solution-integrating-the-differential-equation" title="Permalink to this headline">#</a></h1>
+<p>This differential equation does have an analytical solution that we are able to compute without crazy integration.</p>
+<p>Remember that the general form of a first order linear differential equation is:</p>
+<div class="math notranslate nohighlight">
+\[ \frac{dx}{dt} + p(t)x = g(t)\]</div>
+<p>In this case, we can compute the solution as:</p>
+<div class="math notranslate nohighlight">
+\[ x(t) = \frac{\int \mu(t) g(t) dt + C}{\mu(t)} \]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu(t) = e^{\int p(t) dt}\)</span>
+Go forth and try it out!</p>
+<section id="id8">
+<h2><strong>Answer</strong><a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h2>
+<p><font color='green'><span style="font-size:larger;">
+Fill in your text answer here so it is green. Use <br> <br>  for line breaks
+</font> </span></p>
+</section>
+</section>
+
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"c1e1331875b741dd9023f8047a40d576": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "9bc22ec15f4b4db28872a6466e30feab": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_9ff6c3e11530467b8bae9297810c9677", "IPY_MODEL_acff8b1a2d8f43ae8afd458bc8a18c6b"], "layout": "IPY_MODEL_c1e1331875b741dd9023f8047a40d576"}}, "51d5f28849514328b678942c15b78371": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "6ecf92cd92b0461ea645ed04ed4f57e2": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "9ff6c3e11530467b8bae9297810c9677": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "FloatSliderView", "continuous_update": true, "description": "init_Po", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_51d5f28849514328b678942c15b78371", "max": 1.0, "min": -1.0, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.1, "style": "IPY_MODEL_6ecf92cd92b0461ea645ed04ed4f57e2", "value": 0.0}}, "60fed754e0464182abcf270a73087272": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "acff8b1a2d8f43ae8afd458bc8a18c6b": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_60fed754e0464182abcf270a73087272", "msg_id": "", "outputs": [{"output_type": "error", "ename": "TypeError", "evalue": "float() argument must be a string or a number, not 'ellipsis'", "traceback": ["\u001b[0;31m---------------------------------------------------------------------------\u001b[0m", "\u001b[0;31mTypeError\u001b[0m                                 Traceback (most recent call last)", "File \u001b[0;32m/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/ipywidgets/widgets/interaction.py:257\u001b[0m, in \u001b[0;36minteractive.update\u001b[0;34m(self, *args)\u001b[0m\n\u001b[1;32m    255\u001b[0m     value \u001b[38;5;241m=\u001b[39m widget\u001b[38;5;241m.\u001b[39mget_interact_value()\n\u001b[1;32m    256\u001b[0m     \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mkwargs[widget\u001b[38;5;241m.\u001b[39m_kwarg] \u001b[38;5;241m=\u001b[39m value\n\u001b[0;32m--> 257\u001b[0m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mresult \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mf\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    258\u001b[0m show_inline_matplotlib_plots()\n\u001b[1;32m    259\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mauto_display \u001b[38;5;129;01mand\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mresult \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m:\n", "Cell \u001b[0;32mIn [5], line 10\u001b[0m, in \u001b[0;36mplot_euler_integration\u001b[0;34m(init_Po)\u001b[0m\n\u001b[1;32m      7\u001b[0m alpha \u001b[38;5;241m=\u001b[39m \u001b[38;5;241m.3\u001b[39m\n\u001b[1;32m      8\u001b[0m beta \u001b[38;5;241m=\u001b[39m \u001b[38;5;241m.1\u001b[39m\n\u001b[0;32m---> 10\u001b[0m numerical_P, t \u001b[38;5;241m=\u001b[39m \u001b[43mprob_open_euler_integration\u001b[49m\u001b[43m(\u001b[49m\u001b[43minit_Po\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mdt\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mT\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43malpha\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mbeta\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m     13\u001b[0m plot_trajectories(t, numerical_P, init_Po, alpha, beta)\n", "Cell \u001b[0;32mIn [4], line 28\u001b[0m, in \u001b[0;36mprob_open_euler_integration\u001b[0;34m(init_Po, dt, T, alpha, beta)\u001b[0m\n\u001b[1;32m     25\u001b[0m   dP_dt \u001b[38;5;241m=\u001b[39m \u001b[38;5;241m.\u001b[39m\u001b[38;5;241m.\u001b[39m\u001b[38;5;241m.\u001b[39m\n\u001b[1;32m     27\u001b[0m   \u001b[38;5;66;03m# Update P[n+1] based on P[n] and dP_dt\u001b[39;00m\n\u001b[0;32m---> 28\u001b[0m   \u001b[43mP\u001b[49m\u001b[43m[\u001b[49m\u001b[43mn\u001b[49m\u001b[38;5;241;43m+\u001b[39;49m\u001b[38;5;241;43m1\u001b[39;49m\u001b[43m]\u001b[49m \u001b[38;5;241m=\u001b[39m \u001b[38;5;241m.\u001b[39m\u001b[38;5;241m.\u001b[39m\u001b[38;5;241m.\u001b[39m\n\u001b[1;32m     30\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m P, t\n", "\u001b[0;31mTypeError\u001b[0m: float() argument must be a string or a number, not 'ellipsis'"]}]}}, "c65ea2875d6b49cda134dbf3c57bc6d2": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "2a9fc707e5e94d78975e37c77b63384d": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "bfb49e9a94cc4087a50236642193d222": {"model_name": "SelectionSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SelectionSliderModel", "_options_labels": ["0.001", "0.011", "0.021", "0.031", "0.041", "0.051", "0.061", "0.071", "0.081", "0.091", "0.101", "0.111", "0.121", "0.131", "0.141", "0.151", "0.161", "0.171", "0.181", "0.191", "0.201", "0.211", "0.221", "0.231", "0.241", "0.251", "0.261", "0.271", "0.281", "0.291", "0.301", "0.311", "0.321", "0.331", "0.341", "0.351", "0.361", "0.371", "0.381", "0.391", "0.401", "0.411", "0.421", "0.431", "0.441", "0.451", "0.461", "0.471", "0.481", "0.491", "0.501", "0.511", "0.521", "0.531", "0.541", "0.551", "0.561", "0.571", "0.581", "0.591", "0.601", "0.611", "0.621", "0.631", "0.641", "0.651", "0.661", "0.671", "0.681", "0.691", "0.701", "0.711", "0.721", "0.731", "0.741", "0.751", "0.761", "0.771", "0.781", "0.791", "0.801", "0.811", "0.821", "0.831", "0.841", "0.851", "0.861", "0.871", "0.881", "0.891", "0.901", "0.911", "0.921", "0.931", "0.941", "0.951", "0.961", "0.971", "0.981", "0.991", "1.001", "1.011", "1.021", "1.031", "1.041", "1.051", "1.061", "1.071", "1.081", "1.091", "1.101", "1.111", "1.121", "1.131", "1.141", "1.151", "1.161", "1.171", "1.181", "1.191", "1.201", "1.211", "1.221", "1.231", "1.241", "1.251", "1.261", "1.271", "1.281", "1.291", "1.301", "1.311", "1.321", "1.331", "1.341", "1.351", "1.361", "1.371", "1.381", "1.391", "1.401", "1.411", "1.421", "1.431", "1.441", "1.451", "1.461", "1.471", "1.481", "1.491", "1.501", "1.511", "1.521", "1.531", "1.541", "1.551", "1.561", "1.571", "1.581", "1.591", "1.601", "1.611", "1.621", "1.631", "1.641", "1.651", "1.661", "1.671", "1.681", "1.691", "1.701", "1.711", "1.721", "1.731", "1.741", "1.751", "1.761", "1.771", "1.781", "1.791", "1.801", "1.811", "1.821", "1.831", "1.841", "1.851", "1.861", "1.871", "1.881", "1.891", "1.901", "1.911", "1.921", "1.931", "1.941", "1.951", "1.961", "1.971", "1.981", "1.991", "2.001", "2.011", "2.021", "2.031", "2.041", "2.051", "2.061", "2.071", "2.081", "2.091", "2.101", "2.111", "2.121", "2.131", "2.141", "2.151", "2.161", "2.171", "2.181", "2.191", "2.201", "2.211", "2.221", "2.231", "2.241", "2.251", "2.261", "2.271", "2.281", "2.291", "2.301", "2.311", "2.321", "2.331", "2.341", "2.351", "2.361", "2.371", "2.381", "2.391", "2.401", "2.411", "2.421", "2.431", "2.441", "2.451", "2.461", "2.471", "2.481", "2.491", "2.501", "2.511", "2.521", "2.531", "2.541", "2.551", "2.561", "2.571", "2.581", "2.591", "2.601", "2.611", "2.621", "2.631", "2.641", "2.651", "2.661", "2.671", "2.681", "2.691", "2.701", "2.711", "2.721", "2.731", "2.741", "2.751", "2.761", "2.771", "2.781", "2.791", "2.801", "2.811", "2.821", "2.831", "2.841", "2.851", "2.861", "2.871", "2.881", "2.891", "2.901", "2.911", "2.921", "2.931", "2.941", "2.951", "2.961", "2.971", "2.981", "2.991", "3.001", "3.011", "3.021", "3.031", "3.041", "3.051", "3.061", "3.071", "3.081", "3.091", "3.101", "3.111", "3.121", "3.131", "3.141", "3.151", "3.161", "3.171", "3.181", "3.191", "3.201", "3.211", "3.221", "3.231", "3.241", "3.251", "3.261", "3.271", "3.281", "3.291", "3.301", "3.311", "3.321", "3.331", "3.341", "3.351", "3.361", "3.371", "3.381", "3.391", "3.401", "3.411", "3.421", "3.431", "3.441", "3.451", "3.461", "3.471", "3.481", "3.491", "3.501", "3.511", "3.521", "3.531", "3.541", "3.551", "3.561", "3.571", "3.581", "3.591", "3.601", "3.611", "3.621", "3.631", "3.641", "3.651", "3.661", "3.671", "3.681", "3.691", "3.701", "3.711", "3.721", "3.731", "3.741", "3.751", "3.761", "3.771", "3.781", "3.791", "3.801", "3.811", "3.821", "3.831", "3.841", "3.851", "3.861", "3.871", "3.881", "3.891", "3.901", "3.911", "3.921", "3.931", "3.941", "3.951", "3.961", "3.971", "3.981", "3.991", "4.001", "4.011", "4.021", "4.031", "4.041", "4.051", "4.061", "4.071", "4.081", "4.091", "4.101", "4.111", "4.121", "4.131", "4.141", "4.151", "4.161", "4.171", "4.181", "4.191", "4.201", "4.211", "4.221", "4.231", "4.241", "4.251", "4.261", "4.271", "4.281", "4.291", "4.301", "4.311", "4.321", "4.331", "4.341", "4.351", "4.361", "4.371", "4.381", "4.391", "4.401", "4.411", "4.421", "4.431", "4.441", "4.451", "4.461", "4.471", "4.481", "4.491", "4.501", "4.511", "4.521", "4.531", "4.541", "4.551", "4.561", "4.571", "4.581", "4.591", "4.601", "4.611", "4.621", "4.631", "4.641", "4.651", "4.661", "4.671", "4.681", "4.691", "4.701", "4.711", "4.721", "4.731", "4.741", "4.751", "4.761", "4.771", "4.781", "4.791", "4.801", "4.811", "4.821", "4.831", "4.841", "4.851", "4.861", "4.871", "4.881", "4.891", "4.901", "4.911", "4.921", "4.931", "4.941", "4.951", "4.961", "4.971", "4.981", "4.991"], "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "SelectionSliderView", "continuous_update": true, "description": "dt", "description_tooltip": null, "disabled": false, "index": 0, "layout": "IPY_MODEL_c65ea2875d6b49cda134dbf3c57bc6d2", "orientation": "horizontal", "readout": true, "style": "IPY_MODEL_2a9fc707e5e94d78975e37c77b63384d"}}, "22fb4a144ee34a568adef0c6466a06d0": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "49c55852e50e4b6693bd9089526f9162": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_bfb49e9a94cc4087a50236642193d222", "IPY_MODEL_cf1615a951064eb1a3ebe5a5f826a1b6"], "layout": "IPY_MODEL_22fb4a144ee34a568adef0c6466a06d0"}}, "661cca4600ac4244a513ce71c224ccc5": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "cf1615a951064eb1a3ebe5a5f826a1b6": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_661cca4600ac4244a513ce71c224ccc5", "msg_id": "", "outputs": [{"output_type": "error", "ename": "TypeError", "evalue": "float() argument must be a string or a number, not 'ellipsis'", "traceback": ["\u001b[0;31m---------------------------------------------------------------------------\u001b[0m", "\u001b[0;31mTypeError\u001b[0m                                 Traceback (most recent call last)", "File \u001b[0;32m/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/ipywidgets/widgets/interaction.py:257\u001b[0m, in \u001b[0;36minteractive.update\u001b[0;34m(self, *args)\u001b[0m\n\u001b[1;32m    255\u001b[0m     value \u001b[38;5;241m=\u001b[39m widget\u001b[38;5;241m.\u001b[39mget_interact_value()\n\u001b[1;32m    256\u001b[0m     \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mkwargs[widget\u001b[38;5;241m.\u001b[39m_kwarg] \u001b[38;5;241m=\u001b[39m value\n\u001b[0;32m--> 257\u001b[0m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mresult \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mf\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    258\u001b[0m show_inline_matplotlib_plots()\n\u001b[1;32m    259\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mauto_display \u001b[38;5;129;01mand\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mresult \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m:\n", "Cell \u001b[0;32mIn [6], line 12\u001b[0m, in \u001b[0;36mplot_euler_integration\u001b[0;34m(dt)\u001b[0m\n\u001b[1;32m      9\u001b[0m alpha \u001b[38;5;241m=\u001b[39m \u001b[38;5;241m.3\u001b[39m\n\u001b[1;32m     10\u001b[0m beta \u001b[38;5;241m=\u001b[39m \u001b[38;5;241m.1\u001b[39m\n\u001b[0;32m---> 12\u001b[0m numerical_P, t \u001b[38;5;241m=\u001b[39m \u001b[43mprob_open_euler_integration\u001b[49m\u001b[43m(\u001b[49m\u001b[43minit_Po\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mdt\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mT\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43malpha\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mbeta\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m     14\u001b[0m plot_trajectories(t, numerical_P, init_Po, alpha, beta)\n", "Cell \u001b[0;32mIn [4], line 28\u001b[0m, in \u001b[0;36mprob_open_euler_integration\u001b[0;34m(init_Po, dt, T, alpha, beta)\u001b[0m\n\u001b[1;32m     25\u001b[0m   dP_dt \u001b[38;5;241m=\u001b[39m \u001b[38;5;241m.\u001b[39m\u001b[38;5;241m.\u001b[39m\u001b[38;5;241m.\u001b[39m\n\u001b[1;32m     27\u001b[0m   \u001b[38;5;66;03m# Update P[n+1] based on P[n] and dP_dt\u001b[39;00m\n\u001b[0;32m---> 28\u001b[0m   \u001b[43mP\u001b[49m\u001b[43m[\u001b[49m\u001b[43mn\u001b[49m\u001b[38;5;241;43m+\u001b[39;49m\u001b[38;5;241;43m1\u001b[39;49m\u001b[43m]\u001b[49m \u001b[38;5;241m=\u001b[39m \u001b[38;5;241m.\u001b[39m\u001b[38;5;241m.\u001b[39m\u001b[38;5;241m.\u001b[39m\n\u001b[1;32m     30\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m P, t\n", "\u001b[0;31mTypeError\u001b[0m: float() argument must be a string or a number, not 'ellipsis'"]}]}}, "f5dac76aed2e45eab5b7abedfc7b35f3": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4e8ae52a3f884583bb112cd37e7b7128": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_218803745b0348548e4f1a0c0b256650", "IPY_MODEL_c3008dc633fe45e6af12221a1faf00b9", "IPY_MODEL_217db7db786744e7b7429feebcf5fcdc"], "layout": "IPY_MODEL_f5dac76aed2e45eab5b7abedfc7b35f3"}}, "e8bbb420c2774f5e811c11ed6d6d42fa": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "f3370731b09149d38815576a1f6173d2": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "218803745b0348548e4f1a0c0b256650": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "FloatSliderView", "continuous_update": true, "description": "alpha", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_e8bbb420c2774f5e811c11ed6d6d42fa", "max": 1.0, "min": 0.01, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.01, "style": "IPY_MODEL_f3370731b09149d38815576a1f6173d2", "value": 0.5}}, "babb0be4a06142d1bf020bd6afc2526b": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4b56cbee80024126932c61591cffcc91": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "c3008dc633fe45e6af12221a1faf00b9": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "FloatSliderView", "continuous_update": true, "description": "beta", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_babb0be4a06142d1bf020bd6afc2526b", "max": 1.0, "min": 0.01, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.01, "style": "IPY_MODEL_4b56cbee80024126932c61591cffcc91", "value": 0.5}}, "9af7731f7cc64c4594bf8687028eae77": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "217db7db786744e7b7429feebcf5fcdc": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_9af7731f7cc64c4594bf8687028eae77", "msg_id": "", "outputs": [{"output_type": "error", "ename": "TypeError", "evalue": "float() argument must be a string or a number, not 'ellipsis'", "traceback": ["\u001b[0;31m---------------------------------------------------------------------------\u001b[0m", "\u001b[0;31mTypeError\u001b[0m                                 Traceback (most recent call last)", "File \u001b[0;32m/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/ipywidgets/widgets/interaction.py:257\u001b[0m, in \u001b[0;36minteractive.update\u001b[0;34m(self, *args)\u001b[0m\n\u001b[1;32m    255\u001b[0m     value \u001b[38;5;241m=\u001b[39m widget\u001b[38;5;241m.\u001b[39mget_interact_value()\n\u001b[1;32m    256\u001b[0m     \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mkwargs[widget\u001b[38;5;241m.\u001b[39m_kwarg] \u001b[38;5;241m=\u001b[39m value\n\u001b[0;32m--> 257\u001b[0m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mresult \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mf\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    258\u001b[0m show_inline_matplotlib_plots()\n\u001b[1;32m    259\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mauto_display \u001b[38;5;129;01mand\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mresult \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m:\n", "Cell \u001b[0;32mIn [7], line 11\u001b[0m, in \u001b[0;36mplot_euler_integration\u001b[0;34m(alpha, beta)\u001b[0m\n\u001b[1;32m      8\u001b[0m T \u001b[38;5;241m=\u001b[39m \u001b[38;5;241m50\u001b[39m \u001b[38;5;66;03m# run simulation for 50 ms\u001b[39;00m\n\u001b[1;32m      9\u001b[0m dt \u001b[38;5;241m=\u001b[39m \u001b[38;5;241m0.01\u001b[39m\n\u001b[0;32m---> 11\u001b[0m numerical_P, t \u001b[38;5;241m=\u001b[39m \u001b[43mprob_open_euler_integration\u001b[49m\u001b[43m(\u001b[49m\u001b[43minit_Po\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mdt\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mT\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43malpha\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mbeta\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m     13\u001b[0m plot_trajectories(t, numerical_P, init_Po, alpha, beta)\n", "Cell \u001b[0;32mIn [4], line 28\u001b[0m, in \u001b[0;36mprob_open_euler_integration\u001b[0;34m(init_Po, dt, T, alpha, beta)\u001b[0m\n\u001b[1;32m     25\u001b[0m   dP_dt \u001b[38;5;241m=\u001b[39m \u001b[38;5;241m.\u001b[39m\u001b[38;5;241m.\u001b[39m\u001b[38;5;241m.\u001b[39m\n\u001b[1;32m     27\u001b[0m   \u001b[38;5;66;03m# Update P[n+1] based on P[n] and dP_dt\u001b[39;00m\n\u001b[0;32m---> 28\u001b[0m   \u001b[43mP\u001b[49m\u001b[43m[\u001b[49m\u001b[43mn\u001b[49m\u001b[38;5;241;43m+\u001b[39;49m\u001b[38;5;241;43m1\u001b[39;49m\u001b[43m]\u001b[49m \u001b[38;5;241m=\u001b[39m \u001b[38;5;241m.\u001b[39m\u001b[38;5;241m.\u001b[39m\u001b[38;5;241m.\u001b[39m\n\u001b[1;32m     30\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m P, t\n", "\u001b[0;31mTypeError\u001b[0m: float() argument must be a string or a number, not 'ellipsis'"]}]}}}, "version_major": 2, "version_minor": 0}
+</script>
+
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ebatty/MathToolsforNeuroscience",
+            ref: "jupyterbook",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Week4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Video44.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Video 4.4: Systems of differential equations</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Ella Batty<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
