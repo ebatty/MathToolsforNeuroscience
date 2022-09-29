@@ -6,55 +6,58 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Introduction &#8212; Mathematical Tools for Neuroscientists</title>
+    <title>Key Concepts &#8212; Mathematical Tools for Neuroscientists</title>
     
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Week 1: Vectors" href="Week1/Overview.html" />
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Video 4.1: Eigenvalues &amp; Discrete Dynamical Systems" href="Video41.html" />
+    <link rel="prev" title="Week 4: Continuous Dynamical Systems &amp; Differential Equations" href="Overview.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -89,22 +92,22 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="bd-sidebar noprint" id="site-navigation">
     <div class="bd-sidebar__content">
         <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+    <a class="navbar-brand text-wrap" href="../index.html">
       
       
       
       <h1 class="site-logo" id="site-title">Mathematical Tools for Neuroscientists</h1>
       
     </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
                     Introduction
                 </a>
             </li>
@@ -114,9 +117,9 @@ const thebe_selector_output = ".output, .cell_output"
   Linear Algebra &amp; Dynamical Systems
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="Week1/Overview.html">
+  <a class="reference internal" href="../Week1/Overview.html">
    Week 1: Vectors
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -126,39 +129,39 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week1/KeyConcepts.html">
+    <a class="reference internal" href="../Week1/KeyConcepts.html">
      Key concepts
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week1/Video11.html">
+    <a class="reference internal" href="../Week1/Video11.html">
      Video 1.1: What is a vector?
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week1/Video12.html">
+    <a class="reference internal" href="../Week1/Video12.html">
      Video 1.2: Vector properties &amp; operations
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week1/Video13.html">
+    <a class="reference internal" href="../Week1/Video13.html">
      Video 1.3: Vector spaces
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week1/Week1Tutorial1.html">
+    <a class="reference internal" href="../Week1/Week1Tutorial1.html">
      Tutorial 1
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week1/Week1Tutorial2.html">
+    <a class="reference internal" href="../Week1/Week1Tutorial2.html">
      Tutorial 2
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="Week2/Overview.html">
+  <a class="reference internal" href="../Week2/Overview.html">
    Week 2: Matrices
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
@@ -168,49 +171,49 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week2/KeyConcepts.html">
+    <a class="reference internal" href="../Week2/KeyConcepts.html">
      Key concepts
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week2/Video21.html">
+    <a class="reference internal" href="../Week2/Video21.html">
      Video 2.1: Linear transformations and matrices (3Blue1Brown)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week2/Video22.html">
+    <a class="reference internal" href="../Week2/Video22.html">
      Video 2.2: Matrix multiplication as composition(3Blue1Brown)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week2/Video23.html">
+    <a class="reference internal" href="../Week2/Video23.html">
      Video 2.3: The determinant (3Blue1Brown)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week2/Video24.html">
+    <a class="reference internal" href="../Week2/Video24.html">
      Video 2.4: Inverse matrices, column space, and null space (3Blue1Brown)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week2/Video25.html">
+    <a class="reference internal" href="../Week2/Video25.html">
      Video 2.5: Nonsquare matrices as transformations between dimensions (3Blue1Brown)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week2/Week2Tutorial1.html">
+    <a class="reference internal" href="../Week2/Week2Tutorial1.html">
      Tutorial 1
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week2/Week2Tutorial2.html">
+    <a class="reference internal" href="../Week2/Week2Tutorial2.html">
      Tutorial 2
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="Week3/Overview.html">
+  <a class="reference internal" href="../Week3/Overview.html">
    Week 3: Discrete Dynamics &amp; Eigenstuff
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
@@ -220,74 +223,74 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week3/Video31.html">
+    <a class="reference internal" href="../Week3/Video31.html">
      Video 3.1: Intro to Dynamical Systems
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week3/Video32.html">
+    <a class="reference internal" href="../Week3/Video32.html">
      Video 3.2: Discrete Dynamical Neural Circuit
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week3/Video33.html">
+    <a class="reference internal" href="../Week3/Video33.html">
      Video 3.3: Eigenvalues and eigenvectors
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week3/Week3Tutorial1.html">
+    <a class="reference internal" href="../Week3/Week3Tutorial1.html">
      Tutorial 1
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week3/Week3Tutorial2.html">
+    <a class="reference internal" href="../Week3/Week3Tutorial2.html">
      Tutorial 2
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="Week4/Overview.html">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="Overview.html">
    Week 4: Continuous Dynamical Systems &amp; Differential Equations
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Week4/KeyConcepts.html">
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Key Concepts
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week4/Video41.html">
+    <a class="reference internal" href="Video41.html">
      Video 4.1: Eigenvalues &amp; Discrete Dynamical Systems
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week4/Video42.html">
+    <a class="reference internal" href="Video42.html">
      Video 4.2: Review of Differentiation &amp; Integration
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week4/Video43.html">
+    <a class="reference internal" href="Video43.html">
      Video 4.3: Solving differential equations
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week4/Video44.html">
+    <a class="reference internal" href="Video44.html">
      Video 4.4: Systems of differential equations
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week4/Week4Tutorial1.html">
+    <a class="reference internal" href="Week4Tutorial1.html">
      Tutorial 1
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Week4/Week4Tutorial2.html">
+    <a class="reference internal" href="Week4Tutorial2.html">
      Tutorial 2
     </a>
    </li>
@@ -366,7 +369,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/intro.md"
+        <a href="../_sources/Week4/KeyConcepts.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -426,18 +429,13 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#course-prerequisites">
-   Course Prerequisites
+  <a class="reference internal nav-link" href="#differential-equations">
+   Differential equations
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#description-of-materials">
-   Description of materials
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#other-resources">
-   Other resources
+  <a class="reference internal nav-link" href="#systems-of-differential-equations">
+   Systems of differential equations
   </a>
  </li>
 </ul>
@@ -449,7 +447,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Introduction</h1>
+                <h1>Key Concepts</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -460,18 +458,13 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#course-prerequisites">
-   Course Prerequisites
+  <a class="reference internal nav-link" href="#differential-equations">
+   Differential equations
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#description-of-materials">
-   Description of materials
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#other-resources">
-   Other resources
+  <a class="reference internal nav-link" href="#systems-of-differential-equations">
+   Systems of differential equations
   </a>
  </li>
 </ul>
@@ -484,29 +477,24 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h1>
-<p>Numerical data analysis has become a nearly indispensable tool in modern neuroscience. This course aims to equip graduate students with the fundamental mathematical skills in quantitative modeling and data analysis necessary for neuroscience research (and for further computational neuroscience courses). <strong>This course is essentially organized into three sections: one on linear algebra &amp; dynamical systems, one on probabiliy &amp; statistics, and one on the basics of machine learning.</strong></p>
-<p>One goal in formulating this course was to alleviate the need for taking multiple undergraduate-level courses in each of the stated topics (which may be cumbersome due to back-and-forth commute, inconvenient scheduling, or just an excess of materical with no clear applicability to neuroscience research).  Our goal is to make this as fun, approachable, and applicable as possible. We would like to build mathematical intuition for these essential topics.</p>
-<section id="course-prerequisites">
-<h2>Course Prerequisites<a class="headerlink" href="#course-prerequisites" title="Permalink to this headline">#</a></h2>
-<p>You will not need any math experience beyond high school calculus. Python will be used in this class so some knowledge of it is necessary, although this course will also serve as an opportunity to practice those skills.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="key-concepts">
+<h1>Key Concepts<a class="headerlink" href="#key-concepts" title="Permalink to this headline">#</a></h1>
+<section id="differential-equations">
+<h2>Differential equations<a class="headerlink" href="#differential-equations" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Equations that relate functions and their derivatives (<span class="math notranslate nohighlight">\(\frac{dx}{dt} = F(x, t)\)</span>)</p></li>
+<li><p>Can sometimes compute the analytical solution <span class="math notranslate nohighlight">\(x(t)\)</span> by integration and solving for constants using the initial condition. This is not always possible.</p></li>
+<li><p>Can numerically approximate specific trajectories (corresponding to different initial conditions) using Euler’s method, which is based on the update rule
+$<span class="math notranslate nohighlight">\( x(t+\Delta t) = F(x, t)\Delta t + x(t)\)</span>$</p></li>
+<li><p>Can understand the system graphically by plotting a direction field (tangent lines on x vs t graph)</p></li>
+<li><p>Can also understand the system graphically by plotting <span class="math notranslate nohighlight">\(\frac{dx}{dt}\)</span> vs x and analyzing critical/equilibrium points</p></li>
+<li><p>Critical/equilbrium points occur at x for which <span class="math notranslate nohighlight">\(\frac{dx}{dt} = 0\)</span>. They are either stable (attractors) or unstable (repellers) depening on the derivative sign to either side</p></li>
+</ul>
 </section>
-<section id="description-of-materials">
-<h2>Description of materials<a class="headerlink" href="#description-of-materials" title="Permalink to this headline">#</a></h2>
-<p>There are three components to the course: video lectures, comprehension questions, and tutorials.</p>
-<p><strong>Video lectures</strong>: The course consists of short video lectures each structured around a specific topic (10-20 minutes per video). We have created most of these videos using a Khan academy inspired style. We don’t want to reinvent the wheel so when great videos already exist on a specific topic, we link to those instead, but this will mostly occur in the linear algebra section.</p>
-<p><strong>Comprehension questions</strong>: These are short questions designed to be looked at right after watching the videos to consolidate your knowledge and try out quick computations.</p>
-<p><strong>Tutorials</strong>: Each week has 1 - 2 tutorials, or problem sets. These are Google colab notebooks with exercises where you might be asked to do computations by hand, engage with interactive demos, or code. They are designed to review the video material and in some cases introduce new concepts. They are not designed for repetitive problem solving (i.e. you will not be asked to solve a matrix equation by hand 100 times…).</p>
+<section id="systems-of-differential-equations">
+<h2>Systems of differential equations<a class="headerlink" href="#systems-of-differential-equations" title="Permalink to this headline">#</a></h2>
+<p><img alt="" src="../_images/dynsysdemo.gif" /></p>
 </section>
-<section id="other-resources">
-<h2>Other resources<a class="headerlink" href="#other-resources" title="Permalink to this headline">#</a></h2>
-<p>Helpful for before this course: <a class="reference external" href="https://github.com/john-s-butler-dit/Basic-Introduction-to-Python">Basic Introduction to Maths and Python for Neuroscience by John Butler</a></p>
-<p>Similar course: <a class="reference external" href="https://www.cns.nyu.edu/~eero/math-tools/">Mathematical Tools for Neural and Cognitive Science by Eero Simoncelli &amp; Mike Landy</a></p>
-<p>A good follow-up to learn computational neuroscience: <a class="reference external" href="https://github.com/NeuromatchAcademy/course-content">Neuromatch Academy</a></p>
-</section>
-<div class="toctree-wrapper compound">
-</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -522,7 +510,7 @@ title="Print to PDF"
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./."
+            path: "./Week4"
         },
         predefinedOutput: true
     }
@@ -536,10 +524,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="Week1/Overview.html" title="next page">
+    <a class='left-prev' id="prev-link" href="Overview.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Week 4: Continuous Dynamical Systems &amp; Differential Equations</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Video41.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Week 1: Vectors</p>
+        <p class="prev-next-title">Video 4.1: Eigenvalues &amp; Discrete Dynamical Systems</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -564,7 +559,7 @@ title="Print to PDF"
     </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
 
   </body>
