@@ -31,6 +31,7 @@ parts:
       - file: Week3/Week3Tutorial2.ipynb
     - file: Week4/Overview.md
       sections:
+      - file: Week4/KeyConcepts.md
       - file: Week4/Video41.ipynb
       - file: Week4/Video42.ipynb
       - file: Week4/Video43.ipynb
