@@ -38,3 +38,8 @@ parts:
       - file: Week4/Video44.ipynb
       - file: Week4/Week4Tutorial1.ipynb
       - file: Week4/Week4Tutorial2.ipynb
+    - file: Week5/Overview.md
+      sections:
+      - file: Week5/Video51.ipynb
+      - file: Week5/Video52.ipynb
+      - file: Week5/Video53.ipynb
