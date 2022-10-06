@@ -45,3 +45,6 @@ parts:
       - file: Week5/Video53.ipynb
       - file: Week5/Week5Tutorial1.ipynb
       - file: Week5/Week5Tutorial2.ipynb
+    - file: LinearAlgebraReview/Overview.md
+      sections:
+      - file: LinearAlgebraReview/MathTools_Homework1.ipynb
