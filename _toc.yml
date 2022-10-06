@@ -44,3 +44,4 @@ parts:
       - file: Week5/Video52.ipynb
       - file: Week5/Video53.ipynb
       - file: Week5/Week5Tutorial1.ipynb
+      - file: Week5/Week5Tutorial2.ipynb
