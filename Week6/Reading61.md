@@ -1,4 +1,4 @@
-# Reading 6.1: Probability
+# Reading 6.1: Intro to Probability
 
 Please go through chapters 1, 2, 3, and the first section of Chapter 5 (Bayes' Theorem) here: 
 
