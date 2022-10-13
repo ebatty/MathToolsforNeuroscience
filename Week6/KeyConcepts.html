@@ -57,7 +57,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Reading 6.1: Intro to Probability" href="Reading61.html" />
-    <link rel="prev" title="Intro to Probability" href="Overview.html" />
+    <link rel="prev" title="Week 6: Intro to Probability" href="Overview.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -359,7 +359,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="Overview.html">
-   Intro to Probability
+   Week 6: Intro to Probability
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
   <label for="toctree-checkbox-7">
@@ -606,19 +606,31 @@ title="Print to PDF"
 <div class="math notranslate nohighlight">
 \[P(A | B) = \frac{P(A \text{ and } B)}{P(B)} \]</div>
 <ul class="simple">
-<li><p>If two events are <strong>independent</strong> (probability of one event is not affected by the other occuring), the joint can be written as the product of the marginals and the conditional probability of A given B just equals the marginal probability of A:
-$<span class="math notranslate nohighlight">\(P(A \text{ and } B) = P(A) * P(B) \)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\(P(A | B) = P(A) \)</span>$</p></li>
-<li><p>If two events are <strong>mutually exclusive</strong> (A cannot occur if B occurs and vice versa), then their joint probability is 0 and the probability of one or the other occuring can be written as the sum of the marginals:
-$<span class="math notranslate nohighlight">\(P(A \text{ and } B) = 0 \)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\(P(A \text{ or } B) = P(A) + P(B)\)</span>$</p></li>
-<li><p>We can derive <strong>Bayes’ Rule</strong> from the above facts:
-$<span class="math notranslate nohighlight">\(P(A|B) = \frac{P(B|A)P(A)}{P(B)} \)</span>$
-We call P(A|B) the <strong>posterior</strong>, P(B|A) the <strong>likelihood</strong>, p(A) the <strong>prior</strong> probability, and p(B) the <strong>marginal</strong> probability. So the Bayes’ Rule states that the posterior equals the likelihood times the prior divided by the marginal</p></li>
-<li><p>These terms make a bit more sense if we use Bayes’ rule in the context it often is used, where A is the hypothesis (H) and B is the evidence (e) :
-$<span class="math notranslate nohighlight">\(P(H|e) = \frac{P(e|H)P(H)}{P(e)} \)</span>$
-We can see that the posterior probability that a hypothesis is true given the evidence (P(H|e)) is equal to the prior probability that the hypothesis is true before evidence is collected, p(H), times the likelihood of seeing the evidence given the hypothesis is true (P(e|H)), divided by the marginal probability of seeing the evidence (P(e)).</p></li>
+<li><p>If two events are <strong>independent</strong> (probability of one event is not affected by the other occuring), the joint can be written as the product of the marginals and the conditional probability of A given B just equals the marginal probability of A:</p></li>
 </ul>
+<div class="math notranslate nohighlight">
+\[P(A \text{ and } B) = P(A) * P(B) \]</div>
+<div class="math notranslate nohighlight">
+\[P(A | B) = P(A) \]</div>
+<ul class="simple">
+<li><p>If two events are <strong>mutually exclusive</strong> (A cannot occur if B occurs and vice versa), then their joint probability is 0 and the probability of one or the other occuring can be written as the sum of the marginals:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[P(A \text{ and } B) = 0 \]</div>
+<div class="math notranslate nohighlight">
+\[P(A \text{ or } B) = P(A) + P(B)\]</div>
+<ul class="simple">
+<li><p>We can derive <strong>Bayes’ Rule</strong> from the above facts:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[P(A|B) = \frac{P(B|A)P(A)}{P(B)} \]</div>
+<p>We call P(A|B) the <strong>posterior</strong>, P(B|A) the <strong>likelihood</strong>, p(A) the <strong>prior</strong> probability, and p(B) the <strong>marginal</strong> probability. So the Bayes’ Rule states that the posterior equals the likelihood times the prior divided by the marginal</p>
+<ul class="simple">
+<li><p>These terms make a bit more sense if we use Bayes’ rule in the context it often is used, where A is the hypothesis (H) and B is the evidence (e) :</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[P(H|e) = \frac{P(e|H)P(H)}{P(e)} \]</div>
+<p>We can see that the posterior probability that a hypothesis is true given the evidence (P(H|e)) is equal to the prior probability that the hypothesis is true before evidence is collected, p(H), times the likelihood of seeing the evidence given the hypothesis is true (P(e|H)), divided by the marginal probability of seeing the evidence (P(e)).</p>
 </section>
 </section>
 
@@ -653,7 +665,7 @@ We can see that the posterior probability that a hypothesis is true given the ev
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Intro to Probability</p>
+            <p class="prev-next-title">Week 6: Intro to Probability</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="Reading61.html" title="next page">
