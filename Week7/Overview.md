@@ -1,1 +1,1 @@
-# Week 7: Intro to Statistics
+# Week 7: Intro to Statistics 
