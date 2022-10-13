@@ -19,13 +19,13 @@ $$P(A \text{ and } B) = P(A) * P(B) $$
 $$P(A | B) = P(A) $$
 
 - If two events are **mutually exclusive** (A cannot occur if B occurs and vice versa), then their joint probability is 0 and the probability of one or the other occuring can be written as the sum of the marginals:
-- 
+
 $$P(A \text{ and } B) = 0 $$
 
 $$P(A \text{ or } B) = P(A) + P(B)$$
 
 - We can derive **Bayes' Rule** from the above facts:
-- 
+
 $$P(A|B) = \frac{P(B|A)P(A)}{P(B)} $$
 
 We call P(A|B) the **posterior**, P(B|A) the **likelihood**, p(A) the **prior** probability, and p(B) the **marginal** probability. So the Bayes' Rule states that the posterior equals the likelihood times the prior divided by the marginal
