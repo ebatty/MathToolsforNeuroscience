@@ -53,3 +53,4 @@ parts:
     - file: Week6/Overview.md
       sections:
       - file: Week6/Reading61.md
+      - file: Week6/Week6Tutorial1.ipynb
