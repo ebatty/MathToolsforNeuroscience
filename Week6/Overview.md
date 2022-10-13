@@ -1,1 +1,1 @@
-# Intro to Probability
+# Week 6: Intro to Probability
