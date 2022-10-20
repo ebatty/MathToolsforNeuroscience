@@ -64,3 +64,7 @@ parts:
       - file: Week7/Video75.ipynb
       - file: Week7/Week7Tutorial1.ipynb 
       - file: Week7/Week7Tutorial2.ipynb 
+    - file: Week8/Overview.md
+      sections:
+      - file: Week8/Video81.ipynb
+      - file: Week8/Video82.ipynb
