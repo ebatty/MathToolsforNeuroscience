@@ -90,7 +90,7 @@ def link_hidden_cells(content):
                 if "remove-input" not in cell['metadata']['tags']:
                     updated_cell['metadata']['tags'].append("remove-input")
             else:
-                if "hide-input" not in cell['metadata']['tags']:
+                if "hide-input" not in updated_cell['metadata']['tags']:
                     updated_cell['metadata']['tags'].append("hide-input")
 
             # If header is lost, create one in markdown
