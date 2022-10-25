@@ -68,3 +68,4 @@ parts:
       sections:
       - file: Week8/Video81.ipynb
       - file: Week8/Video82.ipynb
+      - file: Week8/Week8Tutorial1.ipynb 
