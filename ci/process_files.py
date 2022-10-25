@@ -21,7 +21,7 @@ def main():
 
 
 def pre_process_notebook(file_path):
-
+    print(file_path)
     with open(file_path, encoding="utf-8") as read_notebook:
         content = json.load(read_notebook)
 
