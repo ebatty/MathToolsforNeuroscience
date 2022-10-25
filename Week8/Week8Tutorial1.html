@@ -1144,7 +1144,7 @@ Put NLL = … equation here (show work above or below)
 </section>
 <section id="b-negative-log-likelihood-computation">
 <h2>B) Negative log likelihood computation<a class="headerlink" href="#b-negative-log-likelihood-computation" title="Permalink to this headline">#</a></h2>
-<p>Use your equation in part A to fill out the code below to compute the negative log likelihood for a given filter (k) and set of images (x) and spike counts (y). x and y would be the same shape as WN_images and WN_spike_counts for example</p>
+<p>Use your equation in part A to fill out the code below to compute the negative log likelihood for a given filter (k) and set of images (x) and spike counts (y).</p>
 <section id="id2">
 <h3>Answer<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <p>Fill out code below</p>
@@ -1155,15 +1155,6 @@ Put NLL = … equation here (show work above or below)
     <span class="n">NLL</span> <span class="o">=</span> <span class="o">...</span>
     
     <span class="k">return</span> <span class="n">NLL</span>
-
-<span class="n">fake_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">100</span><span class="p">,))</span>
-<span class="n">NLL</span> <span class="o">=</span> <span class="n">compute_NLL</span><span class="p">(</span><span class="n">fake_k</span><span class="p">,</span> <span class="n">WN_images</span><span class="p">,</span> <span class="n">WN_spike_counts</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">NLL</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ellipsis
 </pre></div>
 </div>
 </div>
@@ -1235,55 +1226,14 @@ Put dNLL/dk = … equation here (show work above or below)
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># @markdown Execute to visualize negative log likelihood over gradient descent</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">NLL</span><span class="p">,</span><span class="s1">&#39;-ok&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">axes</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;NLL&#39;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Gradient descent step&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;LNP fitting&#39;</span><span class="p">)</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/matplotlib/axes/_axes.py:1664,</span> in <span class="ni">Axes.plot</span><span class="nt">(self, scalex, scaley, data, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1662</span> <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_lines</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1663</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1664</span>     <span class="bp">self</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1665</span> <span class="k">if</span> <span class="n">scalex</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1666</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_request_autoscale_view</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/matplotlib/axes/_base.py:2340,</span> in <span class="ni">_AxesBase.add_line</span><span class="nt">(self, line)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2337</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">get_clip_path</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2338</span>     <span class="n">line</span><span class="o">.</span><span class="n">set_clip_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">patch</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2340</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_line_limits</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2341</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">get_label</span><span class="p">():</span>
-<span class="g g-Whitespace">   </span><span class="mi">2342</span>     <span class="n">line</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;_child</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_children</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/matplotlib/axes/_base.py:2363,</span> in <span class="ni">_AxesBase._update_line_limits</span><span class="nt">(self, line)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2359</span> <span class="k">def</span> <span class="nf">_update_line_limits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">2360</span>     <span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">2361</span><span class="sd">     Figures out the data limit of the given line, updating self.dataLim.</span>
-<span class="g g-Whitespace">   </span><span class="mi">2362</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">2363</span>     <span class="n">path</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">get_path</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">2364</span>     <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">vertices</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2365</span>         <span class="k">return</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/matplotlib/lines.py:1031,</span> in <span class="ni">Line2D.get_path</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1029</span> <span class="sd">&quot;&quot;&quot;Return the `~matplotlib.path.Path` associated with this line.&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1030</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_invalidy</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_invalidx</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1031</span>     <span class="bp">self</span><span class="o">.</span><span class="n">recache</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1032</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_path</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/matplotlib/lines.py:664,</span> in <span class="ni">Line2D.recache</span><span class="nt">(self, always)</span>
-<span class="g g-Whitespace">    </span><span class="mi">662</span> <span class="k">if</span> <span class="n">always</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_invalidy</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">663</span>     <span class="n">yconv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert_yunits</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_yorig</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">664</span>     <span class="n">y</span> <span class="o">=</span> <span class="n">_to_unmasked_float_array</span><span class="p">(</span><span class="n">yconv</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">665</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">666</span>     <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/matplotlib/cbook/__init__.py:1369,</span> in <span class="ni">_to_unmasked_float_array</span><span class="nt">(x)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1367</span>     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">filled</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1368</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1369</span>     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
-
-<span class="ne">TypeError</span>: float() argument must be a string or a number, not &#39;ellipsis&#39;
+<span class="ne">NameError</span>: name &#39;NLL&#39; is not defined
 </pre></div>
 </div>
 <img alt="../_images/Week8Tutorial1_36_1.png" src="../_images/Week8Tutorial1_36_1.png" />
