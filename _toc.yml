@@ -12,61 +12,61 @@ parts:
       - file: Week1/Video13.ipynb
       - file: Week1/Week1Tutorial1.ipynb
       - file: Week1/Week1Tutorial2.ipynb
-#     - file: Week2/Overview.md
-#       sections:
-#       - file: Week2/KeyConcepts.md
-#       - file: Week2/Video21.ipynb
-#       - file: Week2/Video22.ipynb
-#       - file: Week2/Video23.ipynb
-#       - file: Week2/Video24.ipynb
-#       - file: Week2/Video25.ipynb
-#       - file: Week2/Week2Tutorial1.ipynb
-#       - file: Week2/Week2Tutorial2.ipynb
-#     - file: Week3/Overview.md
-#       sections:
-#       - file: Week3/Video31.ipynb
-#       - file: Week3/Video32.ipynb
-#       - file: Week3/Video33.ipynb
-#       - file: Week3/Week3Tutorial1.ipynb
-#       - file: Week3/Week3Tutorial2.ipynb
-#     - file: Week4/Overview.md
-#       sections:
-#       - file: Week4/KeyConcepts.md
-#       - file: Week4/Video41.ipynb
-#       - file: Week4/Video42.ipynb
-#       - file: Week4/Video43.ipynb
-#       - file: Week4/Video44.ipynb
-#       - file: Week4/Week4Tutorial1.ipynb
-#       - file: Week4/Week4Tutorial2.ipynb
-#     - file: Week5/Overview.md
-#       sections:
-#       - file: Week5/Video51.ipynb
-#       - file: Week5/Video52.ipynb
-#       - file: Week5/Video53.ipynb
-#       - file: Week5/Week5Tutorial1.ipynb
-#       - file: Week5/Week5Tutorial2.ipynb
-#     - file: LinearAlgebraReview/Overview.md
-#       sections:
-#       - file: LinearAlgebraReview/MathTools_Homework1.ipynb
-#   - caption: Probability & Statistics
-#     chapters:
-#     - file: Week6/Overview.md
-#       sections:
-#       - file: Week6/KeyConcepts.md
-#       - file: Week6/Reading61.md
-#       - file: Week6/Week6Tutorial1.ipynb
-#     - file: Week7/Overview.md
-#       sections:
-#       - file: Week7/Video71.ipynb
-#       - file: Week7/Video72.ipynb
-#       - file: Week7/Video73.ipynb
-#       - file: Week7/Video74.ipynb
-#       - file: Week7/Video75.ipynb
-#       - file: Week7/Week7Tutorial1.ipynb 
-#       - file: Week7/Week7Tutorial2.ipynb 
-#     - file: Week8/Overview.md
-#       sections:
-#       - file: Week8/Video81.ipynb
-#       - file: Week8/Video82.ipynb
-#       - file: Week8/Week8Tutorial1.ipynb 
-#       - file: Week8/Week8Tutorial2.ipynb 
+    - file: Week2/Overview.md
+      sections:
+      - file: Week2/KeyConcepts.md
+      - file: Week2/Video21.ipynb
+      - file: Week2/Video22.ipynb
+      - file: Week2/Video23.ipynb
+      - file: Week2/Video24.ipynb
+      - file: Week2/Video25.ipynb
+      - file: Week2/Week2Tutorial1.ipynb
+      - file: Week2/Week2Tutorial2.ipynb
+    - file: Week3/Overview.md
+      sections:
+      - file: Week3/Video31.ipynb
+      - file: Week3/Video32.ipynb
+      - file: Week3/Video33.ipynb
+      - file: Week3/Week3Tutorial1.ipynb
+      - file: Week3/Week3Tutorial2.ipynb
+    - file: Week4/Overview.md
+      sections:
+      - file: Week4/KeyConcepts.md
+      - file: Week4/Video41.ipynb
+      - file: Week4/Video42.ipynb
+      - file: Week4/Video43.ipynb
+      - file: Week4/Video44.ipynb
+      - file: Week4/Week4Tutorial1.ipynb
+      - file: Week4/Week4Tutorial2.ipynb
+    - file: Week5/Overview.md
+      sections:
+      - file: Week5/Video51.ipynb
+      - file: Week5/Video52.ipynb
+      - file: Week5/Video53.ipynb
+      - file: Week5/Week5Tutorial1.ipynb
+      - file: Week5/Week5Tutorial2.ipynb
+    - file: LinearAlgebraReview/Overview.md
+      sections:
+      - file: LinearAlgebraReview/MathTools_Homework1.ipynb
+  - caption: Probability & Statistics
+    chapters:
+    - file: Week6/Overview.md
+      sections:
+      - file: Week6/KeyConcepts.md
+      - file: Week6/Reading61.md
+      - file: Week6/Week6Tutorial1.ipynb
+    - file: Week7/Overview.md
+      sections:
+      - file: Week7/Video71.ipynb
+      - file: Week7/Video72.ipynb
+      - file: Week7/Video73.ipynb
+      - file: Week7/Video74.ipynb
+      - file: Week7/Video75.ipynb
+      - file: Week7/Week7Tutorial1.ipynb 
+      - file: Week7/Week7Tutorial2.ipynb 
+    - file: Week8/Overview.md
+      sections:
+      - file: Week8/Video81.ipynb
+      - file: Week8/Video82.ipynb
+      - file: Week8/Week8Tutorial1.ipynb 
+      - file: Week8/Week8Tutorial2.ipynb 
