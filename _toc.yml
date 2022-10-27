@@ -70,3 +70,10 @@ parts:
       - file: Week8/Video82.ipynb
       - file: Week8/Week8Tutorial1.ipynb 
       - file: Week8/Week8Tutorial2.ipynb 
+  - caption: Machine Learning
+    chapters:
+    - file: Week9/Overview.md
+      sections:
+      - file: Week9/Video91.ipynb
+      - file: Week9/Video92.ipynb
+      - file: Week9/Video93.ipynb 
