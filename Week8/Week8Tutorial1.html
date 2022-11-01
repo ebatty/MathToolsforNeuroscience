@@ -495,6 +495,11 @@ const thebe_selector_output = ".output, .cell_output"
      Video 9.3: Linear regression
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week9/Week9Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -1153,7 +1158,7 @@ title="Print to PDF"
 <span class="ne">AttributeError</span>: &#39;ellipsis&#39; object has no attribute &#39;reshape&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/IPython/core/pylabtools.py:151: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/IPython/core/pylabtools.py:152: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   fig.canvas.print_figure(bytes_io, **kw)
 </pre></div>
 </div>
@@ -1280,7 +1285,7 @@ Put dNLL/dk = … equation here (show work above or below)
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># @markdown Execute to visualize negative log likelihood over gradient descent</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">NLL</span><span class="p">,</span><span class="s1">&#39;-ok&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">axes</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;NLL&#39;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Gradient descent step&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;LNP fitting&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">axes</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;NLL&#39;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Gradient descent step&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;LNP fitting&#39;</span><span class="p">);</span>
 
 <span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/matplotlib/axes/_axes.py:1664,</span> in <span class="ni">Axes.plot</span><span class="nt">(self, scalex, scaley, data, *args, **kwargs)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1662</span> <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_lines</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)]</span>
@@ -1420,7 +1425,7 @@ Text answer here
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">init_guess</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10</span><span class="o">*</span><span class="mi">10</span><span class="p">,))</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">outs</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">compute_NLL</span><span class="p">,</span> <span class="n">init_guess</span><span class="p">,</span> <span class="p">(</span><span class="n">NS_images</span><span class="p">,</span> <span class="n">NS_spike_counts</span><span class="p">))</span>
 <span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">outs</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)),</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;Off&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;Off&#39;</span><span class="p">);</span>
 
 <span class="ne">NameError</span>: name &#39;NS_images&#39; is not defined
 </pre></div>
