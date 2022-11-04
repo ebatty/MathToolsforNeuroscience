@@ -78,3 +78,9 @@ parts:
       - file: Week9/Video92.ipynb
       - file: Week9/Video93.ipynb 
       - file: Week9/Week9Tutorial1.ipynb 
+    - file: Week10/Overview.md
+      sections:
+      - file: Week10/KeyConcepts.md
+      - file: Week10/Video101.ipynb
+      - file: Week10/Video102.ipynb
+      - file: Week10/Video103.ipynb 
