@@ -86,3 +86,8 @@ parts:
       - file: Week10/Video103.ipynb 
       - file: Week10/Week10Tutorial1.ipynb 
       - file: Week10/Week10Tutorial2.ipynb 
+    - file: Week11/Overview.md
+      sections:
+      - file: Week11/Video111.ipynb
+      - file: Week11/Video112.ipynb
+      - file: Week11/Video113.ipynb 
