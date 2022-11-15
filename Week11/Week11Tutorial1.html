@@ -1,0 +1,1634 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Tutorial 1 &#8212; Mathematical Tools for Neuroscientists</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Video 11.3: K-Means Clustering" href="Video113.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Mathematical Tools for Neuroscientists</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Algebra &amp; Dynamical Systems
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week1/Overview.html">
+   Week 1: Vectors
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/KeyConcepts.html">
+     Key concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Video11.html">
+     Video 1.1: What is a vector?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Video12.html">
+     Video 1.2: Vector properties &amp; operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Video13.html">
+     Video 1.3: Vector spaces
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Week1Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Week1Tutorial2.html">
+     Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week2/Overview.html">
+   Week 2: Matrices
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/KeyConcepts.html">
+     Key concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Video21.html">
+     Video 2.1: Linear transformations and matrices (3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Video22.html">
+     Video 2.2: Matrix multiplication as composition(3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Video23.html">
+     Video 2.3: The determinant (3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Video24.html">
+     Video 2.4: Inverse matrices, column space, and null space (3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Video25.html">
+     Video 2.5: Nonsquare matrices as transformations between dimensions (3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Week2Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Week2Tutorial2.html">
+     Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week3/Overview.html">
+   Week 3: Discrete Dynamics &amp; Eigenstuff
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week3/KeyConcepts.html">
+     Key concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week3/Video31.html">
+     Video 3.1: Intro to Dynamical Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week3/Video32.html">
+     Video 3.2: Discrete Dynamical Neural Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week3/Video33.html">
+     Video 3.3: Eigenvalues and eigenvectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week3/Week3Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week3/Week3Tutorial2.html">
+     Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week4/Overview.html">
+   Week 4: Continuous Dynamical Systems &amp; Differential Equations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week4/KeyConcepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week4/Video41.html">
+     Video 4.1: Eigenvalues &amp; Discrete Dynamical Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week4/Video42.html">
+     Video 4.2: Review of Differentiation &amp; Integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week4/Video43.html">
+     Video 4.3: Solving differential equations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week4/Video44.html">
+     Video 4.4: Systems of differential equations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week4/Week4Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week4/Week4Tutorial2.html">
+     Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week5/Overview.html">
+   Week 5: Matrix Decomposition &amp; Dimensionality Reduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week5/Video51.html">
+     Video 5.1: Special Matrices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week5/Video52.html">
+     Video 5.2: Matrix Decomposition &amp; SVD
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week5/Video53.html">
+     Video 5.3: PCA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week5/Week5Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week5/Week5Tutorial2.html">
+     Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../LinearAlgebraReview/Overview.html">
+   Review
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../LinearAlgebraReview/MathTools_Homework1.html">
+     Homework 1
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Probability &amp; Statistics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week6/Overview.html">
+   Week 6: Intro to Probability
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week6/KeyConcepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week6/Reading61.html">
+     Reading 6.1: Intro to Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week6/Week6Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week7/Overview.html">
+   Week 7: Intro to Statistics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week7/Video71.html">
+     Video 7.1: Descriptive Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week7/Video72.html">
+     Video 7.2: Overview of Statistical Inference
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week7/Video73.html">
+     Video 7.3: Point Estimators Examples &amp; Goodness
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week7/Video74.html">
+     Video 7.4: Maximum Likelihood Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week7/Video75.html">
+     Video 7.5: Bayesian Inference
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week7/Week7Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week7/Week7Tutorial2.html">
+     Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week8/Overview.html">
+   Week 8: Statistical Encoding &amp; Decoding
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week8/Video81.html">
+     Video 8.1: What are encoding &amp; decoding?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week8/Video82.html">
+     Video 8.2: Statistical encoding models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week8/Week8Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week8/Week8Tutorial2.html">
+     (Optional) Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week9/Overview.html">
+   Week 9: Linear Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week9/Video91.html">
+     Video 9.1: What is machine learning?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week9/Video92.html">
+     Video 9.2: Types of machine learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week9/Video93.html">
+     Video 9.3: Linear regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week9/Week9Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week10/Overview.html">
+   Week 10: Model Selection
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week10/KeyConcepts.html">
+     Key concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week10/Video101.html">
+     Video 10.1: Model evaluation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week10/Video102.html">
+     Video 10.2: Bootstrapping (NMA)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week10/Video103.html">
+     Video 10.3: Model selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week10/Week10Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week10/Week10Tutorial2.html">
+     Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="Overview.html">
+   Week 11: Clustering &amp; Classification
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="Video111.html">
+     Video 11.1: Clustering Applications
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Video112.html">
+     Video 11.2: Types of Clustering Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Video113.html">
+     Video 11.3: K-Means Clustering
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Tutorial 1
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/jupyterbook/Week11/Week11Tutorial1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/Week11/Week11Tutorial1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Tutorial 1
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-1-exploring-details-of-k-means">
+   Exercise 1: Exploring details of K-Means
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-wrong-clustering">
+     A) Wrong clustering
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#answer">
+       Answer
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-objective-function-of-k-means">
+     B) Objective function of K-Means
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Answer
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-exercise-implement-k-means-yourself">
+   (Optional) Exercise: Implement K-Means yourself
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-data">
+   The Data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-1-remove-non-cells">
+   Step 1: Remove non-cells
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-2-remove-uninformative-genes">
+   Step 2: Remove uninformative genes
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-3-standardize-the-data">
+   Step 3: Standardize the data
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-2-standardize-the-data">
+     Exercise 2: Standardize the data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Answer
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-4-pca">
+   Step 4: PCA
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-3-get-low-d-representation">
+     Exercise 3: Get low-d representation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Answer
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-5-clustering">
+   Step 5: Clustering
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-4-cluster-the-data">
+     Exercise 4: Cluster the data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       Answer
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       Answer
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-5-visualizing-clusters">
+   Step 5: Visualizing clusters
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#more-info">
+   More info
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Tutorial 1</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Tutorial 1
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-1-exploring-details-of-k-means">
+   Exercise 1: Exploring details of K-Means
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-wrong-clustering">
+     A) Wrong clustering
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#answer">
+       Answer
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-objective-function-of-k-means">
+     B) Objective function of K-Means
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Answer
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-exercise-implement-k-means-yourself">
+   (Optional) Exercise: Implement K-Means yourself
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-data">
+   The Data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-1-remove-non-cells">
+   Step 1: Remove non-cells
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-2-remove-uninformative-genes">
+   Step 2: Remove uninformative genes
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-3-standardize-the-data">
+   Step 3: Standardize the data
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-2-standardize-the-data">
+     Exercise 2: Standardize the data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Answer
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-4-pca">
+   Step 4: PCA
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-3-get-low-d-representation">
+     Exercise 3: Get low-d representation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Answer
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-5-clustering">
+   Step 5: Clustering
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-4-cluster-the-data">
+     Exercise 4: Cluster the data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       Answer
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       Answer
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-5-visualizing-clusters">
+   Step 5: Visualizing clusters
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#more-info">
+   More info
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <p><a href="https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/jupyterbook/Week11/Week11Tutorial1.ipynb" target="_parent"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="tutorial-1">
+<h1>Tutorial 1<a class="headerlink" href="#tutorial-1" title="Permalink to this headline">#</a></h1>
+<p><strong>Machine Learning III, Clustering &amp; Classification</strong></p>
+<p><strong>[insert your name]</strong></p>
+<p><strong>Important reminders</strong>: Before starting, click “File -&gt; Save a copy in Drive”. Produce a pdf for submission by “File -&gt; Print” and then choose “Save to PDF”.</p>
+<p>To complete this tutorial, you should have watched Video 11.1, 11.2, and 11.3</p>
+<p>Imports</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Imports</span>
+
+<span class="c1"># Imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>  <span class="c1"># interactive display</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">8</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>  <span class="c1"># interactive display</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">math</span>
+<span class="ne">----&gt; </span><span class="mi">8</span> <span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;sklearn&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plotting functions</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Plotting functions</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span><span class="p">,</span> <span class="n">eig</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span><span class="p">,</span> <span class="n">ticker</span><span class="p">,</span> <span class="n">get_backend</span><span class="p">,</span> <span class="n">rc</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">cycle</span>
+
+
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/NeuromatchAcademy/course-content/master/nma.mplstyle&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">plot_fitted_polynomials</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta_hat</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot; Plot polynomials of different orders</span>
+
+<span class="sd">  Args:</span>
+<span class="sd">    x (ndarray): input vector of shape (n_samples)</span>
+<span class="sd">    y (ndarray): vector of measurements of shape (n_samples)</span>
+<span class="sd">    theta_hat (dict): polynomial regression weights for different orders</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+
+  <span class="n">x_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mf">.5</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">.5</span><span class="p">)</span>
+
+  <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
+  <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">X_design</span> <span class="o">=</span> <span class="n">make_design_matrix</span><span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">X_design</span> <span class="o">@</span> <span class="n">theta_hat</span><span class="p">[</span><span class="n">order</span><span class="p">]);</span>
+
+  <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;C0.&#39;</span><span class="p">);</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;order </span><span class="si">{</span><span class="n">o</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;polynomial fits&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Helper functions</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Helper functions</span>
+
+<span class="k">def</span> <span class="nf">ordinary_least_squares</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Ordinary least squares estimator for linear regression.</span>
+
+<span class="sd">  Args:</span>
+<span class="sd">    x (ndarray): design matrix of shape (n_samples, n_regressors)</span>
+<span class="sd">    y (ndarray): vector of measurements of shape (n_samples)</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">    ndarray: estimated parameter values of shape (n_regressors)</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  
+  <span class="c1"># Compute theta_hat using OLS</span>
+  <span class="n">theta_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span>
+
+  <span class="k">return</span> <span class="n">theta_hat</span>
+
+
+<span class="k">def</span> <span class="nf">evaluate_poly_reg</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta_hat</span><span class="p">,</span> <span class="n">order</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Evaluates MSE of polynomial regression models on data</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">      x (ndarray): input vector of shape (n_samples)</span>
+<span class="sd">      y (ndarray): vector of measurements of shape (n_samples)</span>
+<span class="sd">      theta_hats (dict):  fitted weights for each polynomial model (dict key is order)</span>
+<span class="sd">      max_order (scalar): max order of polynomial fit</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">      (ndarray): mean squared error for each order, shape (max_order)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">X_design</span> <span class="o">=</span> <span class="n">make_design_matrix</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+
+    <span class="n">y_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X_design</span><span class="p">,</span> <span class="n">theta_hats</span><span class="p">[</span><span class="n">order</span><span class="p">])</span>
+
+    <span class="n">residuals</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">y_hat</span>
+
+    <span class="n">mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">residuals</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">mse</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="exercise-1-exploring-details-of-k-means">
+<h1>Exercise 1: Exploring details of K-Means<a class="headerlink" href="#exercise-1-exploring-details-of-k-means" title="Permalink to this headline">#</a></h1>
+<section id="a-wrong-clustering">
+<h2>A) Wrong clustering<a class="headerlink" href="#a-wrong-clustering" title="Permalink to this headline">#</a></h2>
+<p>Below I have generated some data and clustered with K-Means. The resulting cluster labels are shown by color.</p>
+<p>Execute to visualize</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Execute to visualize </span>
+<span class="c1"># Create data</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">data1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">((</span><span class="mi">60</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">[[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">.1</span><span class="p">]],</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,))</span>
+<span class="n">data2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">((</span><span class="mi">50</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">[[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">.1</span><span class="p">]],</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">150</span><span class="p">,))</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">clustering</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">clustering</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">clustering</span><span class="o">.</span><span class="n">labels_</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">labels</span><span class="o">==</span><span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">labels</span><span class="o">==</span><span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Cluster &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">data2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">((</span><span class="mi">50</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">[[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">.1</span><span class="p">]],</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">150</span><span class="p">,))</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">clustering</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">clustering</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">clustering</span><span class="o">.</span><span class="n">labels_</span>
+
+<span class="ne">NameError</span>: name &#39;KMeans&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>i) Why has the clustering not worked?  Hints: the plot above should tell you everything you need to know, think about the cluster assignment step with this data</p>
+<p>ii) What could we do to get the clustering to work properly?</p>
+<section id="answer">
+<h3>Answer<a class="headerlink" href="#answer" title="Permalink to this headline">#</a></h3>
+<p><font color='green'><span style="font-size:larger;">
+i) <br>
+ii) <br></p>
+</section>
+</section>
+<section id="b-objective-function-of-k-means">
+<h2>B) Objective function of K-Means<a class="headerlink" href="#b-objective-function-of-k-means" title="Permalink to this headline">#</a></h2>
+<p>Is the graph below of the value of the objective function J over the iteration step of the K-Means clustering possible with a correctly implemented K-Means algorithm? Why or why not?</p>
+<p>Execute to visualize</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Execute to visualize</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">J</span> <span class="o">=</span> <span class="mi">50</span><span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">J</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Iteration of K-means clustering&#39;</span><span class="p">,</span> <span class="n">ylabel</span> <span class="o">=</span> <span class="s1">&#39;J&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Week11Tutorial1_16_0.png" src="../_images/Week11Tutorial1_16_0.png" />
+</div>
+</div>
+<section id="id1">
+<h3>Answer<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p><font color='green'><span style="font-size:larger;">
+Answer here</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="optional-exercise-implement-k-means-yourself">
+<h1>(Optional) Exercise: Implement K-Means yourself<a class="headerlink" href="#optional-exercise-implement-k-means-yourself" title="Permalink to this headline">#</a></h1>
+<p>Later in this tutorial we will use sklearn to compute K Means. This isn’t too difficult an algorithm to code yourself though and doing so can solidify your understanding. Use the pseudocode in video 11.3 as a starting point.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-data">
+<h1>The Data<a class="headerlink" href="#the-data" title="Permalink to this headline">#</a></h1>
+<p>We will be looking at real RNAseq data to cluster cells into different cell types. Specifically, we will be using a dataset of Peripheral Blood Mononuclear Cells (PBMC) available from 10X Genomics.</p>
+<p>In RNA-seq, we are measuring the gene expression for each cell for a large number of cells. When genes are expressed, they’re transcribed into mRNA, which is then translated into proteins. In RNA-seq, we sequence how many mRNA molecules are present that correspond to each gene we’re interested in.</p>
+<p>Execute the next cell to download the data.</p>
+<p>Execute to get data</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Execute to get data</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="kn">import</span> <span class="nn">tarfile</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">scipy.io</span>
+
+<span class="n">respurl</span> <span class="o">=</span> <span class="s1">&#39;https://cf.10xgenomics.com/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz&#39;</span>
+<span class="k">with</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">respurl</span><span class="p">,</span><span class="n">stream</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">File</span><span class="p">:</span>
+    <span class="c1"># stream = true is required by the iter_content below</span>
+    <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">delete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">as</span> <span class="n">tmp_file</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">tmp_file</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">File</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
+                <span class="n">fd</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">tmp_file</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="s2">&quot;r:gz&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">tf</span><span class="p">:</span>
+  <span class="k">for</span> <span class="n">tarinfo_member</span> <span class="ow">in</span> <span class="n">tf</span><span class="p">:</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">tarinfo_member</span><span class="o">.</span><span class="n">name</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;.mtx&quot;</span><span class="p">:</span>
+        <span class="n">mtx_file</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">extractfile</span><span class="p">(</span><span class="n">tarinfo_member</span><span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">mtx_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">mmread</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">content</span><span class="p">))</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">todense</span><span class="p">())</span><span class="o">.</span><span class="n">T</span>              
+</pre></div>
+</div>
+</div>
+</div>
+<p>What we have downloaded is a <strong>unique molecular identified (UMI) count matrix</strong> (stored as <code class="docutils literal notranslate"><span class="pre">data</span></code>).</p>
+<p>The rows of this matrix are the cells (2700) and the columns are the different genes we are examining (32738).</p>
+<p>Each value in this matrix represents the number of molecules for the corresponding gene that are detected in the corresponding cell. I.e. if the value in the 5th row and 10th column is 3, there were 3 molecules of gene 10 found in cell 5.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="step-1-remove-non-cells">
+<h1>Step 1: Remove non-cells<a class="headerlink" href="#step-1-remove-non-cells" title="Permalink to this headline">#</a></h1>
+<p>First, we remove any rows that seem to correspond to things that aren’t really cells. We may have low-quality cells, empty droplets or errors where more than one cell have been sequenced together (a row corresponds to 2 or more cells). Really you would use a variety of metrics to ascertain the quality of each cell but we can use a fairly simple one for now - the number of unique genes detected in each cell. Low-quality cells or droplets would have very small number of genes, while double or tripled cells would have a lot.</p>
+<p>We can get the number of unique genes per cell by finding the number of non-zero values in the matrix in each row:</p>
+<p><code class="docutils literal notranslate"><span class="pre">np.sum(data</span> <span class="pre">&gt;</span> <span class="pre">0,</span> <span class="pre">axis=1)</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_genes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">data</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">n_genes</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span> <span class="o">=</span> <span class="s1">&#39;Number of unique genes&#39;</span><span class="p">,</span> <span class="n">ylabel</span> <span class="o">=</span> <span class="s1">&#39;Number of cells&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Week11Tutorial1_25_0.png" src="../_images/Week11Tutorial1_25_0.png" />
+</div>
+</div>
+<p>Let’s remove cells that are at the two extremes of this distribution (fewer or more unique genes than most of the cells). We will remove cells that not in the middle 5 - 95th percentile range. Note that this is similar to building a confidence interval from bootstrapping!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lower_threshold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">n_genes</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">upper_threshold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">n_genes</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>
+
+<span class="n">keep_cells</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_genes</span> <span class="o">&gt;</span> <span class="n">lower_threshold</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">n_genes</span> <span class="o">&lt;</span> <span class="n">upper_threshold</span><span class="p">)</span>
+
+<span class="n">quality_cell_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">keep_cells</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="step-2-remove-uninformative-genes">
+<h1>Step 2: Remove uninformative genes<a class="headerlink" href="#step-2-remove-uninformative-genes" title="Permalink to this headline">#</a></h1>
+<p>In our data, some genes are not present in any cell. These genes are completely uninformative so we will remove them. Seurat, an R package for RNA-seq analysis, takes this further and only keeps the top 2000 most variable genes (the genes that vary the most in terms of how much they are present across cells) but we won’t tackle this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quality_gene_data</span> <span class="o">=</span> <span class="n">quality_cell_data</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">quality_cell_data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We next normalize the feature expression labels for each cell by the total expression. I am using what (I believe) Seurat suggests below. Honestly, I’m not completely sure why they choose to do it this way so we’ll just do it and move on…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quality_gene_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10000</span><span class="o">*</span><span class="p">(</span><span class="n">quality_gene_data</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">quality_gene_data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">])</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="step-3-standardize-the-data">
+<h1>Step 3: Standardize the data<a class="headerlink" href="#step-3-standardize-the-data" title="Permalink to this headline">#</a></h1>
+<p>Let’s standardize our data before continuing. This is often a preprocessing step performed before further modeling. Standardizing the data means making each feature have mean 0 and standard deviation 1 (resembling a standard normal distribution).</p>
+<p>Side note: this is slightly different than whitening the data where we are also making each feature uncorrelated.</p>
+<section id="exercise-2-standardize-the-data">
+<h2>Exercise 2: Standardize the data<a class="headerlink" href="#exercise-2-standardize-the-data" title="Permalink to this headline">#</a></h2>
+<p>Standardize the <code class="docutils literal notranslate"><span class="pre">quality_gene_data</span></code> array so that each feature has mean 0 and standard deviation 1.</p>
+<p>To figure out how to make the standard deviation 1, it may be helpful to know that:</p>
+<div class="math notranslate nohighlight">
+\[ std(a\bar{x}) = a std(\bar{x}) \]</div>
+<p>where <span class="math notranslate nohighlight">\(a\)</span> is a constant and <span class="math notranslate nohighlight">\(\bar{x}\)</span> is a vector of data.</p>
+<section id="id2">
+<h3>Answer<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>Code below</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here (remember to use quality_gene_data)</span>
+<span class="n">mean_centered_data</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">standardized_data</span> <span class="o">=</span> <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can check you’ve done this correctly by looking at the mean and standard deviation of each gene.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="step-4-pca">
+<h1>Step 4: PCA<a class="headerlink" href="#step-4-pca" title="Permalink to this headline">#</a></h1>
+<p>Before we cluster our data into different cell types (groups of similar cells), we want to perform dimensionality reduction. Clustering doesn’t work very well in very high dimensional space and this space is extremely high dimensional as we have 32738 genes. In general, problems arising with high dimensional data are referred to as the <a class="reference external" href="https://en.wikipedia.org/wiki/Curse_of_dimensionality">curse of dimensionality</a>. Specifically for clustering, distance measures in high dimensional spaces become somewhat meaningless so it is difficult to assess which data points are close together.</p>
+<p>Luckily, we know all about dimensionality reduction and can use PCA to transform our data into a lower dimensional space.</p>
+<section id="exercise-3-get-low-d-representation">
+<h2>Exercise 3: Get low-d representation<a class="headerlink" href="#exercise-3-get-low-d-representation" title="Permalink to this headline">#</a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">PCA</span></code> from sklearn (imported below) to do this. First, fit PCA with all components and look at the plot of explained variance vs component number to choose a reasonable number of components to keep for clustering (you will want to use the <code class="docutils literal notranslate"><span class="pre">explained_variance_ratio_</span></code> attribute of the pca class). Then transform the data into this low-D PCA space.</p>
+<p>This will take a few minutes since we have so many genes!</p>
+<section id="id3">
+<h3>Answer<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<p>Code below</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+
+<span class="c1"># Fit PCA on standardized_data</span>
+
+
+<span class="c1"># Plot explained variance vs component number</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Fit PCA on standardized_data</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span> 
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1"># Plot explained variance vs component number</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;sklearn&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Transform data into low d space</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="step-5-clustering">
+<h1>Step 5: Clustering<a class="headerlink" href="#step-5-clustering" title="Permalink to this headline">#</a></h1>
+<p>We’re finally ready to cluster our cell types! We will use the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html"><code class="docutils literal notranslate"><span class="pre">KMeans</span></code> class from sklearn</a>. When we call the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method of this class, it fits the clusters according to the number you have prechosen. It fits <code class="docutils literal notranslate"><span class="pre">n_init</span></code> times where the default is 10 and takes the best run.</p>
+<p>We want to first look at the objective function value for different numbers of clusters so we can see whether there is an elbow (an obvious choice for number of clusters).</p>
+<section id="exercise-4-cluster-the-data">
+<h2>Exercise 4: Cluster the data<a class="headerlink" href="#exercise-4-cluster-the-data" title="Permalink to this headline">#</a></h2>
+<p>Complete the code below to run k means with varying numbers of clusters and record the objective function value.</p>
+<p>Hint: the objective function is computed for you and will be one of the attributes of the model - look at the attributes section of the documentation.</p>
+<section id="id4">
+<h3>Answer<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<p>Code below</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+
+<span class="n">js</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">30</span><span class="p">,))</span> <span class="c1"># we will store our objective function values here</span>
+
+<span class="c1"># Loop through 1 through 30 clusters</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">):</span>
+    
+    <span class="c1"># Fit K Means model with k clusters</span>
+    <span class="o">...</span>
+
+
+    <span class="n">js</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># get objective function value for this k</span>
+
+
+<span class="c1"># Plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">js</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s1">&#39;ok&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ylabel</span> <span class="o">=</span> <span class="s1">&#39;J&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">js</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">30</span><span class="p">,))</span> <span class="c1"># we will store our objective function values here</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># Loop through 1 through 30 clusters</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;sklearn&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Choose a reasonable number of clusters based on the above plot and rerun with that number of clusters. This tells us approximately how many cell types are present in our data!</p>
+</section>
+<section id="id5">
+<h3>Answer<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<p>Code below</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chosen_k</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># put the k value you&#39;ve chosen here (we&#39;ll use it later)</span>
+
+<span class="c1"># Fit k means model with chosen_k clusters</span>
+<span class="n">model</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="c1"># Output cluster labels of each data point</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">labels_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">line</span> <span class="mi">7</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">model</span> <span class="o">=</span> <span class="o">...</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1"># Output cluster labels of each data point</span>
+<span class="ne">----&gt; </span><span class="mi">7</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">labels_</span>
+
+<span class="ne">AttributeError</span>: &#39;ellipsis&#39; object has no attribute &#39;labels_&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="step-5-visualizing-clusters">
+<h1>Step 5: Visualizing clusters<a class="headerlink" href="#step-5-visualizing-clusters" title="Permalink to this headline">#</a></h1>
+<p>We want to take a look at our clusters! We have kept higher than three PCs though so it’s difficult to visualize even in our low-D PC space. We will use tSNE to visualize our data in 2D space. tSNE is a nonlinear dimensionality reduction technique often used to visualize high d data in low d space. It is also a bit controversial in the scientific community. I’m not that caught up on the tSNE debate (and rarely use it) but the gist is that tSNE plots are often misinterpreted and depend on a hyperparameter that you set - check out this<a class="reference external" href="https://distill.pub/2016/misread-tsne/"> article </a> and <a class="reference external" href="https://distill.pub/2016/misread-tsne/">this one</a> for more details.
+Overall, I would say that <strong>tSNE should be used for visualization, not in preprocessing like PCA, and should be intepreted extremely carefully</strong></p>
+<p>Another thing to keep in mind with tSNE is that, like clustering, it’s not great at dealing with really high D space. This is a little confusing since that is the whole point of tsne - to convert high d to low d. It’s pretty good at converting 10-d space for example to 2-d space but not at converting 32738-d space to 2-d space. Because of this, even when we use tSNE to visualize, we often perform PCA first. So a common pipeline is 1) Perform PCA and cast to ~20-d space, 2) Perform tSNE to cast to 2 or 3-d space. Here, we will use our pca data as the input for tSNE.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.manifold</span> <span class="kn">import</span> <span class="n">TSNE</span>
+
+<span class="c1"># Transform PCA data into 2D space with tsne</span>
+<span class="n">tsne</span> <span class="o">=</span> <span class="n">TSNE</span><span class="p">(</span><span class="n">n_components</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">tsne_data</span> <span class="o">=</span> <span class="n">tsne</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">lowd_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">17</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">sklearn.manifold</span> <span class="kn">import</span> <span class="n">TSNE</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Transform PCA data into 2D space with tsne</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">tsne</span> <span class="o">=</span> <span class="n">TSNE</span><span class="p">(</span><span class="n">n_components</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;sklearn&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">chosen_k</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tsne_data</span><span class="p">[</span><span class="n">labels</span><span class="o">==</span><span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">tsne_data</span><span class="p">[</span><span class="n">labels</span><span class="o">==</span><span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Cluster &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Clustered cell types from RNA-seq data&#39;</span><span class="p">,</span> <span class="n">xlabel</span> <span class="o">=</span> <span class="s1">&#39;tSNE Dimension 1&#39;</span><span class="p">,</span> <span class="n">ylabel</span> <span class="o">=</span> <span class="s1">&#39;tSNE Dimension 2&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">18</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">chosen_k</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tsne_data</span><span class="p">[</span><span class="n">labels</span><span class="o">==</span><span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">tsne_data</span><span class="p">[</span><span class="n">labels</span><span class="o">==</span><span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Cluster &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+
+<span class="ne">TypeError</span>: &#39;ellipsis&#39; object cannot be interpreted as an integer
+</pre></div>
+</div>
+<img alt="../_images/Week11Tutorial1_51_1.png" src="../_images/Week11Tutorial1_51_1.png" />
+</div>
+</div>
+<p>Do these clusters look reasonable to you?</p>
+<p>Now we could do lots more interesting analyses about what genes are most characteristic of each cell type, what cell types our clusters might actually be, etc.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="more-info">
+<h1>More info<a class="headerlink" href="#more-info" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://satijalab.org/seurat/v3.2/pbmc3k_tutorial.html">Click for an overview of the Seurat R package for analyzing RNA-seq data which this pipeline was based on</a></p>
+<p><a class="reference external" href="https://github.com/hbctraining/scRNA-seq/tree/master/schedule">Click for the git repo for the Harvard Chan Bioinformatics Core training on RNA-seq data</a></p>
+<p><a class="reference external" href="https://www.nature.com/articles/s41598-020-66848-3">Click for a recent paper about clustering cell types from RNA-seq data</a></p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ebatty/MathToolsforNeuroscience",
+            ref: "jupyterbook",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Week11"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Video113.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Video 11.3: K-Means Clustering</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Ella Batty<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
