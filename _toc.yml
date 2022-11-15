@@ -92,3 +92,4 @@ parts:
       - file: Week11/Video111.ipynb
       - file: Week11/Video112.ipynb
       - file: Week11/Video113.ipynb 
+      - file: Week11/Week11Tutorial1.ipynb 
