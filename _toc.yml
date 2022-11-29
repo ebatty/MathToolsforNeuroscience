@@ -100,3 +100,4 @@ parts:
       - file: Week12/Video122.ipynb
       - file: Week12/Video123.ipynb 
       - file: Week12/Video124.ipynb 
+      - file: Week12/Week12Tutorial1.ipynb 
