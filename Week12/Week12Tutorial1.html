@@ -1,0 +1,1868 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Tutorial 1 &#8212; Mathematical Tools for Neuroscientists</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Reaching 12.4: Intro to Pytorch" href="Video124.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Mathematical Tools for Neuroscientists</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Algebra &amp; Dynamical Systems
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week1/Overview.html">
+   Week 1: Vectors
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/KeyConcepts.html">
+     Key concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Video11.html">
+     Video 1.1: What is a vector?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Video12.html">
+     Video 1.2: Vector properties &amp; operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Video13.html">
+     Video 1.3: Vector spaces
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Week1Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week1/Week1Tutorial2.html">
+     Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week2/Overview.html">
+   Week 2: Matrices
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/KeyConcepts.html">
+     Key concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Video21.html">
+     Video 2.1: Linear transformations and matrices (3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Video22.html">
+     Video 2.2: Matrix multiplication as composition(3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Video23.html">
+     Video 2.3: The determinant (3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Video24.html">
+     Video 2.4: Inverse matrices, column space, and null space (3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Video25.html">
+     Video 2.5: Nonsquare matrices as transformations between dimensions (3Blue1Brown)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Week2Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week2/Week2Tutorial2.html">
+     Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week3/Overview.html">
+   Week 3: Discrete Dynamics &amp; Eigenstuff
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week3/KeyConcepts.html">
+     Key concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week3/Video31.html">
+     Video 3.1: Intro to Dynamical Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week3/Video32.html">
+     Video 3.2: Discrete Dynamical Neural Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week3/Video33.html">
+     Video 3.3: Eigenvalues and eigenvectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week3/Week3Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week3/Week3Tutorial2.html">
+     Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week4/Overview.html">
+   Week 4: Continuous Dynamical Systems &amp; Differential Equations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week4/KeyConcepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week4/Video41.html">
+     Video 4.1: Eigenvalues &amp; Discrete Dynamical Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week4/Video42.html">
+     Video 4.2: Review of Differentiation &amp; Integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week4/Video43.html">
+     Video 4.3: Solving differential equations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week4/Video44.html">
+     Video 4.4: Systems of differential equations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week4/Week4Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week4/Week4Tutorial2.html">
+     Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week5/Overview.html">
+   Week 5: Matrix Decomposition &amp; Dimensionality Reduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week5/Video51.html">
+     Video 5.1: Special Matrices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week5/Video52.html">
+     Video 5.2: Matrix Decomposition &amp; SVD
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week5/Video53.html">
+     Video 5.3: PCA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week5/Week5Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week5/Week5Tutorial2.html">
+     Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../LinearAlgebraReview/Overview.html">
+   Review
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../LinearAlgebraReview/MathTools_Homework1.html">
+     Homework 1
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Probability &amp; Statistics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week6/Overview.html">
+   Week 6: Intro to Probability
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week6/KeyConcepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week6/Reading61.html">
+     Reading 6.1: Intro to Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week6/Week6Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week7/Overview.html">
+   Week 7: Intro to Statistics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week7/Video71.html">
+     Video 7.1: Descriptive Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week7/Video72.html">
+     Video 7.2: Overview of Statistical Inference
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week7/Video73.html">
+     Video 7.3: Point Estimators Examples &amp; Goodness
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week7/Video74.html">
+     Video 7.4: Maximum Likelihood Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week7/Video75.html">
+     Video 7.5: Bayesian Inference
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week7/Week7Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week7/Week7Tutorial2.html">
+     Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week8/Overview.html">
+   Week 8: Statistical Encoding &amp; Decoding
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week8/Video81.html">
+     Video 8.1: What are encoding &amp; decoding?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week8/Video82.html">
+     Video 8.2: Statistical encoding models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week8/Week8Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week8/Week8Tutorial2.html">
+     (Optional) Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week9/Overview.html">
+   Week 9: Linear Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week9/Video91.html">
+     Video 9.1: What is machine learning?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week9/Video92.html">
+     Video 9.2: Types of machine learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week9/Video93.html">
+     Video 9.3: Linear regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week9/Week9Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week10/Overview.html">
+   Week 10: Model Selection
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week10/KeyConcepts.html">
+     Key concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week10/Video101.html">
+     Video 10.1: Model evaluation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week10/Video102.html">
+     Video 10.2: Bootstrapping (NMA)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week10/Video103.html">
+     Video 10.3: Model selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week10/Week10Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week10/Week10Tutorial2.html">
+     Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Week11/Overview.html">
+   Week 11: Clustering &amp; Classification
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week11/Video111.html">
+     Video 11.1: Clustering Applications
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week11/Video112.html">
+     Video 11.2: Types of Clustering Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week11/Video113.html">
+     Video 11.3: K-Means Clustering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week11/Week11Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week11/Week11Tutorial2.html">
+     Tutorial 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="Overview.html">
+   Week 12: Deep Learning
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="Video121.html">
+     Video 12.1: Feedforward networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Video122.html">
+     Video 12.2: Training Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Video123.html">
+     Video 12.3: Practical steps for training
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Video124.html">
+     Reaching 12.4: Intro to Pytorch
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Tutorial 1
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/jupyterbook/Week12/Week12Tutorial1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/Week12/Week12Tutorial1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Tutorial 1
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-and-visualize-data">
+   Load and visualize data
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-a-deep-feedforward-network">
+   Building a deep feedforward network
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction-to-pytorch">
+     Introduction to PyTorch
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-1">
+     Exercise 1
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loss-function">
+   Loss function
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-2">
+     Exercise 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gradient-descent">
+   Gradient descent
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-3">
+     Exercise 3
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluating-performance">
+   Evaluating performance
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix">
+   Appendix
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#neural-network-depth-width-and-expressivity">
+     Neural network
+     <em>
+      depth
+     </em>
+     ,
+     <em>
+      width
+     </em>
+     and
+     <em>
+      expressivity
+     </em>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Tutorial 1</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Tutorial 1
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-and-visualize-data">
+   Load and visualize data
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-a-deep-feedforward-network">
+   Building a deep feedforward network
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction-to-pytorch">
+     Introduction to PyTorch
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-1">
+     Exercise 1
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loss-function">
+   Loss function
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-2">
+     Exercise 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gradient-descent">
+   Gradient descent
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-3">
+     Exercise 3
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluating-performance">
+   Evaluating performance
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix">
+   Appendix
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#neural-network-depth-width-and-expressivity">
+     Neural network
+     <em>
+      depth
+     </em>
+     ,
+     <em>
+      width
+     </em>
+     and
+     <em>
+      expressivity
+     </em>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <p><a href="https://colab.research.google.com/github/ebatty/MathToolsforNeuroscience/blob/jupyterbook/Week12/Week12Tutorial1.ipynb" target="_parent"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="tutorial-1">
+<h1>Tutorial 1<a class="headerlink" href="#tutorial-1" title="Permalink to this headline">#</a></h1>
+<p><strong>Machine Learning IV, Deep Learning</strong></p>
+<p><strong>[insert your name]</strong></p>
+<p><strong>Important reminders</strong>: Before starting, click “File -&gt; Save a copy in Drive”. Produce a pdf for submission by “File -&gt; Print” and then choose “Save to PDF”.</p>
+<p>To complete this tutorial, you should have watched Video 12.1, 12.2, and 12.3</p>
+<p><strong>We use the dataset and some of the text/code from NMA W3D4 T1.</strong></p>
+<p>Imports</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Imports
+
+# Imports
+import numpy as np
+import matplotlib as mpl
+from matplotlib import pyplot as plt
+import ipywidgets as widgets  # interactive display
+import math
+import torch
+from torch import nn
+from torch import optim
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>  <span class="c1"># interactive display</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">import</span> <span class="nn">math</span>
+<span class="ne">----&gt; </span><span class="mi">9</span> <span class="kn">import</span> <span class="nn">torch</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">optim</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;torch&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plotting functions</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Plotting functions
+import numpy
+from numpy.linalg import inv, eig
+from math import ceil
+from matplotlib import pyplot, ticker, get_backend, rc
+from mpl_toolkits.mplot3d import Axes3D
+from itertools import cycle
+
+
+%config InlineBackend.figure_format = &#39;retina&#39;
+plt.style.use(&quot;https://raw.githubusercontent.com/NeuromatchAcademy/course-content/master/nma.mplstyle&quot;)
+
+def plot_data_matrix(X, ax):
+  &quot;&quot;&quot;Visualize data matrix of neural responses using a heatmap
+
+  Args:
+    X (torch.Tensor or np.ndarray): matrix of neural responses to visualize
+        with a heatmap
+    ax (matplotlib axes): where to plot
+
+  &quot;&quot;&quot;
+
+  cax = ax.imshow(X, cmap=mpl.cm.pink, vmin=np.percentile(X, 1), vmax=np.percentile(X, 99))
+  cbar = plt.colorbar(cax, ax=ax, label=&#39;normalized neural response&#39;)
+
+  ax.set_aspect(&#39;auto&#39;)
+  ax.set_xticks([])
+  ax.set_yticks([])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Data retrieval and loading</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#@markdown Data retrieval and loading
+import hashlib
+import requests
+import os
+
+fname = &quot;W3D4_stringer_oribinned1.npz&quot;
+url = &quot;https://osf.io/683xc/download&quot;
+expected_md5 = &quot;436599dfd8ebe6019f066c38aed20580&quot;
+
+if not os.path.isfile(fname):
+  try:
+    r = requests.get(url)
+  except requests.ConnectionError:
+    print(&quot;!!! Failed to download data !!!&quot;)
+  else:
+    if r.status_code != requests.codes.ok:
+      print(&quot;!!! Failed to download data !!!&quot;)
+    elif hashlib.md5(r.content).hexdigest() != expected_md5:
+      print(&quot;!!! Data download appears corrupted !!!&quot;)
+    else:
+      with open(fname, &quot;wb&quot;) as fid:
+        fid.write(r.content)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Helper functions</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Helper functions
+
+def load_data(data_name=fname, bin_width=1):
+  &quot;&quot;&quot;Load mouse V1 data from Stringer et al. (2019)
+
+  Data from study reported in this preprint:
+  https://www.biorxiv.org/content/10.1101/679324v2.abstract
+
+  These data comprise time-averaged responses of ~20,000 neurons
+  to ~4,000 stimulus gratings of different orientations, recorded
+  through Calcium imaginge. The responses have been normalized by
+  spontanous levels of activity and then z-scored over stimuli, so
+  expect negative numbers. They have also been binned and averaged
+  to each degree of orientation.
+
+  This function returns the relevant data (neural responses and
+  stimulus orientations) in a torch.Tensor of data type torch.float32
+  in order to match the default data type for nn.Parameters in
+  Google Colab.
+
+  This function will actually average responses to stimuli with orientations
+  falling within bins specified by the bin_width argument. This helps
+  produce individual neural &quot;responses&quot; with smoother and more
+  interpretable tuning curves.
+
+  Args:
+    bin_width (float): size of stimulus bins over which to average neural
+      responses
+
+  Returns:
+    resp (torch.Tensor): n_stimuli x n_neurons matrix of neural responses,
+        each row contains the responses of each neuron to a given stimulus.
+        As mentioned above, neural &quot;response&quot; is actually an average over
+        responses to stimuli with similar angles falling within specified bins.
+    stimuli: (torch.Tensor): n_stimuli x 1 column vector with orientation
+        of each stimulus, in degrees. This is actually the mean orientation
+        of all stimuli in each bin.
+
+  &quot;&quot;&quot;
+  with np.load(data_name) as dobj:
+    data = dict(**dobj)
+  resp = data[&#39;resp&#39;]
+  stimuli = data[&#39;stimuli&#39;]
+
+  if bin_width &gt; 1:
+    # Bin neural responses and stimuli
+    bins = np.digitize(stimuli, np.arange(0, 360 + bin_width, bin_width))
+    stimuli_binned = np.array([stimuli[bins == i].mean() for i in np.unique(bins)])
+    resp_binned = np.array([resp[bins == i, :].mean(0) for i in np.unique(bins)])
+  else:
+    resp_binned = resp
+    stimuli_binned = stimuli
+
+  # Return as torch.Tensor
+  resp_tensor = torch.tensor(resp_binned, dtype=torch.float32)
+  stimuli_tensor = torch.tensor(stimuli_binned, dtype=torch.float32).unsqueeze(1)  # add singleton dimension to make a column vector
+
+  return resp_tensor, stimuli_tensor
+
+def get_data(n_stim, train_data, train_labels):
+  &quot;&quot;&quot; Return n_stim randomly drawn stimuli/resp pairs
+
+  Args:
+    n_stim (scalar): number of stimuli to draw
+    resp (torch.Tensor):
+    train_data (torch.Tensor): n_train x n_neurons tensor with neural
+      responses to train on
+    train_labels (torch.Tensor): n_train x 1 tensor with orientations of the
+      stimuli corresponding to each row of train_data, in radians
+
+  Returns:
+    (torch.Tensor, torch.Tensor): n_stim x n_neurons tensor of neural responses and n_stim x 1 of orientations respectively
+  &quot;&quot;&quot;
+  n_stimuli = train_labels.shape[0]
+  istim = np.random.choice(n_stimuli, n_stim)
+  r = train_data[istim]  # neural responses to this stimulus
+  ori = train_labels[istim]  # true stimulus orientation
+
+  return r, ori
+
+def stimulus_class(ori, n_classes):
+  &quot;&quot;&quot;Get stimulus class from stimulus orientation
+
+  Args:
+    ori (torch.Tensor): orientations of stimuli to return classes for
+    n_classes (int): total number of classes
+
+  Returns:
+    torch.Tensor: 1D tensor with the classes for each stimulus
+
+  &quot;&quot;&quot;
+  bins = np.linspace(0, 360, n_classes + 1)
+  return torch.tensor(np.digitize(ori.squeeze(), bins)) - 1  # minus 1 to accomodate Python indexing
+
+def plot_decoded_results(train_loss, test_labels, predicted_test_labels):
+  &quot;&quot;&quot; Plot decoding results in the form of network training loss and test predictions
+
+  Args:
+    train_loss (list): training error over iterations
+    test_labels (torch.Tensor): n_test x 1 tensor with orientations of the
+      stimuli corresponding to each row of train_data, in radians
+    predicted_test_labels (torch.Tensor): n_test x 1 tensor with predicted orientations of the
+      stimuli from decoding neural network
+
+  &quot;&quot;&quot;
+
+  # Plot results
+  fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6))
+
+  # Plot the training loss over iterations of GD
+  ax1.plot(train_loss)
+
+  # Plot true stimulus orientation vs. predicted class
+  ax2.plot(stimuli_test.squeeze(), predicted_test_labels, &#39;.&#39;)
+
+  ax1.set_xlim([0, None])
+  ax1.set_ylim([0, None])
+  ax1.set_xlabel(&#39;iterations of gradient descent&#39;)
+  ax1.set_ylabel(&#39;negative log likelihood&#39;)
+  ax2.set_xlabel(&#39;true stimulus orientation ($^o$)&#39;)
+  ax2.set_ylabel(&#39;decoded orientation bin&#39;)
+  ax2.set_xticks(np.linspace(0, 360, n_classes + 1))
+  ax2.set_yticks(np.arange(n_classes))
+  class_bins = [f&#39;{i * 360 / n_classes: .0f}$^o$ - {(i + 1) * 360 / n_classes: .0f}$^o$&#39; for i in range(n_classes)]
+  ax2.set_yticklabels(class_bins);
+
+  # Draw bin edges as vertical lines
+  ax2.set_ylim(ax2.get_ylim())  # fix y-axis limits
+  for i in range(n_classes):
+    lower = i * 360 / n_classes
+    upper = (i + 1) * 360 / n_classes
+    ax2.plot([lower, lower], ax2.get_ylim(), &#39;-&#39;, color=&quot;0.7&quot;, linewidth=1, zorder=-1)
+    ax2.plot([upper, upper], ax2.get_ylim(), &#39;-&#39;, color=&quot;0.7&quot;, linewidth=1, zorder=-1)
+
+  plt.tight_layout()
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this tutorial, we’ll use deep learning to decode stimulus information from the responses of sensory neurons. Specifically, we’ll look at the activity of ~20,000 neurons in mouse primary visual cortex responding to oriented gratings recorded in <a class="reference external" href="https://www.biorxiv.org/content/10.1101/679324v2.abstract">this study</a>. Our task will be to decode the orientation of the presented stimulus from the responses of the whole population of neurons. We could do this in a number of ways, but here we’ll use deep learning. Deep learning is particularly well-suited to this problem for a number of reasons:</p>
+<ul class="simple">
+<li><p>The data are very high-dimensional: the neural response to a stimulus is a ~20,000 dimensional vector. Many machine learning techniques fail in such high dimensions, but deep learning actually thrives in this regime, as long as you have enough data (which we do here!).</p></li>
+<li><p>As you’ll be able to see below, different neurons can respond quite differently to stimuli. This complex pattern of responses will, therefore, require non-linear methods to be decoded, which we can easily do with non-linear activation functions in deep networks.</p></li>
+<li><p>Deep learning architectures are highly flexible, meaning we can easily adapt the architecture of our decoding model to optimize decoding. Here, we’ll focus on a single architecture, but you’ll see that it can easily be modified with few changes to the code.</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="load-and-visualize-data">
+<h1>Load and visualize data<a class="headerlink" href="#load-and-visualize-data" title="Permalink to this headline">#</a></h1>
+<p>In the next cell, we have provided code to load the data and plot the matrix of neural responses.</p>
+<p>Next to it, we plot the tuning curves of three randomly selected neurons.</p>
+<section id="id1">
+<h2><a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<p>Execute this cell to load and visualize data</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#@title
+
+#@markdown Execute this cell to load and visualize data
+
+# Load data
+resp_all, stimuli_all = load_data()  # argument to this function specifies bin width
+n_stimuli, n_neurons = resp_all.shape
+
+print(f&#39;{n_neurons} neurons in response to {n_stimuli} stimuli&#39;)
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(2 * 6, 5))
+
+# Visualize data matrix
+plot_data_matrix(resp_all[:100, :].T, ax1)  # plot responses of first 100 neurons
+ax1.set_xlabel(&#39;stimulus&#39;)
+ax1.set_ylabel(&#39;neuron&#39;)
+
+# Plot tuning curves of three random neurons
+ineurons = np.random.choice(n_neurons, 3, replace=False)  # pick three random neurons
+ax2.plot(stimuli_all, resp_all[:, ineurons])
+ax2.set_xlabel(&#39;stimulus orientation ($^o$)&#39;)
+ax2.set_ylabel(&#39;neural response&#39;)
+ax2.set_xticks(np.linspace(0, 360, 5))
+
+plt.tight_layout()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">#@title</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> 
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1">#@markdown Execute this cell to load and visualize data</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># Load data</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">resp_all</span><span class="p">,</span> <span class="n">stimuli_all</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">()</span>  <span class="c1"># argument to this function specifies bin width</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">n_stimuli</span><span class="p">,</span> <span class="n">n_neurons</span> <span class="o">=</span> <span class="n">resp_all</span><span class="o">.</span><span class="n">shape</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n_neurons</span><span class="si">}</span><span class="s1"> neurons in response to </span><span class="si">{</span><span class="n">n_stimuli</span><span class="si">}</span><span class="s1"> stimuli&#39;</span><span class="p">)</span>
+
+<span class="nn">Cell In[4], line 55,</span> in <span class="ni">load_data</span><span class="nt">(data_name, bin_width)</span>
+<span class="g g-Whitespace">     </span><span class="mi">52</span>   <span class="n">stimuli_binned</span> <span class="o">=</span> <span class="n">stimuli</span>
+<span class="g g-Whitespace">     </span><span class="mi">54</span> <span class="c1"># Return as torch.Tensor</span>
+<span class="ne">---&gt; </span><span class="mi">55</span> <span class="n">resp_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">resp_binned</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">56</span> <span class="n">stimuli_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">stimuli_binned</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># add singleton dimension to make a column vector</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="k">return</span> <span class="n">resp_tensor</span><span class="p">,</span> <span class="n">stimuli_tensor</span>
+
+<span class="ne">NameError</span>: name &#39;torch&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will split our data into a training set and test set. In particular, we will have a training set of orientations (<code class="docutils literal notranslate"><span class="pre">stimuli_train</span></code>) and the corresponding responses (<code class="docutils literal notranslate"><span class="pre">resp_train</span></code>). Our testing set will have held-out orientations (<code class="docutils literal notranslate"><span class="pre">stimuli_test</span></code>) and the corresponding responses (<code class="docutils literal notranslate"><span class="pre">resp_test</span></code>).</p>
+</section>
+<section id="id2">
+<h2><a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p>Execute this cell to split into training and test sets</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#@title
+#@markdown Execute this cell to split into training and test sets
+
+# Set random seeds for reproducibility
+np.random.seed(4)
+torch.manual_seed(4)
+
+# Split data into training set and testing set
+n_train = int(0.6 * n_stimuli)  # use 60% of all data for training set
+ishuffle = torch.randperm(n_stimuli)
+itrain = ishuffle[:n_train]  # indices of data samples to include in training set
+itest = ishuffle[n_train:]  # indices of data samples to include in testing set
+stimuli_test = stimuli_all[itest]
+resp_test = resp_all[itest]
+stimuli_train = stimuli_all[itrain]
+resp_train = resp_all[itrain]
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">#@title</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1">#@markdown Execute this cell to split into training and test sets</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Set random seeds for reproducibility</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># Split data into training set and testing set</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">n_train</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.6</span> <span class="o">*</span> <span class="n">n_stimuli</span><span class="p">)</span>  <span class="c1"># use 60% of all data for training set</span>
+
+<span class="ne">NameError</span>: name &#39;torch&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="building-a-deep-feedforward-network">
+<h1>Building a deep feedforward network<a class="headerlink" href="#building-a-deep-feedforward-network" title="Permalink to this headline">#</a></h1>
+<p>We’ll now build a simple deep neural network that takes as input a vector of neural responses and outputs a single number representing the decoded stimulus orientation.</p>
+<p>To keep things simple, we’ll build a deep network with <strong>one</strong> hidden layer. See the appendix for a deeper discussion of what this choice entails, and when one might want to use deeper/shallower and wider/narrower architectures.</p>
+<section id="introduction-to-pytorch">
+<h2>Introduction to PyTorch<a class="headerlink" href="#introduction-to-pytorch" title="Permalink to this headline">#</a></h2>
+<p>Here, we’ll use the <strong>PyTorch</strong> package to build, run, and train deep networks of this form in Python. There are two core components to the PyTorch package:</p>
+<ol class="simple">
+<li><p>The first is the <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code> data type used in PyTorch. <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code>’s are effectively just like a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays, except that they have some important attributes and methods needed for automatic differentiation (to be discussed below). They also come along with infrastructure for easily storing and computing with them on GPU’s, a capability we won’t touch on here but which can be really useful in practice.</p></li>
+<li><p>The second core ingredient is the PyTorch <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> class. This is the class we’ll use for constructing deep networks, so that we can then easily train them using built-in PyTorch functions. Keep in my mind that <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> classes can actually be used to build, run, and train any model – not just deep networks!</p></li>
+</ol>
+<p>The next cell contains code for building the deep network we defined above using the <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> class. It contains three key ingredients:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__()</span></code> method to initialize its parameters, like in any other Python class. In this case, it takes two arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n_inputs</span></code>: the number of input units. This should always be set to the number of neurons whose activities are being decoded (i.e. the dimensionality of the input to the network).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_hidden</span></code>: the number of hidden units. This is a parameter that we are free to vary in deciding how to build our network. See the appendix for a discussion of how this architectural choice affects the computations the network can perform.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nn.Linear</span></code> modules, which are built-in PyTorch classes containing all the weights and biases for a given network layer (documentation <a class="reference external" href="https://pytorch.org/docs/master/generated/torch.nn.Linear.html">here</a>). This class takes two arguments to initialize:</p>
+<ul class="simple">
+<li><p># of inputs to that layer</p></li>
+<li><p># of outputs from that layer</p></li>
+</ul>
+<p>For the input layer, for example, we have:</p>
+<ul class="simple">
+<li><p># of inputs = # of neurons whose responses are to be decoded (<span class="math notranslate nohighlight">\(N\)</span>, specified by <code class="docutils literal notranslate"><span class="pre">n_inputs</span></code>)</p></li>
+<li><p># of outputs = # of hidden layer units (<span class="math notranslate nohighlight">\(M\)</span>, specified by <code class="docutils literal notranslate"><span class="pre">n_hidden</span></code>)</p></li>
+</ul>
+<p>PyTorch will initialize all weights and biases randomly.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">forward()</span></code> method, which takes as argument an input to the network and returns the network output. In our case, this comprises computing the output <span class="math notranslate nohighlight">\(y\)</span> from a given input <span class="math notranslate nohighlight">\(\mathbf{r}\)</span> using the above two equations. See the next cell for code implementing this computation using the built-in PyTorch <code class="docutils literal notranslate"><span class="pre">nn.Linear</span></code> classes.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class DeepNet(nn.Module):
+  &quot;&quot;&quot;Deep Network with one hidden layer
+
+  Args:
+    n_inputs (int): number of input units
+    n_hidden (int): number of units in hidden layer
+
+  Attributes:
+    in_layer (nn.Linear): weights and biases of input layer
+    out_layer (nn.Linear): weights and biases of output layer
+
+  &quot;&quot;&quot;
+
+  def __init__(self, n_inputs, n_hidden):
+    super().__init__()  # needed to invoke the properties of the parent class nn.Module
+    self.in_layer = nn.Linear(n_inputs, n_hidden) # neural activity --&gt; hidden units
+    self.out_layer = nn.Linear(n_hidden, 1) # hidden units --&gt; output
+
+  def forward(self, r):
+    &quot;&quot;&quot;Decode stimulus orientation from neural responses
+
+    Args:
+      r (torch.Tensor): vector of neural responses to decode, must be of
+        length n_inputs. Can also be a tensor of shape n_stimuli x n_inputs,
+        containing n_stimuli vectors of neural responses
+
+    Returns:
+      torch.Tensor: network outputs for each input provided in r. If
+        r is a vector, then y is a 1D tensor of length 1. If r is a 2D
+        tensor then y is a 2D tensor of shape n_stimuli x 1.
+
+    &quot;&quot;&quot;
+    h = self.in_layer(r)  # hidden representation
+    y = self.out_layer(h)
+    return y
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">class</span> <span class="nc">DeepNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>   <span class="sd">&quot;&quot;&quot;Deep Network with one hidden layer</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span><span class="sd"> </span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span><span class="sd">   Args:</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span><span class="sd">   &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span>   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_inputs</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">):</span>
+
+<span class="ne">NameError</span>: name &#39;nn&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>The next cell contains code for initializing and running this network. We use it to decode stimulus orientation from a vector of neural responses to the very first stimulus. Note that when the initialized network class is called as a function on an input (e.g. <code class="docutils literal notranslate"><span class="pre">net(r)</span></code>), its <code class="docutils literal notranslate"><span class="pre">.forward()</span></code> method is called. This is a special property of the <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> class.</p>
+<p>Note that the decoded orientations at this point will be nonsense, since the network has been initialized with random weights. Below, we’ll learn how to optimize these weights for good stimulus decoding.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Set random seeds for reproducibility
+np.random.seed(1)
+torch.manual_seed(1)
+
+# Initialize a deep network with M=200 hidden units
+net = DeepNet(n_neurons, 200)
+
+# Get neural responses (r) to and orientation (ori) to one stimulus in dataset
+r, ori = get_data(1, resp_train, stimuli_train)  # using helper function get_data
+
+# Decode orientation from these neural responses using initialized network
+out = net(r)  # compute output from network, equivalent to net.forward(r)
+
+print(&#39;decoded orientation: %.2f degrees&#39; % out)
+print(&#39;true orientation: %.2f degrees&#39; % ori)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Set random seeds for reproducibility</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># Initialize a deep network with M=200 hidden units</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">net</span> <span class="o">=</span> <span class="n">DeepNet</span><span class="p">(</span><span class="n">n_neurons</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;torch&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>net.forward(r)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">net</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;net&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-1">
+<h2>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">#</a></h2>
+<p>We do not have any nonlinear activation functions in our deep network above. We want to use the rectified linear activation function, which can be implemented in PyTorch using <code class="docutils literal notranslate"><span class="pre">torch.relu()</span></code>. Hidden layers with this activation function are typically referred to as “<strong>Re</strong>ctified <strong>L</strong>inear <strong>U</strong>nits”, or <strong>ReLU</strong>’s.</p>
+<p>Initialize this network with 20 hidden units and run on an example stimulus.</p>
+<p><strong>Hint</strong>: you only need to modify the <code class="docutils literal notranslate"><span class="pre">forward()</span></code> method of the above <code class="docutils literal notranslate"><span class="pre">DeepNet()</span></code> class.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class DeepNetReLU(nn.Module):
+
+  def __init__(self, n_inputs, n_hidden):
+    super().__init__()  # needed to invoke the properties of the parent class nn.Module
+    self.in_layer = nn.Linear(n_inputs, n_hidden) # neural activity --&gt; hidden units
+    self.out_layer = nn.Linear(n_hidden, 1) # hidden units --&gt; output
+
+  def forward(self, r):
+
+    ############################################################################
+    ## TO DO for students: write code for computing network output using a
+    ## rectified linear activation function for the hidden units
+    # Fill out function and remove
+    raise NotImplementedError(&quot;Student exercise: complete DeepNetReLU forward&quot;)
+    ############################################################################
+
+    h = ...
+    y = ...
+
+    return y
+
+
+# Set random seeds for reproducibility
+np.random.seed(1)
+torch.manual_seed(1)
+
+# Get neural responses (r) to and orientation (ori) to one stimulus in dataset
+r, ori = get_data(1, resp_train, stimuli_train)
+
+# Initialize deep network with M=20 hidden units and uncomment lines below
+net = DeepNetReLU(...)
+
+# Decode orientation from these neural responses using initialized network
+# net(r) is equivalent to net.forward(r)
+out = net(r)
+
+# print(&#39;decoded orientation: %.2f degrees&#39; % out)
+print(&#39;true orientation: %.2f degrees&#39; % ori)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">class</span> <span class="nc">DeepNetReLU</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_inputs</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>  <span class="c1"># needed to invoke the properties of the parent class nn.Module</span>
+
+<span class="ne">NameError</span>: name &#39;nn&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="loss-function">
+<h1>Loss function<a class="headerlink" href="#loss-function" title="Permalink to this headline">#</a></h1>
+<p>We will train our model using mean squared error as our loss function.</p>
+<p>PyTorch actually carries with it a number of built-in loss functions. The one corresponding to the squared error is called <code class="docutils literal notranslate"><span class="pre">nn.MSELoss()</span></code>. This will take as arguments a <strong>batch</strong> of network outputs <span class="math notranslate nohighlight">\(y_1, y_2, \ldots, y_P\)</span> and corresponding target outputs <span class="math notranslate nohighlight">\(\tilde{y}_1, \tilde{y}_2, \ldots, \tilde{y}_P\)</span>, and compute the <strong>mean squared error (MSE)</strong></p>
+<div class="amsmath math notranslate nohighlight" id="equation-8a053151-0812-4f3e-a724-0fd5e093ac3e">
+<span class="eqno">(4)<a class="headerlink" href="#equation-8a053151-0812-4f3e-a724-0fd5e093ac3e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    L = \frac{1}{P}\sum_{n=1}^P \left(y^{(n)} - \tilde{y}^{(n)}\right)^2
+\end{equation}\]</div>
+<section id="exercise-2">
+<h2>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">#</a></h2>
+<p>Evaluate the mean squared error for a deep network with <span class="math notranslate nohighlight">\(M=20\)</span> rectified linear units, on the decoded orientations from neural responses to 20 random stimuli.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Set random seeds for reproducibility
+np.random.seed(1)
+torch.manual_seed(1)
+
+# Initialize a deep network with M=20 hidden units
+net = DeepNetReLU(n_neurons, 20)
+
+# Get neural responses to first 20 stimuli in the data set
+r, ori = get_data(20, resp_train, stimuli_train)
+
+# Decode orientation from these neural responses
+out = net(r)
+
+###################################################
+## TO DO for students: evaluate mean squared error
+###################################################
+
+# Initialize PyTorch mean squared error loss function (Hint: look at nn.MSELoss)
+loss_fn = ...
+
+# Evaluate mean squared error
+loss = ...
+
+print(&#39;mean squared error: %.2f&#39; % loss)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Set random seeds for reproducibility</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># Initialize a deep network with M=20 hidden units</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">net</span> <span class="o">=</span> <span class="n">DeepNetReLU</span><span class="p">(</span><span class="n">n_neurons</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;torch&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="gradient-descent">
+<h1>Gradient descent<a class="headerlink" href="#gradient-descent" title="Permalink to this headline">#</a></h1>
+<p>Let’s train our model using stochastic gradient descent. We want to set up code similar to the pseudocode in Video 12.2 at 10.09 min.</p>
+<p>We want to update the network weights by descending the gradient. In Pytorch, we can do this using built-in optimizers. We’ll use the <code class="docutils literal notranslate"><span class="pre">optim.SGD</span></code> optimizer (documentation <a class="reference external" href="https://pytorch.org/docs/stable/optim.html#torch.optim.SGD">here</a>) which updates parameters along the negative gradient, scaled by a learning rate. To initialize this optimizer, we have to tell it</p>
+<ul class="simple">
+<li><p>which parameters to update, and</p></li>
+<li><p>what learning rate to use</p></li>
+</ul>
+<p>For example, to optimize <em>all</em> the parameters of a network <code class="docutils literal notranslate"><span class="pre">net</span></code> using a learning rate of .001, the optimizer would be initialized as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">.001</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">.parameters()</span></code> is a method of the <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> class that returns a <a class="reference external" href="https://wiki.python.org/moin/Generators">Python generator object</a> over all the parameters of that <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> class (in our case, <span class="math notranslate nohighlight">\(\mathbf{W}^{in}, \mathbf{b}^{in}, \mathbf{W}^{out}, \mathbf{b}^{out}\)</span>).</p>
+<p>For a single step of gradient descent, our code should look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Get</span> <span class="n">outputs</span> <span class="kn">from</span> <span class="nn">network</span>
+<span class="n">Evaluate</span> <span class="n">loss</span>
+ 
+<span class="c1"># Compute gradients</span>
+<span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>  <span class="c1"># clear gradients</span>
+<span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+ 
+<span class="c1"># Update weights</span>
+<span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">loss.backward()</span></code> computes the gradient of the loss with respect to each of the network weights. This command tells PyTorch to compute the gradients of the quantity stored in the variable <code class="docutils literal notranslate"><span class="pre">loss</span></code> with respect to each network parameter using <a class="reference external" href="https://en.wikipedia.org/wiki/Automatic_differentiation">automatic differentiation</a>. These gradients are then stored behind the scenes.</p>
+<p><code class="docutils literal notranslate"><span class="pre">optimizer.step()</span></code> uses these gradients to take a step and update the parameters.</p>
+<p><code class="docutils literal notranslate"><span class="pre">optimizer.zero_grad()</span></code> clears the gradients of each parameter. The gradients of each parameter need to be cleared before calling <code class="docutils literal notranslate"><span class="pre">.backward()</span></code>, or else PyTorch will try to accumulate gradients across iterations.</p>
+<section id="exercise-3">
+<h2>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">#</a></h2>
+<p><strong>Write out training code to perform stochastic gradient descent over 50 epochs</strong> using the pseudocode in Video 12.2 at 10.09 min (detailed in code comments below) and the guidance above for what to do for a single step of gradient descent. Then <strong>plot the training loss over gradient descent step or epoch</strong></p>
+<p>I set things up for you in the next cell.</p>
+<p>Let’s use a minibatch size of 18. You can get a minibatch by doing <code class="docutils literal notranslate"><span class="pre">stimuli_train[i_batch*18:(i_batch+1)*18]</span></code> and <code class="docutils literal notranslate"><span class="pre">resp_train[i_batch*18:(i_batch+1)*18]</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Set random seeds for reproducibility
+np.random.seed(1)
+torch.manual_seed(1)
+
+# Initialize network
+net = DeepNetReLU(n_neurons, 20)
+
+# Initialize built-in PyTorch MSE loss function
+loss_fn = nn.MSELoss()
+
+# Initialize PyTorch SGD optimizer
+optimizer = optim.SGD(net.parameters(), lr = 0.0001)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Set random seeds for reproducibility</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># Initialize network</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">net</span> <span class="o">=</span> <span class="n">DeepNetReLU</span><span class="p">(</span><span class="n">n_neurons</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;torch&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># your code here
+
+# for each pass of the data (epoch)
+
+  # for each minibatch
+
+    # Take a gradient descent step (compute gradients/update parameters)
+
+    # Record loss function
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Plot training loss over gradient descent step or epoch (which ever you prefer)
+
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="evaluating-performance">
+<h1>Evaluating performance<a class="headerlink" href="#evaluating-performance" title="Permalink to this headline">#</a></h1>
+<p>We will compute the MSE on the test data and plot the decoded stimulus orientations as a function of the true stimulus.</p>
+<section id="id3">
+<h2><a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<p>Execute this cell to evaluate and plot test error</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#@title
+#@markdown Execute this cell to evaluate and plot test error
+
+out = net(resp_test)  # decode stimulus orientation for neural responses in testing set
+ori = stimuli_test  # true stimulus orientations
+test_loss = loss_fn(out, ori)  # MSE on testing set (Hint: use loss_fn initialized in previous exercise)
+
+plt.plot(ori, out.detach(), &#39;.&#39;)  # N.B. need to use .detach() to pass network output into plt.plot()
+#identityLine()  # draw the identity line y=x; deviations from this indicate bad decoding!
+plt.title(&#39;MSE on testing set: %.2f&#39; % test_loss.item())  # N.B. need to use .item() to turn test_loss into a scalar
+plt.xlabel(&#39;true stimulus orientation ($^o$)&#39;)
+plt.ylabel(&#39;decoded stimulus orientation ($^o$)&#39;)
+axticks = np.linspace(0, 360, 5)
+plt.xticks(axticks)
+plt.yticks(axticks)
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">#@title</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1">#@markdown Execute this cell to evaluate and plot test error</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">out</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">resp_test</span><span class="p">)</span>  <span class="c1"># decode stimulus orientation for neural responses in testing set</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">ori</span> <span class="o">=</span> <span class="n">stimuli_test</span>  <span class="c1"># true stimulus orientations</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">test_loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">ori</span><span class="p">)</span>  <span class="c1"># MSE on testing set (Hint: use loss_fn initialized in previous exercise)</span>
+
+<span class="ne">NameError</span>: name &#39;net&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>PyTorch Note</strong>:</p>
+<p>An important thing to note in the code snippet for plotting the decoded orientations is the <code class="docutils literal notranslate"><span class="pre">.detach()</span></code> method. The PyTorch <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> class is special in that, behind the scenes, each of the variables inside it are linked to each other in a computational graph, for the purposes of automatic differentiation (the algorithm used in <code class="docutils literal notranslate"><span class="pre">.backward()</span></code> to compute gradients). As a result, if you want to do anything that is not a <code class="docutils literal notranslate"><span class="pre">torch</span></code> operation to the parameters or outputs of an <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> class, you’ll need to first “detach” it from its computational graph. This is what the <code class="docutils literal notranslate"><span class="pre">.detach()</span></code> method does. In this hidden code above, we need to call it on the outputs of the network so that we can plot them with the <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code> function.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="appendix">
+<h1>Appendix<a class="headerlink" href="#appendix" title="Permalink to this headline">#</a></h1>
+<section id="neural-network-depth-width-and-expressivity">
+<h2>Neural network <em>depth</em>, <em>width</em> and <em>expressivity</em><a class="headerlink" href="#neural-network-depth-width-and-expressivity" title="Permalink to this headline">#</a></h2>
+<p>Two important architectural choices that always have to be made when constructing deep feed-forward networks like those used here are</p>
+<ul class="simple">
+<li><p>the number of hidden layers, or the network’s <em>depth</em></p></li>
+<li><p>the number of units in each layer, or the layer <em>widths</em></p></li>
+</ul>
+<p>Here, we restricted ourselves to networks with a single hidden layer with a width of <span class="math notranslate nohighlight">\(M\)</span> units, but it is easy to see how this code could be adapted to arbitrary depths. Adding another hidden layer simply requires adding another <code class="docutils literal notranslate"><span class="pre">nn.Linear</span></code> module to the <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> method and incorporating it into the <code class="docutils literal notranslate"><span class="pre">.forward()</span></code> method.</p>
+<p>The depth and width of a network determine the set of input/output transormations that it can perform, often referred to as its <em>expressivity</em>. The deeper and wider the network, the more <em>expressive</em> it is; that is, the larger the class of input/output transformations it can compute. In fact, it turns out that an infinitely wide <em>or</em> infinitely deep networks can in principle <a class="reference external" href="https://en.wikipedia.org/wiki/Universal_approximation_theorem">compute (almost) <em>any</em> input/output transformation</a>.</p>
+<p>A classic mathematical demonstration of the power of depth is given by the so-called <a class="reference external" href="https://medium.com/&#64;jayeshbahire/the-xor-problem-in-neural-networks-50006411840b#:~:text=The%20XOr%2C%20or%20%E2%80%9Cexclusive%20or,value%20if%20they%20are%20equal.">XOR problem</a>. This toy problem demonstrates how even a single hidden layer can drastically expand the set of input/output transformations a network can perform, relative to a shallow network with no hidden layers. The key intuition is that the hidden layer allows you to represent the input in a new format, which can then allow you to do almost anything you want with it. The <em>wider</em> this hidden layer, the more flexibility you have in this representation. In particular, if you have more hidden units than input units, then the hidden layer representation of the input is higher-dimensional than the raw data representation. This higher dimensionality effectively gives you more “room” to perform arbitrary computations in. It turns out that even with just this one hidden layer, if you make it wide enough you can actually approximate any input/output transformation you want. See <a class="reference external" href="http://neuralnetworksanddeeplearning.com/chap4.html">here</a> for a neat visual demonstration of this.</p>
+<p>In practice, however, it turns out that increasing depth seems to grant more expressivity with fewer units than increasing width does (for reasons that are not well understood). It is for this reason that truly <em>deep</em> networks are almost always used in machine learning, which is why this set of techniques is often referred to as <em>deep</em> learning.</p>
+<p>That said, there is a cost to making networks deeper and wider. The bigger your network, the more parameters (i.e. weights and biases) it has, which need to be optimized! The extra expressivity afforded by higher width and/or depth thus carries with it (at least) two problems:</p>
+<ul class="simple">
+<li><p>optimizing more parameters usually requires more data</p></li>
+<li><p>a more highly parameterized network is more prone to overfit to the training data, so requires more sophisticated optimization algorithms to ensure generalization</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ebatty/MathToolsforNeuroscience",
+            ref: "jupyterbook",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Week12"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Video124.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Reaching 12.4: Intro to Pytorch</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Ella Batty<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
