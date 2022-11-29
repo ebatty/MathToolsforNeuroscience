@@ -616,6 +616,11 @@ const thebe_selector_output = ".output, .cell_output"
      Reaching 12.4: Intro to Pytorch
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week12/Week12Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -1049,13 +1054,13 @@ title="Print to PDF"
 <p>Imports</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Imports</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Imports
 
-<span class="c1"># Imports</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>  <span class="c1"># interactive display</span>
-<span class="kn">import</span> <span class="nn">math</span>
+# Imports
+import numpy as np
+import matplotlib.pyplot as plt
+import ipywidgets as widgets  # interactive display
+import math
 </pre></div>
 </div>
 </div>
@@ -1063,41 +1068,41 @@ title="Print to PDF"
 <p>Plotting functions</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Plotting functions</span>
-<span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span><span class="p">,</span> <span class="n">eig</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span><span class="p">,</span> <span class="n">ticker</span><span class="p">,</span> <span class="n">get_backend</span><span class="p">,</span> <span class="n">rc</span>
-<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">cycle</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Plotting functions
+import numpy
+from numpy.linalg import inv, eig
+from math import ceil
+from matplotlib import pyplot, ticker, get_backend, rc
+from mpl_toolkits.mplot3d import Axes3D
+from itertools import cycle
 
 
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/NeuromatchAcademy/course-content/master/nma.mplstyle&quot;</span><span class="p">)</span>
+%config InlineBackend.figure_format = &#39;retina&#39;
+plt.style.use(&quot;https://raw.githubusercontent.com/NeuromatchAcademy/course-content/master/nma.mplstyle&quot;)
 
-<span class="k">def</span> <span class="nf">plot_fitted_polynomials</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta_hat</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot; Plot polynomials of different orders</span>
+def plot_fitted_polynomials(x, y, theta_hat):
+  &quot;&quot;&quot; Plot polynomials of different orders
 
-<span class="sd">  Args:</span>
-<span class="sd">    x (ndarray): input vector of shape (n_samples)</span>
-<span class="sd">    y (ndarray): vector of measurements of shape (n_samples)</span>
-<span class="sd">    theta_hat (dict): polynomial regression weights for different orders</span>
-<span class="sd">  &quot;&quot;&quot;</span>
+  Args:
+    x (ndarray): input vector of shape (n_samples)
+    y (ndarray): vector of measurements of shape (n_samples)
+    theta_hat (dict): polynomial regression weights for different orders
+  &quot;&quot;&quot;
 
-  <span class="n">x_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mf">.5</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">.5</span><span class="p">)</span>
+  x_grid = np.linspace(x.min() - .5, x.max() + .5)
 
-  <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+  plt.figure()
 
-  <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-    <span class="n">X_design</span> <span class="o">=</span> <span class="n">make_design_matrix</span><span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">X_design</span> <span class="o">@</span> <span class="n">theta_hat</span><span class="p">[</span><span class="n">order</span><span class="p">]);</span>
+  for order in range(0, max_order + 1):
+    X_design = make_design_matrix(x_grid, order)
+    plt.plot(x_grid, X_design @ theta_hat[order]);
 
-  <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;C0.&#39;</span><span class="p">);</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;order </span><span class="si">{</span><span class="n">o</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;polynomial fits&#39;</span><span class="p">)</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+  plt.ylabel(&#39;y&#39;)
+  plt.xlabel(&#39;x&#39;)
+  plt.plot(x, y, &#39;C0.&#39;);
+  plt.legend([f&#39;order {o}&#39; for o in range(max_order + 1)], loc=1)
+  plt.title(&#39;polynomial fits&#39;)
+  plt.show()
 </pre></div>
 </div>
 </div>
@@ -1105,47 +1110,47 @@ title="Print to PDF"
 <p>Helper functions</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Helper functions</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Helper functions
 
-<span class="k">def</span> <span class="nf">ordinary_least_squares</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot;Ordinary least squares estimator for linear regression.</span>
+def ordinary_least_squares(X, y):
+  &quot;&quot;&quot;Ordinary least squares estimator for linear regression.
 
-<span class="sd">  Args:</span>
-<span class="sd">    x (ndarray): design matrix of shape (n_samples, n_regressors)</span>
-<span class="sd">    y (ndarray): vector of measurements of shape (n_samples)</span>
+  Args:
+    x (ndarray): design matrix of shape (n_samples, n_regressors)
+    y (ndarray): vector of measurements of shape (n_samples)
 
-<span class="sd">  Returns:</span>
-<span class="sd">    ndarray: estimated parameter values of shape (n_regressors)</span>
-<span class="sd">  &quot;&quot;&quot;</span>
+  Returns:
+    ndarray: estimated parameter values of shape (n_regressors)
+  &quot;&quot;&quot;
   
-  <span class="c1"># Compute theta_hat using OLS</span>
-  <span class="n">theta_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span>
+  # Compute theta_hat using OLS
+  theta_hat = np.linalg.inv(X.T @ X) @ X.T @ y
 
-  <span class="k">return</span> <span class="n">theta_hat</span>
+  return theta_hat
 
 
-<span class="k">def</span> <span class="nf">evaluate_poly_reg</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta_hat</span><span class="p">,</span> <span class="n">order</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Evaluates MSE of polynomial regression models on data</span>
+def evaluate_poly_reg(x, y, theta_hat, order):
+    &quot;&quot;&quot; Evaluates MSE of polynomial regression models on data
 
-<span class="sd">    Args:</span>
-<span class="sd">      x (ndarray): input vector of shape (n_samples)</span>
-<span class="sd">      y (ndarray): vector of measurements of shape (n_samples)</span>
-<span class="sd">      theta_hats (dict):  fitted weights for each polynomial model (dict key is order)</span>
-<span class="sd">      max_order (scalar): max order of polynomial fit</span>
+    Args:
+      x (ndarray): input vector of shape (n_samples)
+      y (ndarray): vector of measurements of shape (n_samples)
+      theta_hats (dict):  fitted weights for each polynomial model (dict key is order)
+      max_order (scalar): max order of polynomial fit
 
-<span class="sd">    Returns</span>
-<span class="sd">      (ndarray): mean squared error for each order, shape (max_order)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    Returns
+      (ndarray): mean squared error for each order, shape (max_order)
+    &quot;&quot;&quot;
 
-    <span class="n">X_design</span> <span class="o">=</span> <span class="n">make_design_matrix</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+    X_design = make_design_matrix(x, order)
 
-    <span class="n">y_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X_design</span><span class="p">,</span> <span class="n">theta_hats</span><span class="p">[</span><span class="n">order</span><span class="p">])</span>
+    y_hat = np.dot(X_design, theta_hats[order])
 
-    <span class="n">residuals</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">y_hat</span>
+    residuals = y - y_hat
 
-    <span class="n">mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">residuals</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    mse = np.mean(residuals ** 2)
 
-    <span class="k">return</span> <span class="n">mse</span>
+    return mse
 </pre></div>
 </div>
 </div>
@@ -1164,29 +1169,29 @@ title="Print to PDF"
 <p>Execute this cell to simulate some data</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@markdown Execute this cell to simulate some data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#@markdown Execute this cell to simulate some data
 
-<span class="c1">### Generate training data</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">n_train_samples</span> <span class="o">=</span> <span class="mi">50</span>
-<span class="n">x_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="n">n_train_samples</span><span class="p">)</span> <span class="c1"># sample from a uniform distribution over [-2, 2.5)</span>
-<span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_train_samples</span><span class="p">)</span> <span class="c1"># sample from a standard normal distribution</span>
-<span class="n">y_train</span> <span class="o">=</span>  <span class="n">x_train</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x_train</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">noise</span>
+### Generate training data
+np.random.seed(0)
+n_train_samples = 50
+x_train = np.random.uniform(-2, 2.5, n_train_samples) # sample from a uniform distribution over [-2, 2.5)
+noise = np.random.randn(n_train_samples) # sample from a standard normal distribution
+y_train =  x_train**2 - x_train - 2 + noise
 
-<span class="c1">### Generate testing data</span>
-<span class="n">n_test_samples</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="n">x_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">n_test_samples</span><span class="p">)</span> <span class="c1"># sample from a uniform distribution over [-2, 2.5)</span>
-<span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_test_samples</span><span class="p">)</span> <span class="c1"># sample from a standard normal distribution</span>
-<span class="n">y_test</span> <span class="o">=</span>  <span class="n">x_test</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x_test</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">noise</span>
+### Generate testing data
+n_test_samples = 20
+x_test = np.random.uniform(-3, 3, n_test_samples) # sample from a uniform distribution over [-2, 2.5)
+noise = np.random.randn(n_test_samples) # sample from a standard normal distribution
+y_test =  x_test**2 - x_test - 2 + noise
 
-<span class="c1">## Plot both train and test data</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Data&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training&#39;</span><span class="p">)</span>
-<span class="c1">#plt.plot(x_test, y_test, &#39;g+&#39;, markersize=15, label=&#39;Test&#39;)</span>
-<span class="c1">#plt.legend()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">);</span>
+## Plot both train and test data
+fig, ax = plt.subplots()
+plt.title(&#39;Data&#39;)
+plt.plot(x_train, y_train, &#39;.&#39;, markersize=15, label=&#39;Training&#39;)
+#plt.plot(x_test, y_test, &#39;g+&#39;, markersize=15, label=&#39;Test&#39;)
+#plt.legend()
+plt.xlabel(&#39;x&#39;)
+plt.ylabel(&#39;y&#39;);
 </pre></div>
 </div>
 </div>
@@ -1213,42 +1218,42 @@ Answer here</p>
 Complete code below</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_design_matrix</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">order</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot;Create the design matrix of inputs for use in polynomial regression</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def make_design_matrix(x, order):
+  &quot;&quot;&quot;Create the design matrix of inputs for use in polynomial regression
 
-<span class="sd">  Args:</span>
-<span class="sd">    x (ndarray): input vector of shape (n_samples)</span>
-<span class="sd">    order (scalar): polynomial regression order</span>
+  Args:
+    x (ndarray): input vector of shape (n_samples)
+    order (scalar): polynomial regression order
 
-<span class="sd">  Returns:</span>
-<span class="sd">    ndarray: design matrix for polynomial regression of shape (samples, order+1)</span>
-<span class="sd">  &quot;&quot;&quot;</span>
+  Returns:
+    ndarray: design matrix for polynomial regression of shape (samples, order+1)
+  &quot;&quot;&quot;
 
-  <span class="c1"># Broadcast to shape (n x 1) so dimensions work</span>
-  <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+  # Broadcast to shape (n x 1) so dimensions work
+  if x.ndim == 1:
+    x = x[:, None]
 
-  <span class="c1">#if x has more than one feature, we don&#39;t want multiple columns of ones so we assign</span>
-  <span class="c1"># x^0 here</span>
-  <span class="n">design_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">))</span>
+  #if x has more than one feature, we don&#39;t want multiple columns of ones so we assign
+  # x^0 here
+  design_matrix = np.ones((x.shape[0], 1))
 
-  <span class="c1"># Finish creating the design matrix (hint: np.hstack)</span>
-  <span class="k">for</span> <span class="n">degree</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-      <span class="n">design_matrix</span> <span class="o">=</span> <span class="o">...</span>
+  # Finish creating the design matrix (hint: np.hstack)
+  for degree in range(1, order + 1):
+      design_matrix = ...
 
-  <span class="k">return</span> <span class="n">design_matrix</span>
+  return design_matrix
 
 
-<span class="n">order</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">X_design</span> <span class="o">=</span> <span class="n">make_design_matrix</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">X_design</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+order = 5
+X_design = make_design_matrix(x_train, order)
+print(X_design[0:2, 0:2])
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">29</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">29</span>
 <span class="g g-Whitespace">     </span><span class="mi">27</span> <span class="n">order</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="n">X_design</span> <span class="o">=</span> <span class="n">make_design_matrix</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">29</span> <span class="nb">print</span><span class="p">(</span><span class="n">X_design</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
@@ -1265,53 +1270,53 @@ Complete code below</p>
 <p>We will use this design matrix function to fit polynomial regression models of different orders. We are doing this using the same function we completed in Week 9 Tutorial 1 (<code class="docutils literal notranslate"><span class="pre">ordinary_least_squares</span></code>). I provide you with the code below but just make sure you understand what is happening.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solve_poly_reg</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">order</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot;Fit a polynomial regression model for a given order.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def solve_poly_reg(x, y, order):
+  &quot;&quot;&quot;Fit a polynomial regression model for a given order.
 
-<span class="sd">  Args:</span>
-<span class="sd">    x (ndarray): input vector of shape (n_samples)</span>
-<span class="sd">    y (ndarray): vector of measurements of shape (n_samples)</span>
-<span class="sd">    order (scalar): order of polynomial fit</span>
+  Args:
+    x (ndarray): input vector of shape (n_samples)
+    y (ndarray): vector of measurements of shape (n_samples)
+    order (scalar): order of polynomial fit
 
-<span class="sd">  Returns:</span>
-<span class="sd">    ndarray: fitted weights of polynomial model</span>
-<span class="sd">  &quot;&quot;&quot;</span>
+  Returns:
+    ndarray: fitted weights of polynomial model
+  &quot;&quot;&quot;
 
-  <span class="c1"># Create design matrix</span>
-  <span class="n">X_design</span> <span class="o">=</span> <span class="n">make_design_matrix</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+  # Create design matrix
+  X_design = make_design_matrix(x, order)
 
-  <span class="c1"># Fit polynomial model (use ordinary_least_squares)</span>
-  <span class="n">theta_hat</span> <span class="o">=</span> <span class="n">ordinary_least_squares</span><span class="p">(</span><span class="n">X_design</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+  # Fit polynomial model (use ordinary_least_squares)
+  theta_hat = ordinary_least_squares(X_design, y)
 
-  <span class="k">return</span> <span class="n">theta_hat</span>
+  return theta_hat
 
 
-<span class="c1"># Loop over several orders and fit polynomial regressions</span>
-<span class="n">max_order</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">theta_hats</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-  <span class="n">theta_hats</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">solve_poly_reg</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+# Loop over several orders and fit polynomial regressions
+max_order = 5
+theta_hats = {}
+for order in range(max_order + 1):
+  theta_hats[order] = solve_poly_reg(x_train, y_train, order)
 
-<span class="n">plot_fitted_polynomials</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">theta_hats</span><span class="p">)</span>
+plot_fitted_polynomials(x_train, y_train, theta_hats)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">26</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">26</span>
 <span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="n">theta_hats</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="g g-Whitespace">     </span><span class="mi">25</span> <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
 <span class="ne">---&gt; </span><span class="mi">26</span>   <span class="n">theta_hats</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">solve_poly_reg</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="n">plot_fitted_polynomials</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">theta_hats</span><span class="p">)</span>
 
-<span class="nn">Cell In [6], line 17,</span> in <span class="ni">solve_poly_reg</span><span class="nt">(x, y, order)</span>
+<span class="nn">Cell In[6], line 17,</span> in <span class="ni">solve_poly_reg</span><span class="nt">(x, y, order)</span>
 <span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">X_design</span> <span class="o">=</span> <span class="n">make_design_matrix</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="c1"># Fit polynomial model (use ordinary_least_squares)</span>
 <span class="ne">---&gt; </span><span class="mi">17</span> <span class="n">theta_hat</span> <span class="o">=</span> <span class="n">ordinary_least_squares</span><span class="p">(</span><span class="n">X_design</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="k">return</span> <span class="n">theta_hat</span>
 
-<span class="nn">Cell In [3], line 15,</span> in <span class="ni">ordinary_least_squares</span><span class="nt">(X, y)</span>
+<span class="nn">Cell In[3], line 15,</span> in <span class="ni">ordinary_least_squares</span><span class="nt">(X, y)</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="sd">&quot;&quot;&quot;Ordinary least squares estimator for linear regression.</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span><span class="sd"> </span>
 <span class="g g-Whitespace">      </span><span class="mi">6</span><span class="sd"> Args:</span>
@@ -1354,67 +1359,67 @@ Answer here</p>
 <p>Execute to visualize multiple fits</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Execute to visualize multiple fits</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Execute to visualize multiple fits
+np.random.seed(121)
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+fig, axes = plt.subplots(1, 6, figsize = (15, 4), sharey=True)
 
 
-<span class="n">x_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x_train</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mf">.5</span><span class="p">,</span> <span class="n">x_train</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">.5</span><span class="p">)</span>
-<span class="n">X_design</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">y_hats</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-  <span class="n">X_design</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">make_design_matrix</span><span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
-  <span class="n">y_hats</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_grid</span><span class="p">)))</span>
+x_grid = np.linspace(x_train.min() - .5, x_train.max() + .5)
+X_design = {}
+y_hats = {}
+for order in range(max_order + 1):
+  X_design[order] = make_design_matrix(x_grid, order)
+  y_hats[order] = np.zeros((0, len(x_grid)))
 
-<span class="k">for</span> <span class="n">i_sample</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+for i_sample in range(30):
 
-  <span class="c1"># Sample new data</span>
-  <span class="n">n_samples</span> <span class="o">=</span> <span class="mi">30</span>
-  <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>  <span class="c1"># inputs uniformly sampled from [-2, 2.5)</span>
-  <span class="n">y</span> <span class="o">=</span>  <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">2</span>   <span class="c1"># computing the outputs</span>
+  # Sample new data
+  n_samples = 30
+  x = np.random.uniform(-2, 2.5, n_samples)  # inputs uniformly sampled from [-2, 2.5)
+  y =  x**2 - x - 2   # computing the outputs
 
-  <span class="n">output_noise</span> <span class="o">=</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
-  <span class="n">y</span> <span class="o">+=</span> <span class="n">output_noise</span>  <span class="c1"># adding some output noise</span>
+  output_noise = 1.5 * np.random.randn(n_samples)
+  y += output_noise  # adding some output noise
 
-  <span class="c1"># Loop over several orders and fit polynomial regressions</span>
-  <span class="n">max_order</span> <span class="o">=</span> <span class="mi">5</span>
-  <span class="n">theta_hats</span> <span class="o">=</span> <span class="p">{}</span>
-  <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-    <span class="n">theta_hats</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">solve_poly_reg</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+  # Loop over several orders and fit polynomial regressions
+  max_order = 5
+  theta_hats = {}
+  for order in range(max_order + 1):
+    theta_hats[order] = solve_poly_reg(x, y, order)
 
-    <span class="n">y_hat</span> <span class="o">=</span> <span class="n">X_design</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">@</span> <span class="n">theta_hats</span><span class="p">[</span><span class="n">order</span><span class="p">]</span>
-    <span class="n">y_hats</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">y_hats</span><span class="p">[</span><span class="n">order</span><span class="p">],</span> <span class="n">y_hat</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="n">order</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Fitted models&#39;</span> <span class="k">if</span> <span class="n">i_sample</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    y_hat = X_design[order] @ theta_hats[order]
+    y_hats[order] = np.concatenate((y_hats[order], y_hat[None, :]), axis=0)
+    axes[order].plot(x_grid, y_hat, &#39;g&#39;, alpha=.2, label=&#39;Fitted models&#39; if i_sample == 0 else &quot;&quot;)
 
-<span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-  <span class="n">axes</span><span class="p">[</span><span class="n">order</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">X_design</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True model&#39;</span><span class="p">)</span>
-  <span class="n">axes</span><span class="p">[</span><span class="n">order</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Order &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">order</span><span class="p">))</span>
+for order in range(max_order + 1):
+  axes[order].plot(x_grid, X_design[2] @ np.array([-2, -1, 1]), &#39;k&#39;, label=&#39;True model&#39;)
+  axes[order].set(ylim=[-15, 15], xlabel=&#39;x&#39;, ylabel=&#39;y&#39;, title=&#39;Order &#39;+str(order))
 
-<span class="n">leg</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">handlelength</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="c1"># change the font colors to match the line colors:</span>
-<span class="k">for</span> <span class="n">line</span><span class="p">,</span><span class="n">text</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">leg</span><span class="o">.</span><span class="n">get_lines</span><span class="p">(),</span> <span class="n">leg</span><span class="o">.</span><span class="n">get_texts</span><span class="p">()):</span>
-    <span class="n">text</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">get_color</span><span class="p">())</span>
+leg = axes[0].legend(loc=&#39;best&#39;, frameon=False, handlelength=0)
+# change the font colors to match the line colors:
+for line,text in zip(leg.get_lines(), leg.get_texts()):
+    text.set_color(line.get_color())
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">28</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">28</span>
 <span class="g g-Whitespace">     </span><span class="mi">26</span> <span class="n">theta_hats</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="g g-Whitespace">     </span><span class="mi">27</span> <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
 <span class="ne">---&gt; </span><span class="mi">28</span>   <span class="n">theta_hats</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">solve_poly_reg</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">30</span>   <span class="n">y_hat</span> <span class="o">=</span> <span class="n">X_design</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">@</span> <span class="n">theta_hats</span><span class="p">[</span><span class="n">order</span><span class="p">]</span>
 <span class="g g-Whitespace">     </span><span class="mi">31</span>   <span class="n">y_hats</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">y_hats</span><span class="p">[</span><span class="n">order</span><span class="p">],</span> <span class="n">y_hat</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="nn">Cell In [6], line 17,</span> in <span class="ni">solve_poly_reg</span><span class="nt">(x, y, order)</span>
+<span class="nn">Cell In[6], line 17,</span> in <span class="ni">solve_poly_reg</span><span class="nt">(x, y, order)</span>
 <span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">X_design</span> <span class="o">=</span> <span class="n">make_design_matrix</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="c1"># Fit polynomial model (use ordinary_least_squares)</span>
 <span class="ne">---&gt; </span><span class="mi">17</span> <span class="n">theta_hat</span> <span class="o">=</span> <span class="n">ordinary_least_squares</span><span class="p">(</span><span class="n">X_design</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="k">return</span> <span class="n">theta_hat</span>
 
-<span class="nn">Cell In [3], line 15,</span> in <span class="ni">ordinary_least_squares</span><span class="nt">(X, y)</span>
+<span class="nn">Cell In[3], line 15,</span> in <span class="ni">ordinary_least_squares</span><span class="nt">(X, y)</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="sd">&quot;&quot;&quot;Ordinary least squares estimator for linear regression.</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span><span class="sd"> </span>
 <span class="g g-Whitespace">      </span><span class="mi">6</span><span class="sd"> Args:</span>
@@ -1439,15 +1444,15 @@ Answer here</p>
 <p>Execute to see train and test data</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Execute to see train and test data</span>
-<span class="c1">## Plot both train and test data</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Training &amp; Test Data&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="s1">&#39;g+&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Test&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Execute to see train and test data
+## Plot both train and test data
+fig, ax = plt.subplots()
+plt.title(&#39;Training &amp; Test Data&#39;)
+plt.plot(x_train, y_train, &#39;.&#39;, markersize=15, label=&#39;Training&#39;)
+plt.plot(x_test, y_test, &#39;g+&#39;, markersize=15, label=&#39;Test&#39;)
+plt.legend()
+plt.xlabel(&#39;x&#39;)
+plt.ylabel(&#39;y&#39;);
 </pre></div>
 </div>
 </div>
@@ -1458,42 +1463,42 @@ Answer here</p>
 <p>Execute to see train vs test MSE</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Execute to see train vs test MSE</span>
-<span class="n">mse_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">max_order</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">mse_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">max_order</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-  <span class="n">theta_hat</span> <span class="o">=</span> <span class="n">solve_poly_reg</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
-  <span class="n">mse_train</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">evaluate_poly_reg</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">theta_hat</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
-  <span class="n">mse_test</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">evaluate_poly_reg</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">theta_hat</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Execute to see train vs test MSE
+mse_train = np.zeros((max_order+1))
+mse_test = np.zeros((max_order+1))
+for order in range(max_order + 1):
+  theta_hat = solve_poly_reg(x_train, y_train, order)
+  mse_train[order] = evaluate_poly_reg(x_train, y_train, theta_hat, order)
+  mse_test[order] = evaluate_poly_reg(x_test, y_test, theta_hat, order)
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">width</span> <span class="o">=</span> <span class="mf">.35</span>
+fig, ax = plt.subplots()
+width = .35
 
-<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">mse_train</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;train MSE&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">mse_test</span> <span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;test MSE&quot;</span><span class="p">)</span>
+ax.bar(np.arange(max_order + 1) - width / 2, mse_train, width, label=&quot;train MSE&quot;)
+ax.bar(np.arange(max_order + 1) + width / 2, mse_test , width, label=&quot;test MSE&quot;)
 
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Polynomial order&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;MSE&#39;</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span><span class="s1">&#39;Comparing polynomial fits&#39;</span><span class="p">);</span>
+ax.legend()
+ax.set(xlabel=&#39;Polynomial order&#39;, ylabel=&#39;MSE&#39;, title =&#39;Comparing polynomial fits&#39;);
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">mse_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">max_order</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
 <span class="ne">----&gt; </span><span class="mi">5</span>   <span class="n">theta_hat</span> <span class="o">=</span> <span class="n">solve_poly_reg</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">6</span>   <span class="n">mse_train</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">evaluate_poly_reg</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">theta_hat</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">7</span>   <span class="n">mse_test</span><span class="p">[</span><span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">evaluate_poly_reg</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">theta_hat</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
 
-<span class="nn">Cell In [6], line 17,</span> in <span class="ni">solve_poly_reg</span><span class="nt">(x, y, order)</span>
+<span class="nn">Cell In[6], line 17,</span> in <span class="ni">solve_poly_reg</span><span class="nt">(x, y, order)</span>
 <span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">X_design</span> <span class="o">=</span> <span class="n">make_design_matrix</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="c1"># Fit polynomial model (use ordinary_least_squares)</span>
 <span class="ne">---&gt; </span><span class="mi">17</span> <span class="n">theta_hat</span> <span class="o">=</span> <span class="n">ordinary_least_squares</span><span class="p">(</span><span class="n">X_design</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="k">return</span> <span class="n">theta_hat</span>
 
-<span class="nn">Cell In [3], line 15,</span> in <span class="ni">ordinary_least_squares</span><span class="nt">(X, y)</span>
+<span class="nn">Cell In[3], line 15,</span> in <span class="ni">ordinary_least_squares</span><span class="nt">(X, y)</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="sd">&quot;&quot;&quot;Ordinary least squares estimator for linear regression.</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span><span class="sd"> </span>
 <span class="g g-Whitespace">      </span><span class="mi">6</span><span class="sd"> Args:</span>
@@ -1553,62 +1558,62 @@ MSE &amp; = \frac{1}{N} \sum_i (y_i - \hat{y}_i)^2 \\
 <p>Nothing to do here but look at the plot and answer the question - I show you the code in case you want to look through it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.model_selection import KFold
 
-<span class="k">def</span> <span class="nf">cross_validate</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">max_order</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot; Compute MSE for k-fold validation for each order polynomial</span>
+def cross_validate(x_train, y_train, max_order, n_splits):
+  &quot;&quot;&quot; Compute MSE for k-fold validation for each order polynomial
 
-<span class="sd">  Args:</span>
-<span class="sd">    x_train (ndarray): training data input vector of shape (n_samples)</span>
-<span class="sd">    y_train (ndarray): training vector of measurements of shape (n_samples)</span>
-<span class="sd">    max_order (scalar): max order of polynomial fit</span>
-<span class="sd">    n_split (scalar): number of folds for k-fold validation</span>
+  Args:
+    x_train (ndarray): training data input vector of shape (n_samples)
+    y_train (ndarray): training vector of measurements of shape (n_samples)
+    max_order (scalar): max order of polynomial fit
+    n_split (scalar): number of folds for k-fold validation
 
-<span class="sd">  Return:</span>
-<span class="sd">    ndarray: MSE over splits for each model order, shape (n_splits, max_order + 1)</span>
+  Return:
+    ndarray: MSE over splits for each model order, shape (n_splits, max_order + 1)
 
-<span class="sd">  &quot;&quot;&quot;</span>
-  <span class="c1"># Initialize the split method</span>
-  <span class="n">kfold_iterator</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="p">)</span>
+  &quot;&quot;&quot;
+  # Initialize the split method
+  kfold_iterator = KFold(n_splits)
 
-  <span class="c1"># Initialize np array mse values for all models for each split</span>
-  <span class="n">mse_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_splits</span><span class="p">,</span> <span class="n">max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+  # Initialize np array mse values for all models for each split
+  mse_all = np.zeros((n_splits, max_order + 1))
 
-  <span class="k">for</span> <span class="n">i_split</span><span class="p">,</span> <span class="p">(</span><span class="n">train_indices</span><span class="p">,</span> <span class="n">val_indices</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">kfold_iterator</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">x_train</span><span class="p">)):</span>
+  for i_split, (train_indices, val_indices) in enumerate(kfold_iterator.split(x_train)):
 
-      <span class="c1"># Split up the overall training data into cross-validation training and validation sets</span>
-      <span class="n">x_cv_train</span> <span class="o">=</span> <span class="n">x_train</span><span class="p">[</span><span class="n">train_indices</span><span class="p">]</span>
-      <span class="n">y_cv_train</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[</span><span class="n">train_indices</span><span class="p">]</span>
-      <span class="n">x_cv_val</span> <span class="o">=</span> <span class="n">x_train</span><span class="p">[</span><span class="n">val_indices</span><span class="p">]</span>
-      <span class="n">y_cv_val</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[</span><span class="n">val_indices</span><span class="p">]</span>
+      # Split up the overall training data into cross-validation training and validation sets
+      x_cv_train = x_train[train_indices]
+      y_cv_train = y_train[train_indices]
+      x_cv_val = x_train[val_indices]
+      y_cv_val = y_train[val_indices]
 
-      <span class="c1"># Fit and evaluate models</span>
-      <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-          <span class="n">theta_hat</span> <span class="o">=</span> <span class="n">solve_poly_reg</span><span class="p">(</span><span class="n">x_cv_train</span><span class="p">,</span> <span class="n">y_cv_train</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
-          <span class="n">mse_all</span><span class="p">[</span><span class="n">i_split</span><span class="p">,</span> <span class="n">order</span><span class="p">]</span> <span class="o">=</span> <span class="n">evaluate_poly_reg</span><span class="p">(</span><span class="n">x_cv_val</span><span class="p">,</span> <span class="n">y_cv_val</span><span class="p">,</span> <span class="n">theta_hat</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+      # Fit and evaluate models
+      for order in range(max_order + 1):
+          theta_hat = solve_poly_reg(x_cv_train, y_cv_train, order)
+          mse_all[i_split, order] = evaluate_poly_reg(x_cv_val, y_cv_val, theta_hat, order)
 
-  <span class="k">return</span> <span class="n">mse_all</span>
+  return mse_all
 
 
-<span class="c1"># Call function and plot</span>
-<span class="n">max_order</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">n_splits</span> <span class="o">=</span> <span class="mi">10</span>
+# Call function and plot
+max_order = 5
+n_splits = 10
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+plt.figure()
 
-<span class="n">mse_all</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">max_order</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">mse_all</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+mse_all = cross_validate(x_train, y_train, max_order, n_splits)
+plt.boxplot(mse_all, labels=np.arange(0, max_order + 1))
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Polynomial Order&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Validation MSE&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Validation MSE over </span><span class="si">{</span><span class="n">n_splits</span><span class="si">}</span><span class="s1"> splits of the data&#39;</span><span class="p">);</span>
+plt.xlabel(&#39;Polynomial Order&#39;)
+plt.ylabel(&#39;Validation MSE&#39;)
+plt.title(f&#39;Validation MSE over {n_splits} splits of the data&#39;);
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">def</span> <span class="nf">cross_validate</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">max_order</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">):</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span>   <span class="sd">&quot;&quot;&quot; Compute MSE for k-fold validation for each order polynomial</span>
@@ -1640,32 +1645,32 @@ Answer here</p>
 <p>The code below fits an order 3 polynomial regression model, looks at the fitted parameters, and gets predictions/R2 value</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
-<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.preprocessing import PolynomialFeatures
+from sklearn.pipeline import make_pipeline
+from sklearn.linear_model import LinearRegression
 
-<span class="c1"># Create polynomial regression model</span>
-<span class="n">degree</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">poly_reg</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="p">),</span><span class="n">LinearRegression</span><span class="p">())</span>
+# Create polynomial regression model
+degree = 3
+poly_reg = make_pipeline(PolynomialFeatures(degree),LinearRegression())
 
-<span class="c1"># Fit this model to data</span>
-<span class="n">poly_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">y_train</span><span class="p">)</span>
+# Fit this model to data
+poly_reg.fit(x_train[:, None], y_train)
 
-<span class="c1"># You can now look at theta_hat</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">poly_reg</span><span class="p">[</span><span class="s1">&#39;linearregression&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+# You can now look at theta_hat
+print(poly_reg[&#39;linearregression&#39;].coef_)
 
-<span class="c1"># Let&#39;s make predictions on test data</span>
-<span class="n">y_hat</span> <span class="o">=</span> <span class="n">poly_reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">])</span>
+# Let&#39;s make predictions on test data
+y_hat = poly_reg.predict(x_test[:, None])
 
-<span class="c1"># Let&#39;s evaluate on test data (this returns R2)</span>
-<span class="n">poly_reg</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">x_test</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">y_test</span><span class="p">)</span>
+# Let&#39;s evaluate on test data (this returns R2)
+poly_reg.score(x_test[:, None], y_test)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
@@ -1678,28 +1683,28 @@ Answer here</p>
 <p>The code below does cross validation with 10 splits for an order 3 polynomial regression model. We could loop over this to get the validation MSE for each order model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.model_selection import cross_val_score
 
-<span class="c1">## Let&#39;s get validation MSE for this model using cross-validation</span>
+## Let&#39;s get validation MSE for this model using cross-validation
 
-<span class="c1"># Create polynomial regression model</span>
-<span class="n">degree</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">poly_reg</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="p">),</span><span class="n">LinearRegression</span><span class="p">())</span>
+# Create polynomial regression model
+degree = 3
+poly_reg = make_pipeline(PolynomialFeatures(degree),LinearRegression())
 
-<span class="c1"># Cross-validation</span>
-<span class="n">val_mse</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">poly_reg</span><span class="p">,</span> <span class="n">x_train</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_squared_error&#39;</span><span class="p">)</span>
+# Cross-validation
+val_mse = cross_val_score(poly_reg, x_train[:, None], y_train, cv = 10, scoring=&#39;neg_mean_squared_error&#39;)
 
-<span class="c1"># This has return negative MSE so let&#39;s get actual MSE</span>
-<span class="n">val_mse</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+# This has return negative MSE so let&#39;s get actual MSE
+val_mse *= -1
 
-<span class="nb">print</span><span class="p">(</span><span class="n">val_mse</span><span class="p">)</span>
+print(val_mse)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1">## Let&#39;s get validation MSE for this model using cross-validation</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> 
@@ -1714,27 +1719,27 @@ Answer here</p>
 <p>Let’s get really fancy and using <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> to search over all the orders of polynomial regression we’re looking at and perform cross-validation for each.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.model_selection import GridSearchCV
 
-<span class="c1"># Parameters we want to search over</span>
-<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;polynomialfeatures__degree&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]}</span>
+# Parameters we want to search over
+parameters = {&#39;polynomialfeatures__degree&#39;: [0, 1, 2, 3, 4, 5]}
 
-<span class="c1"># Set up cross validation</span>
-<span class="n">poly_reg</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">PolynomialFeatures</span><span class="p">(),</span><span class="n">LinearRegression</span><span class="p">())</span>
+# Set up cross validation
+poly_reg = make_pipeline(PolynomialFeatures(),LinearRegression())
 
-<span class="n">cv</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">poly_reg</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">cv</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_squared_error&#39;</span><span class="p">)</span>
-<span class="n">cv</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">y_train</span><span class="p">)</span>
+cv = GridSearchCV(poly_reg, parameters, cv = 10, scoring=&#39;neg_mean_squared_error&#39;)
+cv.fit(x_train[:, None], y_train)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">cv</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">[</span><span class="s1">&#39;mean_test_score&#39;</span><span class="p">],</span> <span class="s1">&#39;-og&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Order&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Validation MSE&#39;</span><span class="p">);</span>
+plt.plot(np.arange(max_order + 1), -1*cv.cv_results_[&#39;mean_test_score&#39;], &#39;-og&#39;)
+plt.xlabel(&#39;Order&#39;)
+plt.ylabel(&#39;Validation MSE&#39;);
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Parameters we want to search over</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;polynomialfeatures__degree&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]}</span>

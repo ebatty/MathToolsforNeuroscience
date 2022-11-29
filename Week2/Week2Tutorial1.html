@@ -616,6 +616,11 @@ const thebe_selector_output = ".output, .cell_output"
      Reaching 12.4: Intro to Pytorch
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week12/Week12Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -1071,14 +1076,14 @@ title="Print to PDF"
 The videos you watched for this week were from 3Blue1Brown. Some elements of this problem set are from or inspired by https://openedx.seas.gwu.edu/courses/course-v1:GW+EngComp4+2019/about. In particular, we are using their <code class="docutils literal notranslate"><span class="pre">plot_linear_transformation</span></code> and <code class="docutils literal notranslate"><span class="pre">plot_linear_transformations</span></code> functions, and the demonstration of the additional transformation of a matrix inverse (end of Exercise 2)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="kn">import</span> <span class="nn">scipy.linalg</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Imports
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
+import scipy.linalg
 
-<span class="c1"># Plotting parameters</span>
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">22</span><span class="p">})</span>
+# Plotting parameters
+matplotlib.rcParams.update({&#39;font.size&#39;: 22})
 </pre></div>
 </div>
 </div>
@@ -1087,265 +1092,265 @@ The videos you watched for this week were from 3Blue1Brown. Some elements of thi
 <h2>Plotting functions<a class="headerlink" href="#plotting-functions" title="Permalink to this headline">#</a></h2>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Plotting functions</span>
-<span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span><span class="p">,</span> <span class="n">eig</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span><span class="p">,</span> <span class="n">ticker</span><span class="p">,</span> <span class="n">get_backend</span><span class="p">,</span> <span class="n">rc</span>
-<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">cycle</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @title Plotting functions
+import numpy
+from numpy.linalg import inv, eig
+from math import ceil
+from matplotlib import pyplot, ticker, get_backend, rc
+from mpl_toolkits.mplot3d import Axes3D
+from itertools import cycle
 
-<span class="n">_int_backends</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GTK3Agg&#39;</span><span class="p">,</span> <span class="s1">&#39;GTK3Cairo&#39;</span><span class="p">,</span> <span class="s1">&#39;MacOSX&#39;</span><span class="p">,</span> <span class="s1">&#39;nbAgg&#39;</span><span class="p">,</span>
-                 <span class="s1">&#39;Qt4Agg&#39;</span><span class="p">,</span> <span class="s1">&#39;Qt4Cairo&#39;</span><span class="p">,</span> <span class="s1">&#39;Qt5Agg&#39;</span><span class="p">,</span> <span class="s1">&#39;Qt5Cairo&#39;</span><span class="p">,</span>
-                 <span class="s1">&#39;TkAgg&#39;</span><span class="p">,</span> <span class="s1">&#39;TkCairo&#39;</span><span class="p">,</span> <span class="s1">&#39;WebAgg&#39;</span><span class="p">,</span> <span class="s1">&#39;WX&#39;</span><span class="p">,</span> <span class="s1">&#39;WXAgg&#39;</span><span class="p">,</span> <span class="s1">&#39;WXCairo&#39;</span><span class="p">]</span>
-<span class="n">_backend</span> <span class="o">=</span> <span class="n">get_backend</span><span class="p">()</span>   <span class="c1"># get current backend name</span>
+_int_backends = [&#39;GTK3Agg&#39;, &#39;GTK3Cairo&#39;, &#39;MacOSX&#39;, &#39;nbAgg&#39;,
+                 &#39;Qt4Agg&#39;, &#39;Qt4Cairo&#39;, &#39;Qt5Agg&#39;, &#39;Qt5Cairo&#39;,
+                 &#39;TkAgg&#39;, &#39;TkCairo&#39;, &#39;WebAgg&#39;, &#39;WX&#39;, &#39;WXAgg&#39;, &#39;WXCairo&#39;]
+_backend = get_backend()   # get current backend name
 
-<span class="c1"># shrink figsize and fontsize when using %matplotlib notebook</span>
-<span class="k">if</span> <span class="n">_backend</span> <span class="ow">in</span> <span class="n">_int_backends</span><span class="p">:</span>
-    <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">4</span>
-    <span class="n">fig_scale</span> <span class="o">=</span> <span class="mf">0.75</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">5</span>
-    <span class="n">fig_scale</span> <span class="o">=</span> <span class="mi">1</span>
+# shrink figsize and fontsize when using %matplotlib notebook
+if _backend in _int_backends:
+    fontsize = 4
+    fig_scale = 0.75
+else:
+    fontsize = 5
+    fig_scale = 1
 
-<span class="n">grey</span> <span class="o">=</span> <span class="s1">&#39;#808080&#39;</span>
-<span class="n">gold</span> <span class="o">=</span> <span class="s1">&#39;#cab18c&#39;</span>   <span class="c1"># x-axis grid</span>
-<span class="n">lightblue</span> <span class="o">=</span> <span class="s1">&#39;#0096d6&#39;</span>  <span class="c1"># y-axis grid</span>
-<span class="n">green</span> <span class="o">=</span> <span class="s1">&#39;#008367&#39;</span>  <span class="c1"># x-axis basis vector</span>
-<span class="n">red</span> <span class="o">=</span> <span class="s1">&#39;#E31937&#39;</span>    <span class="c1"># y-axis basis vector</span>
-<span class="n">darkblue</span> <span class="o">=</span> <span class="s1">&#39;#004065&#39;</span>
+grey = &#39;#808080&#39;
+gold = &#39;#cab18c&#39;   # x-axis grid
+lightblue = &#39;#0096d6&#39;  # y-axis grid
+green = &#39;#008367&#39;  # x-axis basis vector
+red = &#39;#E31937&#39;    # y-axis basis vector
+darkblue = &#39;#004065&#39;
 
-<span class="n">pink</span><span class="p">,</span> <span class="n">yellow</span><span class="p">,</span> <span class="n">orange</span><span class="p">,</span> <span class="n">purple</span><span class="p">,</span> <span class="n">brown</span> <span class="o">=</span> <span class="s1">&#39;#ef7b9d&#39;</span><span class="p">,</span> <span class="s1">&#39;#fbd349&#39;</span><span class="p">,</span> <span class="s1">&#39;#ffa500&#39;</span><span class="p">,</span> <span class="s1">&#39;#a35cff&#39;</span><span class="p">,</span> <span class="s1">&#39;#731d1d&#39;</span>
+pink, yellow, orange, purple, brown = &#39;#ef7b9d&#39;, &#39;#fbd349&#39;, &#39;#ffa500&#39;, &#39;#a35cff&#39;, &#39;#731d1d&#39;
 
-<span class="n">quiver_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;angles&#39;</span><span class="p">:</span> <span class="s1">&#39;xy&#39;</span><span class="p">,</span>
-                 <span class="s1">&#39;scale_units&#39;</span><span class="p">:</span> <span class="s1">&#39;xy&#39;</span><span class="p">,</span>
-                 <span class="s1">&#39;scale&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-                 <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mf">0.012</span><span class="p">}</span>
+quiver_params = {&#39;angles&#39;: &#39;xy&#39;,
+                 &#39;scale_units&#39;: &#39;xy&#39;,
+                 &#39;scale&#39;: 1,
+                 &#39;width&#39;: 0.012}
 
-<span class="n">grid_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
-               <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">}</span>
+grid_params = {&#39;linewidth&#39;: 0.5,
+               &#39;alpha&#39;: 0.8}
 
-<span class="k">def</span> <span class="nf">set_rc</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s1">&#39;serif&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
-        <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-        <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;axes&#39;</span><span class="p">,</span> <span class="n">axisbelow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">titlesize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-        <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">wrapper</span>
+def set_rc(func):
+    def wrapper(*args, **kwargs):
+        rc(&#39;font&#39;, family=&#39;serif&#39;, size=fontsize)
+        rc(&#39;figure&#39;, dpi=200)
+        rc(&#39;axes&#39;, axisbelow=True, titlesize=5)
+        rc(&#39;lines&#39;, linewidth=1)
+        func(*args, **kwargs)
+    return wrapper
 
-<span class="nd">@set_rc</span>
-<span class="k">def</span> <span class="nf">plot_vector</span><span class="p">(</span><span class="n">vectors</span><span class="p">,</span> <span class="n">tails</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39; Draw 2d vectors based on the values of the vectors and the position of their tails.</span>
-<span class="sd">    </span>
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    vectors : list.</span>
-<span class="sd">        List of 2-element array-like structures, each represents a 2d vector.</span>
-<span class="sd">    </span>
-<span class="sd">    tails : list, optional.</span>
-<span class="sd">        List of 2-element array-like structures, each represents the coordinates of the tail</span>
-<span class="sd">        of the corresponding vector in vectors. If None (default), all tails are set at the</span>
-<span class="sd">        origin (0,0). If len(tails) is 1, all tails are set at the same position. Otherwise,</span>
-<span class="sd">        vectors and tails must have the same length.</span>
-<span class="sd">    </span>
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; v = [(1, 3), (3, 3), (4, 6)]</span>
-<span class="sd">    &gt;&gt;&gt; plot_vector(v)      # draw 3 vectors with their tails at origin</span>
-<span class="sd">    &gt;&gt;&gt; t = [numpy.array((2, 2))]</span>
-<span class="sd">    &gt;&gt;&gt; plot_vector(v, t)   # draw 3 vectors with their tails at (2,2)</span>
-<span class="sd">    &gt;&gt;&gt; t = [[3, 2], [-1, -2], [3, 5]]</span>
-<span class="sd">    &gt;&gt;&gt; plot_vector(v, t)   # draw 3 vectors with 3 different tails</span>
-
-<span class="sd">    &#39;&#39;&#39;</span>   
-    <span class="n">vectors</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vectors</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">vectors</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Each vector should have 2 elements.&quot;</span>  
-    <span class="k">if</span> <span class="n">tails</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">tails</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tails</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="n">tails</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Each tail should have 2 elements.&quot;</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">tails</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">vectors</span><span class="p">)</span>
+@set_rc
+def plot_vector(vectors, tails=None):
+    &#39;&#39;&#39; Draw 2d vectors based on the values of the vectors and the position of their tails.
     
-    <span class="c1"># tile vectors or tails array if needed</span>
-    <span class="n">nvectors</span> <span class="o">=</span> <span class="n">vectors</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">ntails</span> <span class="o">=</span> <span class="n">tails</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">nvectors</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">ntails</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">vectors</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">vectors</span><span class="p">,</span> <span class="p">(</span><span class="n">ntails</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-    <span class="k">elif</span> <span class="n">ntails</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">nvectors</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">tails</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">tails</span><span class="p">,</span> <span class="p">(</span><span class="n">nvectors</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">assert</span> <span class="n">tails</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">vectors</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;vectors and tail must have a same shape&quot;</span>
-
-    <span class="c1"># calculate xlimit &amp; ylimit</span>
-    <span class="n">heads</span> <span class="o">=</span> <span class="n">tails</span> <span class="o">+</span> <span class="n">vectors</span>
-    <span class="n">limit</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">tails</span><span class="p">,</span> <span class="n">heads</span><span class="p">))))</span>
-    <span class="n">limit</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">limit</span> <span class="o">*</span> <span class="mf">1.2</span><span class="p">)</span>   <span class="c1"># add some margins</span>
+    Parameters
+    ----------
+    vectors : list.
+        List of 2-element array-like structures, each represents a 2d vector.
     
-    <span class="n">figsize</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span> <span class="o">*</span> <span class="n">fig_scale</span>
-    <span class="n">figure</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
-    <span class="n">axis</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">tails</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">tails</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">vectors</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">vectors</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">darkblue</span><span class="p">,</span> 
-                  <span class="n">angles</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="n">scale_units</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">axis</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="n">limit</span><span class="p">,</span> <span class="n">limit</span><span class="p">])</span>
-    <span class="n">axis</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="n">limit</span><span class="p">,</span> <span class="n">limit</span><span class="p">])</span>
-    <span class="n">axis</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-
-    <span class="c1"># if xticks and yticks of grid do not match, choose the finer one</span>
-    <span class="n">xticks</span> <span class="o">=</span> <span class="n">axis</span><span class="o">.</span><span class="n">get_xticks</span><span class="p">()</span>
-    <span class="n">yticks</span> <span class="o">=</span> <span class="n">axis</span><span class="o">.</span><span class="n">get_yticks</span><span class="p">()</span>
-    <span class="n">dx</span> <span class="o">=</span> <span class="n">xticks</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">xticks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">dy</span> <span class="o">=</span> <span class="n">yticks</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">yticks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">base</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">)),</span> <span class="mi">1</span><span class="p">)</span>   <span class="c1"># grid interval is always an integer</span>
-    <span class="n">loc</span> <span class="o">=</span> <span class="n">ticker</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="n">base</span><span class="p">)</span>
-    <span class="n">axis</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span>
-    <span class="n">axis</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span>
-    <span class="n">axis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">grid_params</span><span class="p">)</span>
+    tails : list, optional.
+        List of 2-element array-like structures, each represents the coordinates of the tail
+        of the corresponding vector in vectors. If None (default), all tails are set at the
+        origin (0,0). If len(tails) is 1, all tails are set at the same position. Otherwise,
+        vectors and tails must have the same length.
     
-    <span class="c1"># show x-y axis in the center, hide frames</span>
-    <span class="n">axis</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-    <span class="n">axis</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-    <span class="n">axis</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
-    <span class="n">axis</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    Examples
+    --------
+    &gt;&gt;&gt; v = [(1, 3), (3, 3), (4, 6)]
+    &gt;&gt;&gt; plot_vector(v)      # draw 3 vectors with their tails at origin
+    &gt;&gt;&gt; t = [numpy.array((2, 2))]
+    &gt;&gt;&gt; plot_vector(v, t)   # draw 3 vectors with their tails at (2,2)
+    &gt;&gt;&gt; t = [[3, 2], [-1, -2], [3, 5]]
+    &gt;&gt;&gt; plot_vector(v, t)   # draw 3 vectors with 3 different tails
 
-<span class="nd">@set_rc</span>
-<span class="k">def</span> <span class="nf">plot_transformation_helper</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="o">*</span><span class="n">vectors</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; A helper function to plot the linear transformation defined by a 2x2 matrix.</span>
-<span class="sd">    </span>
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    axis : class matplotlib.axes.Axes.</span>
-<span class="sd">        The axes to plot on.</span>
+    &#39;&#39;&#39;   
+    vectors = numpy.array(vectors)
+    assert vectors.shape[1] == 2, &quot;Each vector should have 2 elements.&quot;  
+    if tails is not None:
+        tails = numpy.array(tails)
+        assert tails.shape[1] == 2, &quot;Each tail should have 2 elements.&quot;
+    else:
+        tails = numpy.zeros_like(vectors)
+    
+    # tile vectors or tails array if needed
+    nvectors = vectors.shape[0]
+    ntails = tails.shape[0]
+    if nvectors == 1 and ntails &gt; 1:
+        vectors = numpy.tile(vectors, (ntails, 1))
+    elif ntails == 1 and nvectors &gt; 1:
+        tails = numpy.tile(tails, (nvectors, 1))
+    else:
+        assert tails.shape == vectors.shape, &quot;vectors and tail must have a same shape&quot;
 
-<span class="sd">    matrix : class numpy.ndarray.</span>
-<span class="sd">        The 2x2 matrix to visualize.</span>
+    # calculate xlimit &amp; ylimit
+    heads = tails + vectors
+    limit = numpy.max(numpy.abs(numpy.hstack((tails, heads))))
+    limit = numpy.ceil(limit * 1.2)   # add some margins
+    
+    figsize = numpy.array([2,2]) * fig_scale
+    figure, axis = pyplot.subplots(figsize=figsize)
+    axis.quiver(tails[:,0], tails[:,1], vectors[:,0], vectors[:,1], color=darkblue, 
+                  angles=&#39;xy&#39;, scale_units=&#39;xy&#39;, scale=1)
+    axis.set_xlim([-limit, limit])
+    axis.set_ylim([-limit, limit])
+    axis.set_aspect(&#39;equal&#39;)
 
-<span class="sd">    *vectors : class numpy.ndarray.</span>
-<span class="sd">        The vector(s) to plot along with the linear transformation. Each array denotes a vector&#39;s</span>
-<span class="sd">        coordinates before the transformation and must have a shape of (2,). Accept any number of vectors. </span>
-<span class="sd">    </span>
-<span class="sd">    unit_vector : bool, optional.</span>
-<span class="sd">        Whether to plot unit vectors of the standard basis, default to True.</span>
-<span class="sd">    </span>
-<span class="sd">    unit_circle: bool, optional.</span>
-<span class="sd">        Whether to plot unit circle, default to False.</span>
-<span class="sd">    </span>
-<span class="sd">    title: str, optional.</span>
-<span class="sd">        Title of the plot.</span>
+    # if xticks and yticks of grid do not match, choose the finer one
+    xticks = axis.get_xticks()
+    yticks = axis.get_yticks()
+    dx = xticks[1] - xticks[0]
+    dy = yticks[1] - yticks[0]
+    base = max(int(min(dx, dy)), 1)   # grid interval is always an integer
+    loc = ticker.MultipleLocator(base=base)
+    axis.xaxis.set_major_locator(loc)
+    axis.yaxis.set_major_locator(loc)
+    axis.grid(True, **grid_params)
+    
+    # show x-y axis in the center, hide frames
+    axis.spines[&#39;left&#39;].set_position(&#39;center&#39;)
+    axis.spines[&#39;bottom&#39;].set_position(&#39;center&#39;)
+    axis.spines[&#39;right&#39;].set_color(&#39;none&#39;)
+    axis.spines[&#39;top&#39;].set_color(&#39;none&#39;)
 
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">assert</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;the input matrix must have a shape of (2,2)&quot;</span>
-    <span class="n">grid_range</span> <span class="o">=</span> <span class="mi">20</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">grid_range</span><span class="p">,</span> <span class="n">grid_range</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">X_</span><span class="p">,</span> <span class="n">Y_</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">I</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">J</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">I</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">X_</span> <span class="o">+</span> <span class="n">J</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">Y_</span>
-    <span class="n">Y</span> <span class="o">=</span> <span class="n">I</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">X_</span> <span class="o">+</span> <span class="n">J</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">Y_</span>
-    <span class="n">origin</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+@set_rc
+def plot_transformation_helper(axis, matrix, *vectors, unit_vector=True, unit_circle=False, title=None):
+    &quot;&quot;&quot; A helper function to plot the linear transformation defined by a 2x2 matrix.
+    
+    Parameters
+    ----------
+    axis : class matplotlib.axes.Axes.
+        The axes to plot on.
+
+    matrix : class numpy.ndarray.
+        The 2x2 matrix to visualize.
+
+    *vectors : class numpy.ndarray.
+        The vector(s) to plot along with the linear transformation. Each array denotes a vector&#39;s
+        coordinates before the transformation and must have a shape of (2,). Accept any number of vectors. 
+    
+    unit_vector : bool, optional.
+        Whether to plot unit vectors of the standard basis, default to True.
+    
+    unit_circle: bool, optional.
+        Whether to plot unit circle, default to False.
+    
+    title: str, optional.
+        Title of the plot.
+
+    &quot;&quot;&quot;
+    assert matrix.shape == (2,2), &quot;the input matrix must have a shape of (2,2)&quot;
+    grid_range = 20
+    x = numpy.arange(-grid_range, grid_range+1)
+    X_, Y_ = numpy.meshgrid(x,x)
+    I = matrix[:,0]
+    J = matrix[:,1]
+    X = I[0]*X_ + J[0]*Y_
+    Y = I[1]*X_ + J[1]*Y_
+    origin = numpy.zeros(1)
         
-    <span class="c1"># draw grid lines</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="n">c</span><span class="o">=</span><span class="n">gold</span><span class="p">,</span> <span class="o">**</span><span class="n">grid_params</span><span class="p">)</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span> <span class="n">Y</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">lightblue</span><span class="p">,</span> <span class="o">**</span><span class="n">grid_params</span><span class="p">)</span>
+    # draw grid lines
+    for i in range(x.size):
+        axis.plot(X[i,:], Y[i,:], c=gold, **grid_params)
+        axis.plot(X[:,i], Y[:,i], c=lightblue, **grid_params)
     
-    <span class="c1"># draw (transformed) unit vectors</span>
-    <span class="k">if</span> <span class="n">unit_vector</span><span class="p">:</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">origin</span><span class="p">,</span> <span class="p">[</span><span class="n">I</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">I</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">color</span><span class="o">=</span><span class="n">green</span><span class="p">,</span> <span class="o">**</span><span class="n">quiver_params</span><span class="p">)</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">origin</span><span class="p">,</span> <span class="p">[</span><span class="n">J</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">J</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">color</span><span class="o">=</span><span class="n">red</span><span class="p">,</span> <span class="o">**</span><span class="n">quiver_params</span><span class="p">)</span>
+    # draw (transformed) unit vectors
+    if unit_vector:
+        axis.quiver(origin, origin, [I[0]], [I[1]], color=green, **quiver_params)
+        axis.quiver(origin, origin, [J[0]], [J[1]], color=red, **quiver_params)
 
-    <span class="c1"># draw optional vectors</span>
-    <span class="n">color_cycle</span> <span class="o">=</span> <span class="n">cycle</span><span class="p">([</span><span class="n">pink</span><span class="p">,</span> <span class="n">darkblue</span><span class="p">,</span> <span class="n">orange</span><span class="p">,</span> <span class="n">purple</span><span class="p">,</span> <span class="n">brown</span><span class="p">])</span>
-    <span class="k">if</span> <span class="n">vectors</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">vector</span> <span class="ow">in</span> <span class="n">vectors</span><span class="p">:</span>
-            <span class="n">color</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">color_cycle</span><span class="p">)</span>
-            <span class="n">vector_</span> <span class="o">=</span> <span class="n">matrix</span> <span class="o">@</span> <span class="n">vector</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">axis</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">origin</span><span class="p">,</span> <span class="p">[</span><span class="n">vector_</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">vector_</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="o">**</span><span class="n">quiver_params</span><span class="p">)</span>
+    # draw optional vectors
+    color_cycle = cycle([pink, darkblue, orange, purple, brown])
+    if vectors:
+        for vector in vectors:
+            color = next(color_cycle)
+            vector_ = matrix @ vector.reshape(-1,1)
+            axis.quiver(origin, origin, [vector_[0]], [vector_[1]], color=color, **quiver_params)
 
-    <span class="c1"># draw optional unit circle</span>
-    <span class="k">if</span> <span class="n">unit_circle</span><span class="p">:</span>
-        <span class="n">alpha</span> <span class="o">=</span>  <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">numpy</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">41</span><span class="p">)</span>
-        <span class="n">circle</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">alpha</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">alpha</span><span class="p">)))</span>
-        <span class="n">circle_trans</span> <span class="o">=</span> <span class="n">matrix</span> <span class="o">@</span> <span class="n">circle</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">circle_trans</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">circle_trans</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">red</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+    # draw optional unit circle
+    if unit_circle:
+        alpha =  numpy.linspace(0, 2*numpy.pi, 41)
+        circle = numpy.vstack((numpy.cos(alpha), numpy.sin(alpha)))
+        circle_trans = matrix @ circle
+        axis.plot(circle_trans[0], circle_trans[1], color=red, lw=0.8)
 
-    <span class="c1"># hide frames, set xlimit &amp; ylimit, set title</span>
-    <span class="n">limit</span> <span class="o">=</span> <span class="mi">4</span>
-    <span class="n">axis</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-    <span class="n">axis</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-    <span class="n">axis</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
-    <span class="n">axis</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
-    <span class="n">axis</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
-    <span class="n">axis</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
-    <span class="n">axis</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="n">limit</span><span class="p">,</span> <span class="n">limit</span><span class="p">])</span>
-    <span class="n">axis</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="n">limit</span><span class="p">,</span> <span class="n">limit</span><span class="p">])</span>
-    <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">axis</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    # hide frames, set xlimit &amp; ylimit, set title
+    limit = 4
+    axis.spines[&#39;left&#39;].set_position(&#39;center&#39;)
+    axis.spines[&#39;bottom&#39;].set_position(&#39;center&#39;)
+    axis.spines[&#39;left&#39;].set_linewidth(0.3)
+    axis.spines[&#39;bottom&#39;].set_linewidth(0.3)
+    axis.spines[&#39;right&#39;].set_color(&#39;none&#39;)
+    axis.spines[&#39;top&#39;].set_color(&#39;none&#39;)
+    axis.set_xlim([-limit, limit])
+    axis.set_ylim([-limit, limit])
+    if title is not None:
+        axis.set_title(title)
 
-<span class="nd">@set_rc</span>
-<span class="k">def</span> <span class="nf">plot_linear_transformation</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="o">*</span><span class="n">vectors</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Plot the linear transformation defined by a 2x2 matrix using the helper</span>
-<span class="sd">    function plot_transformation_helper(). It will create 2 subplots to visualize some</span>
-<span class="sd">    vectors before and after the transformation.</span>
-<span class="sd">    </span>
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    matrix : class numpy.ndarray.</span>
-<span class="sd">        The 2x2 matrix to visualize.</span>
+@set_rc
+def plot_linear_transformation(matrix, *vectors, unit_vector=True, unit_circle=False):
+    &quot;&quot;&quot; Plot the linear transformation defined by a 2x2 matrix using the helper
+    function plot_transformation_helper(). It will create 2 subplots to visualize some
+    vectors before and after the transformation.
+    
+    Parameters
+    ----------
+    matrix : class numpy.ndarray.
+        The 2x2 matrix to visualize.
 
-<span class="sd">    *vectors : class numpy.ndarray.</span>
-<span class="sd">        The vector(s) to plot along with the linear transformation. Each array denotes a vector&#39;s</span>
-<span class="sd">        coordinates before the transformation and must have a shape of (2,). Accept any number of vectors.</span>
-<span class="sd">    </span>
-<span class="sd">    unit_vector : bool, optional.</span>
-<span class="sd">        Whether to plot unit vectors of the standard basis, default to True.</span>
-<span class="sd">    </span>
-<span class="sd">    unit_circle: bool, optional.</span>
-<span class="sd">        Whether to plot unit circle, default to False.</span>
-<span class="sd">    </span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">figsize</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span> <span class="o">*</span> <span class="n">fig_scale</span>
-    <span class="n">figure</span><span class="p">,</span> <span class="p">(</span><span class="n">axis1</span><span class="p">,</span> <span class="n">axis2</span><span class="p">)</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
-    <span class="n">plot_transformation_helper</span><span class="p">(</span><span class="n">axis1</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="o">*</span><span class="n">vectors</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="n">unit_vector</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="n">unit_circle</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Before transformation&#39;</span><span class="p">)</span>
-    <span class="n">plot_transformation_helper</span><span class="p">(</span><span class="n">axis2</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="o">*</span><span class="n">vectors</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="n">unit_vector</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="n">unit_circle</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;After transformation&#39;</span><span class="p">)</span>
+    *vectors : class numpy.ndarray.
+        The vector(s) to plot along with the linear transformation. Each array denotes a vector&#39;s
+        coordinates before the transformation and must have a shape of (2,). Accept any number of vectors.
+    
+    unit_vector : bool, optional.
+        Whether to plot unit vectors of the standard basis, default to True.
+    
+    unit_circle: bool, optional.
+        Whether to plot unit circle, default to False.
+    
+    &quot;&quot;&quot;
+    figsize = numpy.array([4,2]) * fig_scale
+    figure, (axis1, axis2) = pyplot.subplots(1, 2, figsize=figsize)
+    plot_transformation_helper(axis1, numpy.identity(2), *vectors, unit_vector=unit_vector, unit_circle=unit_circle, title=&#39;Before transformation&#39;)
+    plot_transformation_helper(axis2, matrix, *vectors, unit_vector=unit_vector, unit_circle=unit_circle, title=&#39;After transformation&#39;)
 
-<span class="nd">@set_rc</span>
-<span class="k">def</span> <span class="nf">plot_linear_transformations</span><span class="p">(</span><span class="o">*</span><span class="n">matrices</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Plot the linear transformation defined by a sequence of n 2x2 matrices using the helper</span>
-<span class="sd">    function plot_transformation_helper(). It will create n+1 subplots to visualize some</span>
-<span class="sd">    vectors before and after each transformation.</span>
+@set_rc
+def plot_linear_transformations(*matrices, unit_vector=True, unit_circle=False):
+    &quot;&quot;&quot; Plot the linear transformation defined by a sequence of n 2x2 matrices using the helper
+    function plot_transformation_helper(). It will create n+1 subplots to visualize some
+    vectors before and after each transformation.
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    *matrices : class numpy.ndarray.</span>
-<span class="sd">        The 2x2 matrices to visualize. Accept any number of matrices.</span>
-<span class="sd">    </span>
-<span class="sd">    unit_vector : bool, optional.</span>
-<span class="sd">        Whether to plot unit vectors of the standard basis, default to True.</span>
-<span class="sd">    </span>
-<span class="sd">    unit_circle: bool, optional.</span>
-<span class="sd">        Whether to plot unit circle, default to False.</span>
-<span class="sd">      </span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">nplots</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">matrices</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="n">nx</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="n">ny</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="n">nplots</span><span class="o">/</span><span class="n">nx</span><span class="p">)</span>
-    <span class="n">figsize</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="o">*</span><span class="n">nx</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">ny</span><span class="p">])</span> <span class="o">*</span> <span class="n">fig_scale</span>
-    <span class="n">figure</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+    Parameters
+    ----------
+    *matrices : class numpy.ndarray.
+        The 2x2 matrices to visualize. Accept any number of matrices.
+    
+    unit_vector : bool, optional.
+        Whether to plot unit vectors of the standard basis, default to True.
+    
+    unit_circle: bool, optional.
+        Whether to plot unit circle, default to False.
+      
+    &quot;&quot;&quot;
+    nplots = len(matrices) + 1
+    nx = 2
+    ny = ceil(nplots/nx)
+    figsize = numpy.array([2*nx, 2*ny]) * fig_scale
+    figure, axes = pyplot.subplots(nx, ny, figsize=figsize)
 
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nplots</span><span class="p">):</span>  <span class="c1"># fig_idx </span>
-        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">matrix_trans</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-            <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Before transformation&#39;</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">matrix_trans</span> <span class="o">=</span> <span class="n">matrices</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">@</span> <span class="n">matrix_trans</span>
-            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;After </span><span class="si">{}</span><span class="s1"> transformation&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;After </span><span class="si">{}</span><span class="s1"> transformations&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-        <span class="n">plot_transformation_helper</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="o">//</span><span class="n">nx</span><span class="p">,</span> <span class="n">i</span><span class="o">%</span><span class="k">nx</span>], matrix_trans, unit_vector=unit_vector, unit_circle=unit_circle, title=title)
-    <span class="c1"># hide axes of the extra subplot (only when nplots is an odd number)</span>
-    <span class="k">if</span> <span class="n">nx</span><span class="o">*</span><span class="n">ny</span> <span class="o">&gt;</span> <span class="n">nplots</span><span class="p">:</span>
-        <span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    for i in range(nplots):  # fig_idx 
+        if i == 0:
+            matrix_trans = numpy.identity(2)
+            title = &#39;Before transformation&#39;
+        else:
+            matrix_trans = matrices[i-1] @ matrix_trans
+            if i == 1:
+                title = &#39;After {} transformation&#39;.format(i)
+            else:
+                title = &#39;After {} transformations&#39;.format(i)
+        plot_transformation_helper(axes[i//nx, i%nx], matrix_trans, unit_vector=unit_vector, unit_circle=unit_circle, title=title)
+    # hide axes of the extra subplot (only when nplots is an odd number)
+    if nx*ny &gt; nplots:
+        axes[-1,-1].axis(&#39;off&#39;)
         
 </pre></div>
 </div>
@@ -1374,7 +1379,7 @@ The videos you watched for this week were from 3Blue1Brown. Some elements of thi
 <p><strong>Your math answer</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code answer</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Your code answer
 </pre></div>
 </div>
 </div>
@@ -1394,7 +1399,7 @@ The videos you watched for this week were from 3Blue1Brown. Some elements of thi
 <p><strong>Your math answer</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code answer</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Your code answer
 </pre></div>
 </div>
 </div>
@@ -1408,7 +1413,7 @@ The videos you watched for this week were from 3Blue1Brown. Some elements of thi
 <p><strong>Your math answer</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code answer</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Your code answer
 </pre></div>
 </div>
 </div>
@@ -1439,34 +1444,34 @@ The videos you watched for this week were from 3Blue1Brown. Some elements of thi
 \end{bmatrix}\)</span> when multiplied with <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="o">...</span>
-<span class="n">plot_linear_transformation</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>A = ...
+plot_linear_transformation(A)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">A</span> <span class="o">=</span> <span class="o">...</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">plot_linear_transformation</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 
-<span class="nn">Cell In [2], line 45,</span> in <span class="ni">set_rc.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="nn">Cell In[2], line 45,</span> in <span class="ni">set_rc.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
 <span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;axes&#39;</span><span class="p">,</span> <span class="n">axisbelow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">titlesize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">45</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">Cell In [2], line 220,</span> in <span class="ni">plot_linear_transformation</span><span class="nt">(matrix, unit_vector, unit_circle, *vectors)</span>
+<span class="nn">Cell In[2], line 220,</span> in <span class="ni">plot_linear_transformation</span><span class="nt">(matrix, unit_vector, unit_circle, *vectors)</span>
 <span class="g g-Whitespace">    </span><span class="mi">218</span> <span class="n">figure</span><span class="p">,</span> <span class="p">(</span><span class="n">axis1</span><span class="p">,</span> <span class="n">axis2</span><span class="p">)</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">219</span> <span class="n">plot_transformation_helper</span><span class="p">(</span><span class="n">axis1</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="o">*</span><span class="n">vectors</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="n">unit_vector</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="n">unit_circle</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Before transformation&#39;</span><span class="p">)</span>
 <span class="ne">--&gt; </span><span class="mi">220</span> <span class="n">plot_transformation_helper</span><span class="p">(</span><span class="n">axis2</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="o">*</span><span class="n">vectors</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="n">unit_vector</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="n">unit_circle</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;After transformation&#39;</span><span class="p">)</span>
 
-<span class="nn">Cell In [2], line 45,</span> in <span class="ni">set_rc.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="nn">Cell In[2], line 45,</span> in <span class="ni">set_rc.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
 <span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;axes&#39;</span><span class="p">,</span> <span class="n">axisbelow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">titlesize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">45</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">Cell In [2], line 147,</span> in <span class="ni">plot_transformation_helper</span><span class="nt">(axis, matrix, unit_vector, unit_circle, title, *vectors)</span>
+<span class="nn">Cell In[2], line 147,</span> in <span class="ni">plot_transformation_helper</span><span class="nt">(axis, matrix, unit_vector, unit_circle, title, *vectors)</span>
 <span class="g g-Whitespace">    </span><span class="mi">121</span> <span class="nd">@set_rc</span>
 <span class="g g-Whitespace">    </span><span class="mi">122</span> <span class="k">def</span> <span class="nf">plot_transformation_helper</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="o">*</span><span class="n">vectors</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="g g-Whitespace">    </span><span class="mi">123</span>     <span class="sd">&quot;&quot;&quot; A helper function to plot the linear transformation defined by a 2x2 matrix.</span>
@@ -1499,34 +1504,34 @@ The videos you watched for this week were from 3Blue1Brown. Some elements of thi
 \end{bmatrix}\)</span> when multiplied with <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="o">...</span>
-<span class="n">plot_linear_transformation</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>A = ...
+plot_linear_transformation(A)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">A</span> <span class="o">=</span> <span class="o">...</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">plot_linear_transformation</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 
-<span class="nn">Cell In [2], line 45,</span> in <span class="ni">set_rc.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="nn">Cell In[2], line 45,</span> in <span class="ni">set_rc.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
 <span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;axes&#39;</span><span class="p">,</span> <span class="n">axisbelow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">titlesize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">45</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">Cell In [2], line 220,</span> in <span class="ni">plot_linear_transformation</span><span class="nt">(matrix, unit_vector, unit_circle, *vectors)</span>
+<span class="nn">Cell In[2], line 220,</span> in <span class="ni">plot_linear_transformation</span><span class="nt">(matrix, unit_vector, unit_circle, *vectors)</span>
 <span class="g g-Whitespace">    </span><span class="mi">218</span> <span class="n">figure</span><span class="p">,</span> <span class="p">(</span><span class="n">axis1</span><span class="p">,</span> <span class="n">axis2</span><span class="p">)</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">219</span> <span class="n">plot_transformation_helper</span><span class="p">(</span><span class="n">axis1</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="o">*</span><span class="n">vectors</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="n">unit_vector</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="n">unit_circle</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Before transformation&#39;</span><span class="p">)</span>
 <span class="ne">--&gt; </span><span class="mi">220</span> <span class="n">plot_transformation_helper</span><span class="p">(</span><span class="n">axis2</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="o">*</span><span class="n">vectors</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="n">unit_vector</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="n">unit_circle</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;After transformation&#39;</span><span class="p">)</span>
 
-<span class="nn">Cell In [2], line 45,</span> in <span class="ni">set_rc.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="nn">Cell In[2], line 45,</span> in <span class="ni">set_rc.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
 <span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;axes&#39;</span><span class="p">,</span> <span class="n">axisbelow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">titlesize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">45</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">Cell In [2], line 147,</span> in <span class="ni">plot_transformation_helper</span><span class="nt">(axis, matrix, unit_vector, unit_circle, title, *vectors)</span>
+<span class="nn">Cell In[2], line 147,</span> in <span class="ni">plot_transformation_helper</span><span class="nt">(axis, matrix, unit_vector, unit_circle, title, *vectors)</span>
 <span class="g g-Whitespace">    </span><span class="mi">121</span> <span class="nd">@set_rc</span>
 <span class="g g-Whitespace">    </span><span class="mi">122</span> <span class="k">def</span> <span class="nf">plot_transformation_helper</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="o">*</span><span class="n">vectors</span><span class="p">,</span> <span class="n">unit_vector</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unit_circle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="g g-Whitespace">    </span><span class="mi">123</span>     <span class="sd">&quot;&quot;&quot; A helper function to plot the linear transformation defined by a 2x2 matrix.</span>
@@ -1563,8 +1568,8 @@ The videos you watched for this week were from 3Blue1Brown. Some elements of thi
 <p><strong>Your text answer</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
-<span class="c1">#plot_linear_transformation(A)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>A = np.array([[3, 1], [0, 3]])
+#plot_linear_transformation(A)
 </pre></div>
 </div>
 </div>
@@ -1575,16 +1580,16 @@ The videos you watched for this week were from 3Blue1Brown. Some elements of thi
 <p>We know that the inverse of a matrix essentially “undoes” the transformation of the matrix. Let’s see this in action. We will plot the transformation of A then the additional transformation of <span class="math notranslate nohighlight">\(A^{-1}\)</span> - the resulting plot should look like the original.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
-<span class="n">A_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
-<span class="n">plot_linear_transformations</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">A_inv</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>A = np.array([[1,2], [2,1]])
+A_inv = np.linalg.inv(M)
+plot_linear_transformations(A, A_inv)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">A_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plot_linear_transformations</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">A_inv</span><span class="p">)</span>
@@ -1631,30 +1636,30 @@ x_2 + x_3 &amp;= r_{g1} \\
 <p>We will use two different coding methods: you will first use <code class="docutils literal notranslate"><span class="pre">np.linalg.inv</span></code>, and then <code class="docutils literal notranslate"><span class="pre">np.linalg.solve</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define F</span>
-<span class="n">F</span> <span class="o">=</span> <span class="o">...</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define F
+F = ...
 
-<span class="c1"># Define r_f</span>
-<span class="n">r_f</span> <span class="o">=</span> <span class="o">...</span>
+# Define r_f
+r_f = ...
 
-<span class="c1"># Find x using np.linalg.inv</span>
-<span class="n">x_using_inv</span> <span class="o">=</span> <span class="o">...</span>
+# Find x using np.linalg.inv
+x_using_inv = ...
 
-<span class="c1"># Find x using np.linalg.solve</span>
-<span class="n">x_using_solve</span> <span class="o">=</span> <span class="o">...</span>
+# Find x using np.linalg.solve
+x_using_solve = ...
 
-<span class="c1"># Check each method resulted in the same x</span>
-<span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">x_using_inv</span><span class="p">,</span> <span class="n">x_using_solve</span><span class="p">)):</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solutions match&#39;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;PROBLEM: Solutions do not match!&#39;</span><span class="p">)</span>
+# Check each method resulted in the same x
+if np.all(np.isclose(x_using_inv, x_using_solve)):
+  print(&#39;Solutions match&#39;)
+else:
+  print(&#39;PROBLEM: Solutions do not match!&#39;)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">14</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">14</span>
 <span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">x_using_solve</span> <span class="o">=</span> <span class="o">...</span>
 <span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># Check each method resulted in the same x</span>
 <span class="ne">---&gt; </span><span class="mi">14</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">x_using_inv</span><span class="p">,</span> <span class="n">x_using_solve</span><span class="p">)):</span>
@@ -1687,30 +1692,30 @@ $<span class="math notranslate nohighlight">\(\bar{r}_g = \begin{bmatrix}
 <p>What problem do you run into?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define G</span>
-<span class="n">G</span> <span class="o">=</span> <span class="o">...</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define G
+G = ...
 
-<span class="c1"># Define r_g</span>
-<span class="n">r_g</span> <span class="o">=</span> <span class="o">...</span>
+# Define r_g
+r_g = ...
 
-<span class="c1"># Find x using np.linalg.inv</span>
-<span class="n">x_using_inv</span> <span class="o">=</span> <span class="o">...</span>
+# Find x using np.linalg.inv
+x_using_inv = ...
 
-<span class="c1"># Find x using np.linalg.solve</span>
-<span class="n">x_using_solve</span> <span class="o">=</span> <span class="o">...</span>
+# Find x using np.linalg.solve
+x_using_solve = ...
 
-<span class="c1"># Check each method resulted in the same x</span>
-<span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">x_using_inv</span><span class="p">,</span> <span class="n">x_using_solve</span><span class="p">)):</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solutions match&#39;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;PROBLEM: Solutions do not match!&#39;</span><span class="p">)</span>
+# Check each method resulted in the same x
+if np.all(np.isclose(x_using_inv, x_using_solve)):
+  print(&#39;Solutions match&#39;)
+else:
+  print(&#39;PROBLEM: Solutions do not match!&#39;)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">14</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">14</span>
 <span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">x_using_solve</span> <span class="o">=</span> <span class="o">...</span>
 <span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># Check each method resulted in the same x</span>
 <span class="ne">---&gt; </span><span class="mi">14</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">x_using_inv</span><span class="p">,</span> <span class="n">x_using_solve</span><span class="p">)):</span>
@@ -1738,11 +1743,11 @@ $<span class="math notranslate nohighlight">\(\bar{r}_g = \begin{bmatrix}
 <p>Now compute the rank of each below and see if you were right.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rank_F</span> <span class="o">=</span> <span class="o">...</span>
-<span class="n">rank_G</span> <span class="o">=</span> <span class="o">...</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>rank_F = ...
+rank_G = ...
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The rank of F is &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">rank_F</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The rank of G is &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">rank_G</span><span class="p">))</span>
+print(&#39;The rank of F is &#39;+str(rank_F))
+print(&#39;The rank of G is &#39;+str(rank_G))
 </pre></div>
 </div>
 </div>
@@ -1764,8 +1769,8 @@ The rank of G is Ellipsis
 <p>Use <code class="docutils literal notranslate"><span class="pre">scipy.linalg.null_space</span></code> to find the basis of the null spaces for F and G.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F_null_space</span> <span class="o">=</span> <span class="o">...</span>
-<span class="n">G_null_space</span> <span class="o">=</span> <span class="o">...</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>F_null_space = ...
+G_null_space = ...
 </pre></div>
 </div>
 </div>

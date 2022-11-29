@@ -616,6 +616,11 @@ const thebe_selector_output = ".output, .cell_output"
      Reaching 12.4: Intro to Pytorch
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week12/Week12Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -983,23 +988,23 @@ title="Print to PDF"
 <p>Imports</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Imports</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Imports
 
-<span class="c1"># Imports</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>  <span class="c1"># interactive display</span>
-<span class="kn">import</span> <span class="nn">math</span>
+# Imports
+import numpy as np
+import matplotlib.pyplot as plt
+import ipywidgets as widgets  # interactive display
+import math
 
-<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">Lasso</span><span class="p">,</span> <span class="n">Ridge</span>
+import matplotlib as mpl
+from sklearn.linear_model import LinearRegression, Lasso, Ridge
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
 <span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">math</span>
 <span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
 <span class="ne">---&gt; </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">Lasso</span><span class="p">,</span> <span class="n">Ridge</span>
@@ -1012,72 +1017,72 @@ title="Print to PDF"
 <p>Plotting functions</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Plotting functions</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Plotting functions
+import warnings
+warnings.simplefilter(action=&#39;ignore&#39;, category=FutureWarning)
 
-<span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span><span class="p">,</span> <span class="n">eig</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span><span class="p">,</span> <span class="n">ticker</span><span class="p">,</span> <span class="n">get_backend</span><span class="p">,</span> <span class="n">rc</span>
-<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">cycle</span>
-
-
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/NeuromatchAcademy/course-content/master/nma.mplstyle&quot;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">plot_weights</span><span class="p">(</span><span class="n">models</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot;Draw a stem plot of weights for each model in models dict.&quot;&quot;&quot;</span>
-  <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">models</span><span class="p">)</span>
-  <span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">2.5</span> <span class="o">*</span> <span class="n">n</span><span class="p">))</span>
-  <span class="n">axs</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="n">sharey</span><span class="p">)</span>
-  <span class="n">axs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">axs</span><span class="p">)</span>
-
-  <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
-
-    <span class="n">ax</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">.02</span><span class="p">)</span>
-    <span class="n">stem</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">use_line_collection</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">stem</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_marker</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
-    <span class="n">stem</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s2">&quot;.2&quot;</span><span class="p">)</span>
-    <span class="n">stem</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidths</span><span class="p">(</span><span class="mf">.5</span><span class="p">)</span>
-    <span class="n">stem</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s2">&quot;.2&quot;</span><span class="p">)</span>
-    <span class="n">stem</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C3&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Weight&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
-  <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Neuron (a.k.a. feature)&quot;</span><span class="p">)</span>
-  <span class="n">f</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-
-<span class="k">def</span> <span class="nf">plot_model_quality</span><span class="p">(</span><span class="n">run_train</span><span class="p">,</span> <span class="n">preds_train</span><span class="p">,</span> <span class="n">run_test</span><span class="p">,</span> <span class="n">preds_test</span><span class="p">,</span> <span class="n">r2_train</span><span class="p">,</span> <span class="n">r2_test</span><span class="p">):</span>
-  <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-
-  <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">run_train</span><span class="p">[:</span><span class="mi">500</span><span class="p">],</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;True running speed&#39;</span><span class="p">)</span>
-  <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">preds_train</span><span class="p">[:</span><span class="mi">500</span><span class="p">],</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">.7</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Predicted running speed&#39;</span><span class="p">)</span>
-
-  <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-
-  <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">run_test</span><span class="p">[:</span><span class="mi">500</span><span class="p">],</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
-  <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">preds_test</span><span class="p">[:</span><span class="mi">500</span><span class="p">],</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">.7</span><span class="p">)</span>
-
-  <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">r2_train</span><span class="p">,</span> <span class="n">r2_test</span><span class="p">])</span>
-
-  <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Training data&#39;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time (bins)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Running speed&#39;</span><span class="p">)</span>
-  <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Validation  data&#39;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time (bins)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Running speed&#39;</span><span class="p">)</span>
-  <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Prediction Quality&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;R2&#39;</span><span class="p">,</span> <span class="n">xticks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">xticklabels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Training data&#39;</span><span class="p">,</span> <span class="s1">&#39;Validation data&#39;</span><span class="p">]);</span>
+import numpy
+from numpy.linalg import inv, eig
+from math import ceil
+from matplotlib import pyplot, ticker, get_backend, rc
+from mpl_toolkits.mplot3d import Axes3D
+from itertools import cycle
 
 
-<span class="k">def</span> <span class="nf">plot_regularized_train_and_val</span><span class="p">(</span><span class="n">alphas</span><span class="p">,</span> <span class="n">reg_train_r2s</span><span class="p">,</span> <span class="n">reg_validation_r2s</span><span class="p">,</span> <span class="n">train_r2</span><span class="p">,</span> <span class="n">validation_r2</span><span class="p">,</span> <span class="n">regression_type</span><span class="p">):</span>
-    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+%config InlineBackend.figure_format = &#39;retina&#39;
+plt.style.use(&quot;https://raw.githubusercontent.com/NeuromatchAcademy/course-content/master/nma.mplstyle&quot;)
 
-    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">alphas</span><span class="p">)],</span> <span class="p">[</span><span class="n">train_r2</span><span class="p">,</span> <span class="n">train_r2</span><span class="p">],</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span> <span class="s1">&#39;No reg&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">reg_train_r2s</span><span class="p">,</span> <span class="s1">&#39;-ob&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">regression_type</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Training data&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;R2&#39;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="n">xticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">alphas</span><span class="p">)),</span> <span class="n">xticklabels</span> <span class="o">=</span> <span class="n">alphas</span><span class="p">)</span>
+def plot_weights(models, sharey=True):
+  &quot;&quot;&quot;Draw a stem plot of weights for each model in models dict.&quot;&quot;&quot;
+  n = len(models)
+  f = plt.figure(figsize=(10, 2.5 * n))
+  axs = f.subplots(n, sharex=True, sharey=sharey)
+  axs = np.atleast_1d(axs)
 
-    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+  for ax, (title, model) in zip(axs, models.items()):
 
-    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">alphas</span><span class="p">)],</span> <span class="p">[</span><span class="n">validation_r2</span><span class="p">,</span> <span class="n">validation_r2</span><span class="p">],</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">reg_validation_r2s</span><span class="p">,</span> <span class="s1">&#39;-ob&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Validation data&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;R2&#39;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="n">xticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">alphas</span><span class="p">)),</span> <span class="n">xticklabels</span><span class="o">=</span> <span class="n">alphas</span><span class="p">);</span>
+    ax.margins(x=.02)
+    stem = ax.stem(model.coef_.squeeze(), use_line_collection=True)
+    stem[0].set_marker(&quot;.&quot;)
+    stem[0].set_color(&quot;.2&quot;)
+    stem[1].set_linewidths(.5)
+    stem[1].set_color(&quot;.2&quot;)
+    stem[2].set_visible(False)
+    ax.axhline(0, color=&quot;C3&quot;, lw=3)
+    ax.set(ylabel=&quot;Weight&quot;, title=title)
+  ax.set(xlabel=&quot;Neuron (a.k.a. feature)&quot;)
+  f.tight_layout()
+
+def plot_model_quality(run_train, preds_train, run_test, preds_test, r2_train, r2_test):
+  fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+
+  axes[0].plot(run_train[:500],&#39;k&#39;, label = &#39;True running speed&#39;)
+  axes[0].plot(preds_train[:500],&#39;g&#39;,alpha=.7, label = &#39;Predicted running speed&#39;)
+
+  axes[0].legend()
+
+  axes[1].plot(run_test[:500],&#39;k&#39;)
+  axes[1].plot(preds_test[:500],&#39;g&#39;,alpha=.7)
+
+  axes[2].bar([0, 1], [r2_train, r2_test])
+
+  axes[0].set(title=&#39;Training data&#39;, xlabel=&#39;Time (bins)&#39;, ylabel=&#39;Running speed&#39;)
+  axes[1].set(title=&#39;Validation  data&#39;, xlabel=&#39;Time (bins)&#39;, ylabel=&#39;Running speed&#39;)
+  axes[2].set(title=&#39;Prediction Quality&#39;, ylabel=&#39;R2&#39;, xticks = [0, 1], xticklabels = [&#39;Training data&#39;, &#39;Validation data&#39;]);
+
+
+def plot_regularized_train_and_val(alphas, reg_train_r2s, reg_validation_r2s, train_r2, validation_r2, regression_type):
+    fig, axes = plt.subplots(1, 2, figsize=(10, 5))
+
+    axes[0].plot([0, len(alphas)], [train_r2, train_r2], &#39;g&#39;, label= &#39;No reg&#39;)
+    axes[0].plot(reg_train_r2s, &#39;-ob&#39;, label = regression_type)
+    axes[0].set(title=&#39;Training data&#39;, ylabel=&#39;R2&#39;, xlabel=&#39;alpha&#39;, xticks = np.arange(0, len(alphas)), xticklabels = alphas)
+
+    axes[0].legend()
+
+    axes[1].plot([0, len(alphas)], [validation_r2, validation_r2], &#39;g&#39;)
+    axes[1].plot(reg_validation_r2s, &#39;-ob&#39;)
+    axes[1].set(title=&#39;Validation data&#39;, ylabel=&#39;R2&#39;, xlabel=&#39;alpha&#39;, xticks = np.arange(0, len(alphas)), xticklabels= alphas);
 </pre></div>
 </div>
 </div>
@@ -1085,23 +1090,23 @@ title="Print to PDF"
 <p>Data retrieval</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@markdown Data retrieval</span>
-<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">requests</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#@markdown Data retrieval
+import os, requests
 
-<span class="n">fname</span> <span class="o">=</span> <span class="s2">&quot;stringer_spontaneous.npy&quot;</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://osf.io/dpqaj/download&quot;</span>
+fname = &quot;stringer_spontaneous.npy&quot;
+url = &quot;https://osf.io/dpqaj/download&quot;
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
-  <span class="k">try</span><span class="p">:</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-  <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;!!! Failed to download data !!!&quot;</span><span class="p">)</span>
-  <span class="k">else</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
-      <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;!!! Failed to download data !!!&quot;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-      <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fid</span><span class="p">:</span>
-        <span class="n">fid</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+if not os.path.isfile(fname):
+  try:
+    r = requests.get(url)
+  except requests.ConnectionError:
+    print(&quot;!!! Failed to download data !!!&quot;)
+  else:
+    if r.status_code != requests.codes.ok:
+      print(&quot;!!! Failed to download data !!!&quot;)
+    else:
+      with open(fname, &quot;wb&quot;) as fid:
+        fid.write(r.content)
 </pre></div>
 </div>
 </div>
@@ -1110,21 +1115,22 @@ title="Print to PDF"
 <p>Execute to load data</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Execute to load data</span>
-<span class="c1"># Load data</span>
-<span class="n">dat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;stringer_spontaneous.npy&#39;</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Execute to load data
+# Load data
+dat = np.load(&#39;stringer_spontaneous.npy&#39;, allow_pickle=True).item()
 
-<span class="c1"># Split into train and validation and test</span>
-<span class="c1"># (not a great way to split, don&#39;t do as I do here)</span>
-<span class="n">resps_train</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;sresp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">5000</span><span class="p">:</span><span class="mi">7000</span><span class="p">]</span>
-<span class="n">run_train</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;run&#39;</span><span class="p">][</span><span class="mi">5000</span><span class="p">:</span><span class="mi">7000</span><span class="p">]</span>
+# Split into train and validation and test
+# (not a great way to split, don&#39;t do as I do here)
+resps_train = dat[&#39;sresp&#39;].T[5000:7000]
+run_train = dat[&#39;run&#39;][5000:7000]
 
-<span class="n">resps_validation</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;sresp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">2000</span><span class="p">:</span><span class="mi">2250</span><span class="p">]</span>
-<span class="n">run_validation</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;run&#39;</span><span class="p">][</span><span class="mi">2000</span><span class="p">:</span><span class="mi">2250</span><span class="p">,</span> <span class="p">:]</span>
+resps_validation = dat[&#39;sresp&#39;].T[2000:2250]
+run_validation = dat[&#39;run&#39;][2000:2250, :]
 
 
-<span class="n">resps_test</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;sresp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">2250</span><span class="p">:</span><span class="mi">2500</span><span class="p">]</span>
-<span class="n">run_test</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;run&#39;</span><span class="p">][</span><span class="mi">2250</span><span class="p">:</span><span class="mi">2500</span><span class="p">,</span> <span class="p">:]</span>
+resps_test = dat[&#39;sresp&#39;].T[2250:2500]
+run_test = dat[&#39;run&#39;][2250:2500, :]
+
 </pre></div>
 </div>
 </div>
@@ -1135,14 +1141,14 @@ title="Print to PDF"
 <p>We are going to use real neural data! We’ll decode the running speed of a mouse from simultaneously recorded neurons. Specifically, we’ll look at the activity of ~10,000 neurons while the mouse is behaving spontaneously in <a class="reference external" href="https://science.sciencemag.org/content/364/6437/eaav7893">this study</a> (provided by Carsen Stringer and NMA). Our task will be to decode the running speed from the responses of the whole population of neurons. The neural responses were recorded by calcium imaging so we’re not working with spikes but with the  fluorescence traces. We will use linear regression and study how regularization affects the weights of the neurons</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">resps_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">run_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(resps_train.shape)
+print(run_train.shape)
 
-<span class="nb">print</span><span class="p">(</span><span class="n">resps_validation</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">run_validation</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+print(resps_validation.shape)
+print(run_validation.shape)
 
-<span class="nb">print</span><span class="p">(</span><span class="n">resps_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">run_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+print(resps_test.shape)
+print(run_test.shape)
 </pre></div>
 </div>
 </div>
@@ -1163,22 +1169,22 @@ title="Print to PDF"
 <p>First, we’ll examine a standard linear regression model and examine our prediction quality on held out data. We fit this model using sklearn.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.linear_model import LinearRegression
 
-<span class="n">no_reg_model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+no_reg_model = LinearRegression(normalize=True)
 
-<span class="n">no_reg_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">resps_train</span><span class="p">,</span> <span class="n">run_train</span><span class="p">)</span>
+no_reg_model.fit(resps_train, run_train)
 
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">no_reg_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">resps_train</span><span class="p">)</span>
+y_pred = no_reg_model.predict(resps_train)
 
-<span class="n">R2</span> <span class="o">=</span> <span class="n">no_reg_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">resps_train</span><span class="p">,</span> <span class="n">run_train</span><span class="p">)</span>
+R2 = no_reg_model.score(resps_train, run_train)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">no_reg_model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">no_reg_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">resps_train</span><span class="p">,</span> <span class="n">run_train</span><span class="p">)</span>
@@ -1202,12 +1208,12 @@ We have <code class="docutils literal notranslate"><span class="pre">normalize</
 <p>Hint: we’ve already fit the model on training data for you (above) and our test data is <code class="docutils literal notranslate"><span class="pre">X_test</span></code> and <code class="docutils literal notranslate"><span class="pre">y_test</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_r2</span> <span class="o">=</span> <span class="o">...</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>train_r2 = ...
 
-<span class="n">validation_r2</span> <span class="o">=</span> <span class="o">...</span>
+validation_r2 = ...
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The train R2 is </span><span class="si">{</span><span class="n">train_r2</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The validation R2 is </span><span class="si">{</span><span class="n">validation_r2</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+print(f&#39;The train R2 is {train_r2}&#39;)
+print(f&#39;The validation R2 is {validation_r2}&#39;)
 </pre></div>
 </div>
 </div>
@@ -1221,19 +1227,19 @@ The validation R2 is Ellipsis
 <p>Let’s plot the predicted running speed vs true running speed on the training and test data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute predictions</span>
-<span class="n">preds_train</span> <span class="o">=</span> <span class="n">no_reg_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">resps_train</span><span class="p">)</span>
-<span class="n">preds_validation</span> <span class="o">=</span> <span class="n">no_reg_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">resps_validation</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Compute predictions
+preds_train = no_reg_model.predict(resps_train)
+preds_validation = no_reg_model.predict(resps_validation)
 
-<span class="c1"># Make plot</span>
-<span class="n">plot_model_quality</span><span class="p">(</span><span class="n">run_train</span><span class="p">,</span> <span class="n">preds_train</span><span class="p">,</span> <span class="n">run_validation</span><span class="p">,</span> <span class="n">preds_validation</span><span class="p">,</span> <span class="n">train_r2</span><span class="p">,</span> <span class="n">validation_r2</span><span class="p">)</span>
+# Make plot
+plot_model_quality(run_train, preds_train, run_validation, preds_validation, train_r2, validation_r2)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Compute predictions</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">preds_train</span> <span class="o">=</span> <span class="n">no_reg_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">resps_train</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">preds_validation</span> <span class="o">=</span> <span class="n">no_reg_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">resps_validation</span><span class="p">)</span>
@@ -1250,19 +1256,19 @@ The validation R2 is Ellipsis
 <p>Just so you know though, we can do cross-validation easily easily in one line of code using the magic of scikit-learn. See the cell below for evaluating the model using 5 folds cross validation</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_validate</span>
-<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">LinearRegression</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">resps_train</span><span class="p">,</span> <span class="n">run_train</span><span class="p">,</span>
-                        <span class="n">cv</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">return_train_score</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">return_estimator</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.model_selection import cross_validate
+scores = cross_validate(LinearRegression(normalize=True), resps_train, run_train,
+                        cv = 5, return_train_score = True, return_estimator=True) 
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cross-validated training score is </span><span class="si">{</span><span class="n">scores</span><span class="p">[</span><span class="s1">&#39;train_score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cross-validated validation score is </span><span class="si">{</span><span class="n">scores</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+print(f&quot;Cross-validated training score is {scores[&#39;train_score&#39;].mean()}&quot;)
+print(f&quot;Cross-validated validation score is {scores[&#39;test_score&#39;].mean()}&quot;)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_validate</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">LinearRegression</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">resps_train</span><span class="p">,</span> <span class="n">run_train</span><span class="p">,</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>                         <span class="n">cv</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">return_train_score</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">return_estimator</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
@@ -1279,14 +1285,14 @@ The validation R2 is Ellipsis
 <p>Let’s first look at our fit weights using logistic regression without regularization:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_weights</span><span class="p">({</span><span class="s2">&quot;No regularization&quot;</span><span class="p">:</span> <span class="n">no_reg_model</span><span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot_weights({&quot;No regularization&quot;: no_reg_model})
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">plot_weights</span><span class="p">({</span><span class="s2">&quot;No regularization&quot;</span><span class="p">:</span> <span class="n">no_reg_model</span><span class="p">})</span>
 
 <span class="ne">NameError</span>: name &#39;no_reg_model&#39; is not defined
@@ -1314,28 +1320,28 @@ The validation R2 is Ellipsis
 <p>Instead of doing K-folds cross-validation, we will fit the model on the training data and use the validation data for cross-validation. We have totally held out test data we can use to report model performance later.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ridge/L2 regularization</span>
-<span class="n">l2_alphas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Ridge/L2 regularization
+l2_alphas = [0.01, 0.1, 1, 10, 100]
 
-<span class="n">ridge_models</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">ridge_train_r2s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">l2_alphas</span><span class="p">)))</span>
-<span class="n">ridge_validation_r2s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">l2_alphas</span><span class="p">))</span>
+ridge_models = {}
+ridge_train_r2s = np.zeros((len(l2_alphas)))
+ridge_validation_r2s = np.zeros(len(l2_alphas))
 
-<span class="c1"># Your code here to loop over different values of alpha, fit a Ridge regression model on the training data, </span>
-  <span class="c1"># store the resulting R2 score on the training and validation data in the correct entry of `ridge_train_r2s` and</span>
-  <span class="c1"># `ridge_validation_r2s`</span>
-  <span class="c1"># Save the fit model for a given alpha in the dictionary `ridge_models` - the key should be the value of alpha</span>
+# Your code here to loop over different values of alpha, fit a Ridge regression model on the training data, 
+  # store the resulting R2 score on the training and validation data in the correct entry of `ridge_train_r2s` and
+  # `ridge_validation_r2s`
+  # Save the fit model for a given alpha in the dictionary `ridge_models` - the key should be the value of alpha
 
 
-<span class="c1"># Visualize</span>
-<span class="n">plot_regularized_train_and_val</span><span class="p">(</span><span class="n">l2_alphas</span><span class="p">,</span> <span class="n">ridge_train_r2s</span><span class="p">,</span> <span class="n">ridge_validation_r2s</span><span class="p">,</span> <span class="n">train_r2</span><span class="p">,</span> <span class="n">validation_r2</span><span class="p">,</span> <span class="s1">&#39;Ridge&#39;</span><span class="p">)</span>
+# Visualize
+plot_regularized_train_and_val(l2_alphas, ridge_train_r2s, ridge_validation_r2s, train_r2, validation_r2, &#39;Ridge&#39;)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">15</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">15</span>
 <span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">ridge_validation_r2s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">l2_alphas</span><span class="p">))</span>
 <span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># Your code here to loop over different values of alpha, fit a Ridge regression model on the training data, </span>
 <span class="g g-Whitespace">      </span><span class="mi">9</span>   <span class="c1"># store the resulting R2 score on the training and validation data in the correct entry of `ridge_train_r2s` and</span>
@@ -1345,7 +1351,7 @@ The validation R2 is Ellipsis
 <span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="c1"># Visualize</span>
 <span class="ne">---&gt; </span><span class="mi">15</span> <span class="n">plot_regularized_train_and_val</span><span class="p">(</span><span class="n">l2_alphas</span><span class="p">,</span> <span class="n">ridge_train_r2s</span><span class="p">,</span> <span class="n">ridge_validation_r2s</span><span class="p">,</span> <span class="n">train_r2</span><span class="p">,</span> <span class="n">validation_r2</span><span class="p">,</span> <span class="s1">&#39;Ridge&#39;</span><span class="p">)</span>
 
-<span class="nn">Cell In [2], line 58,</span> in <span class="ni">plot_regularized_train_and_val</span><span class="nt">(alphas, reg_train_r2s, reg_validation_r2s, train_r2, validation_r2, regression_type)</span>
+<span class="nn">Cell In[2], line 58,</span> in <span class="ni">plot_regularized_train_and_val</span><span class="nt">(alphas, reg_train_r2s, reg_validation_r2s, train_r2, validation_r2, regression_type)</span>
 <span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="k">def</span> <span class="nf">plot_regularized_train_and_val</span><span class="p">(</span><span class="n">alphas</span><span class="p">,</span> <span class="n">reg_train_r2s</span><span class="p">,</span> <span class="n">reg_validation_r2s</span><span class="p">,</span> <span class="n">train_r2</span><span class="p">,</span> <span class="n">validation_r2</span><span class="p">,</span> <span class="n">regression_type</span><span class="p">):</span>
 <span class="g g-Whitespace">     </span><span class="mi">56</span>     <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="ne">---&gt; </span><span class="mi">58</span>     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">alphas</span><span class="p">)],</span> <span class="p">[</span><span class="n">train_r2</span><span class="p">,</span> <span class="n">train_r2</span><span class="p">],</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span> <span class="s1">&#39;No reg&#39;</span><span class="p">)</span>
@@ -1408,21 +1414,21 @@ The validation R2 is Ellipsis
 <p>Execute cell to enable widget</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Execute cell to enable widget</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Execute cell to enable widget
 
-<span class="nd">@widgets</span><span class="o">.</span><span class="n">interact</span>
-<span class="k">def</span> <span class="nf">plot_observed</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">l2_alphas</span><span class="p">):</span>
-  <span class="n">models</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;No regularization&quot;</span><span class="p">:</span> <span class="n">no_reg_model</span><span class="p">,</span>
-    <span class="s2">&quot;Regularization&quot;</span><span class="p">:</span> <span class="n">ridge_models</span><span class="p">[</span><span class="n">alpha</span><span class="p">]</span>
-  <span class="p">}</span>
-  <span class="n">plot_weights</span><span class="p">(</span><span class="n">models</span><span class="p">)</span>
+@widgets.interact
+def plot_observed(alpha = l2_alphas):
+  models = {
+    &quot;No regularization&quot;: no_reg_model,
+    &quot;Regularization&quot;: ridge_models[alpha]
+  }
+  plot_weights(models)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "98d281c83da24e9b9eec64ecbf34197e"}
+{"version_major": 2, "version_minor": 0, "model_id": "39fb3dd10c7d457d850c7cc0aeab519e"}
 </script></div>
 </div>
 <p>Your text answer here</p>
@@ -1443,28 +1449,28 @@ The validation R2 is Ellipsis
 <p>As in exercise 2, let’s loop over regularization amounts and fit the model. This time though, we’ll fit the Lasso model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lasso/L1 regularization</span>
-<span class="n">l1_alphas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0005</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Lasso/L1 regularization
+l1_alphas = [0.0005, 0.001, 0.005, 0.01, 0.1]
 
-<span class="n">lasso_models</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">lasso_train_r2s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">l1_alphas</span><span class="p">)))</span>
-<span class="n">lasso_validation_r2s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">l1_alphas</span><span class="p">))</span>
+lasso_models = {}
+lasso_train_r2s = np.zeros((len(l1_alphas)))
+lasso_validation_r2s = np.zeros(len(l1_alphas))
 
-<span class="c1"># Your code here to loop over different values of alpha, fit a Lasso regression model on the training data, </span>
-  <span class="c1"># store the resulting R2 score on the training and validation data in the correct entry of `lasso_train_r2s` and</span>
-  <span class="c1"># `lasso_validation_r2s`</span>
-  <span class="c1"># Save the fit model for a given alpha in the dictionary `lasso_models` - the key should be the value of alpha</span>
+# Your code here to loop over different values of alpha, fit a Lasso regression model on the training data, 
+  # store the resulting R2 score on the training and validation data in the correct entry of `lasso_train_r2s` and
+  # `lasso_validation_r2s`
+  # Save the fit model for a given alpha in the dictionary `lasso_models` - the key should be the value of alpha
 
 
-<span class="c1"># Visualize</span>
-<span class="n">plot_regularized_train_and_val</span><span class="p">(</span><span class="n">l1_alphas</span><span class="p">,</span> <span class="n">lasso_train_r2s</span><span class="p">,</span> <span class="n">lasso_validation_r2s</span><span class="p">,</span> <span class="n">train_r2</span><span class="p">,</span> <span class="n">validation_r2</span><span class="p">,</span> <span class="s1">&#39;Lasso&#39;</span><span class="p">)</span>
+# Visualize
+plot_regularized_train_and_val(l1_alphas, lasso_train_r2s, lasso_validation_r2s, train_r2, validation_r2, &#39;Lasso&#39;)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">line</span> <span class="mi">15</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">line</span> <span class="mi">15</span>
 <span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">lasso_validation_r2s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">l1_alphas</span><span class="p">))</span>
 <span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># Your code here to loop over different values of alpha, fit a Lasso regression model on the training data, </span>
 <span class="g g-Whitespace">      </span><span class="mi">9</span>   <span class="c1"># store the resulting R2 score on the training and validation data in the correct entry of `lasso_train_r2s` and</span>
@@ -1474,7 +1480,7 @@ The validation R2 is Ellipsis
 <span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="c1"># Visualize</span>
 <span class="ne">---&gt; </span><span class="mi">15</span> <span class="n">plot_regularized_train_and_val</span><span class="p">(</span><span class="n">l1_alphas</span><span class="p">,</span> <span class="n">lasso_train_r2s</span><span class="p">,</span> <span class="n">lasso_validation_r2s</span><span class="p">,</span> <span class="n">train_r2</span><span class="p">,</span> <span class="n">validation_r2</span><span class="p">,</span> <span class="s1">&#39;Lasso&#39;</span><span class="p">)</span>
 
-<span class="nn">Cell In [2], line 58,</span> in <span class="ni">plot_regularized_train_and_val</span><span class="nt">(alphas, reg_train_r2s, reg_validation_r2s, train_r2, validation_r2, regression_type)</span>
+<span class="nn">Cell In[2], line 58,</span> in <span class="ni">plot_regularized_train_and_val</span><span class="nt">(alphas, reg_train_r2s, reg_validation_r2s, train_r2, validation_r2, regression_type)</span>
 <span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="k">def</span> <span class="nf">plot_regularized_train_and_val</span><span class="p">(</span><span class="n">alphas</span><span class="p">,</span> <span class="n">reg_train_r2s</span><span class="p">,</span> <span class="n">reg_validation_r2s</span><span class="p">,</span> <span class="n">train_r2</span><span class="p">,</span> <span class="n">validation_r2</span><span class="p">,</span> <span class="n">regression_type</span><span class="p">):</span>
 <span class="g g-Whitespace">     </span><span class="mi">56</span>     <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="ne">---&gt; </span><span class="mi">58</span>     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">alphas</span><span class="p">)],</span> <span class="p">[</span><span class="n">train_r2</span><span class="p">,</span> <span class="n">train_r2</span><span class="p">],</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span> <span class="s1">&#39;No reg&#39;</span><span class="p">)</span>
@@ -1537,20 +1543,20 @@ The validation R2 is Ellipsis
 <p>Execute cell to enable widget</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Execute cell to enable widget</span>
-<span class="nd">@widgets</span><span class="o">.</span><span class="n">interact</span>
-<span class="k">def</span> <span class="nf">plot_observed</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">l1_alphas</span><span class="p">):</span>
-  <span class="n">models</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;No regularization&quot;</span><span class="p">:</span> <span class="n">no_reg_model</span><span class="p">,</span>
-    <span class="s2">&quot;Regularization&quot;</span><span class="p">:</span> <span class="n">lasso_models</span><span class="p">[</span><span class="n">alpha</span><span class="p">]</span>
-  <span class="p">}</span>
-  <span class="n">plot_weights</span><span class="p">(</span><span class="n">models</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Execute cell to enable widget
+@widgets.interact
+def plot_observed(alpha = l1_alphas):
+  models = {
+    &quot;No regularization&quot;: no_reg_model,
+    &quot;Regularization&quot;: lasso_models[alpha]
+  }
+  plot_weights(models)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "4f389d376a474df4ab0316ae5ef85f3f"}
+{"version_major": 2, "version_minor": 0, "model_id": "7ebbfc9af5bc4ba0900778323d27f28f"}
 </script></div>
 </div>
 <p>YOUR ANSWER HERE</p>
@@ -1572,28 +1578,28 @@ A “sparse” vector has mostly zero elements:
 <p>Execute to plot a dense and a sparse matrix</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Execute to plot a dense and a sparse matrix</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
-<span class="n">M_sparse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Execute to plot a dense and a sparse matrix
+np.random.seed(50)
+n = 5
+M = np.random.random((n, n))
+M_sparse = np.random.choice([0,1], size=(n, n), p=[0.8, 0.2])
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+fig, axs = plt.subplots(1, 2, sharey=True, figsize=(10,5))
 
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">M_sparse</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;A dense matrix&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;A sparse matrix&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">text_kws</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">iter_parts</span> <span class="o">=</span> <span class="n">axs</span><span class="p">,</span> <span class="p">[</span><span class="n">M</span><span class="p">,</span> <span class="n">M_sparse</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;</span><span class="si">{:.1f}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{:d}</span><span class="s2">&quot;</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">mat</span><span class="p">,</span> <span class="n">fmt</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">iter_parts</span><span class="p">):</span>
-      <span class="n">val</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
-      <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;.1&quot;</span> <span class="k">if</span> <span class="n">val</span> <span class="o">&gt;</span> <span class="mf">.7</span> <span class="k">else</span> <span class="s2">&quot;w&quot;</span>
-      <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="o">**</span><span class="n">text_kws</span><span class="p">)</span>
+axs[0].imshow(M)
+axs[1].imshow(M_sparse)
+axs[0].axis(&#39;off&#39;)
+axs[1].axis(&#39;off&#39;)
+axs[0].set_title(&quot;A dense matrix&quot;, fontsize=15)
+axs[1].set_title(&quot;A sparse matrix&quot;, fontsize=15)
+text_kws = dict(ha=&quot;center&quot;, va=&quot;center&quot;)
+for i in range(n):
+  for j in range(n):
+    iter_parts = axs, [M, M_sparse], [&quot;{:.1f}&quot;, &quot;{:d}&quot;]
+    for ax, mat, fmt in zip(*iter_parts):
+      val = mat[i, j]
+      color = &quot;.1&quot; if val &gt; .7 else &quot;w&quot;
+      ax.text(j, i, fmt.format(val), c=color, **text_kws)
 </pre></div>
 </div>
 </div>
@@ -1613,7 +1619,7 @@ A “sparse” vector has mostly zero elements:
 <p>Remember that you stored your models in the <code class="docutils literal notranslate"><span class="pre">ridge_models</span></code> and <code class="docutils literal notranslate"><span class="pre">lasso_models</span></code> dictionary where the key is the alpha value. So you should be able to retrieve the Rdige model with alpha 1 as <code class="docutils literal notranslate"><span class="pre">ridge_models[1]</span></code> for example</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># your code here
 </pre></div>
 </div>
 </div>
@@ -1624,7 +1630,7 @@ A “sparse” vector has mostly zero elements:
 
 
 <script type="application/vnd.jupyter.widget-state+json">
-{"state": {"2b2900f9e10a4656bf2f52f74773e75a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "98d281c83da24e9b9eec64ecbf34197e": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_4acd239879d94c90802c7bccb02375d0", "IPY_MODEL_5354c72c115442d5a0656f59a35c8d7f"], "layout": "IPY_MODEL_2b2900f9e10a4656bf2f52f74773e75a"}}, "1aabb722586946819e5c9ad551046258": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "727286b11a374997bab56e4152003ad6": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "4acd239879d94c90802c7bccb02375d0": {"model_name": "DropdownModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DropdownModel", "_options_labels": ["0.01", "0.1", "1", "10", "100"], "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "DropdownView", "description": "alpha", "description_tooltip": null, "disabled": false, "index": 0, "layout": "IPY_MODEL_1aabb722586946819e5c9ad551046258", "style": "IPY_MODEL_727286b11a374997bab56e4152003ad6"}}, "f990a3fa1e444438aabb4f444f149f8b": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "5354c72c115442d5a0656f59a35c8d7f": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_f990a3fa1e444438aabb4f444f149f8b", "msg_id": "", "outputs": [{"output_type": "error", "ename": "NameError", "evalue": "name 'no_reg_model' is not defined", "traceback": ["\u001b[0;31m---------------------------------------------------------------------------\u001b[0m", "\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)", "File \u001b[0;32m/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/ipywidgets/widgets/interaction.py:257\u001b[0m, in \u001b[0;36minteractive.update\u001b[0;34m(self, *args)\u001b[0m\n\u001b[1;32m    255\u001b[0m     value \u001b[38;5;241m=\u001b[39m widget\u001b[38;5;241m.\u001b[39mget_interact_value()\n\u001b[1;32m    256\u001b[0m     \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mkwargs[widget\u001b[38;5;241m.\u001b[39m_kwarg] \u001b[38;5;241m=\u001b[39m value\n\u001b[0;32m--> 257\u001b[0m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mresult \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mf\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    258\u001b[0m show_inline_matplotlib_plots()\n\u001b[1;32m    259\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mauto_display \u001b[38;5;129;01mand\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mresult \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m:\n", "Cell \u001b[0;32mIn [12], line 6\u001b[0m, in \u001b[0;36mplot_observed\u001b[0;34m(alpha)\u001b[0m\n\u001b[1;32m      3\u001b[0m \u001b[38;5;129m@widgets\u001b[39m\u001b[38;5;241m.\u001b[39minteract\n\u001b[1;32m      4\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21mplot_observed\u001b[39m(alpha \u001b[38;5;241m=\u001b[39m l2_alphas):\n\u001b[1;32m      5\u001b[0m   models \u001b[38;5;241m=\u001b[39m {\n\u001b[0;32m----> 6\u001b[0m     \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mNo regularization\u001b[39m\u001b[38;5;124m\"\u001b[39m: \u001b[43mno_reg_model\u001b[49m,\n\u001b[1;32m      7\u001b[0m     \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mRegularization\u001b[39m\u001b[38;5;124m\"\u001b[39m: ridge_models[alpha]\n\u001b[1;32m      8\u001b[0m   }\n\u001b[1;32m      9\u001b[0m   plot_weights(models)\n", "\u001b[0;31mNameError\u001b[0m: name 'no_reg_model' is not defined"]}]}}, "7ab7edde6a994157925fd37f323d2406": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4f389d376a474df4ab0316ae5ef85f3f": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_4f552e87c68b4a30a5e17f32b92857d5", "IPY_MODEL_f7277b7488a04d06be6b71d2e95c9785"], "layout": "IPY_MODEL_7ab7edde6a994157925fd37f323d2406"}}, "0e37d350b81d43c7b83c1d9b9c2a81ea": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "fabe9614364647c494f2dabb1b77b4c6": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "4f552e87c68b4a30a5e17f32b92857d5": {"model_name": "DropdownModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DropdownModel", "_options_labels": ["0.0005", "0.001", "0.005", "0.01", "0.1"], "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "DropdownView", "description": "alpha", "description_tooltip": null, "disabled": false, "index": 0, "layout": "IPY_MODEL_0e37d350b81d43c7b83c1d9b9c2a81ea", "style": "IPY_MODEL_fabe9614364647c494f2dabb1b77b4c6"}}, "d6db8d2d1b4b4fabaf902b668f401917": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "f7277b7488a04d06be6b71d2e95c9785": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_d6db8d2d1b4b4fabaf902b668f401917", "msg_id": "", "outputs": [{"output_type": "error", "ename": "NameError", "evalue": "name 'no_reg_model' is not defined", "traceback": ["\u001b[0;31m---------------------------------------------------------------------------\u001b[0m", "\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)", "File \u001b[0;32m/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/ipywidgets/widgets/interaction.py:257\u001b[0m, in \u001b[0;36minteractive.update\u001b[0;34m(self, *args)\u001b[0m\n\u001b[1;32m    255\u001b[0m     value \u001b[38;5;241m=\u001b[39m widget\u001b[38;5;241m.\u001b[39mget_interact_value()\n\u001b[1;32m    256\u001b[0m     \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mkwargs[widget\u001b[38;5;241m.\u001b[39m_kwarg] \u001b[38;5;241m=\u001b[39m value\n\u001b[0;32m--> 257\u001b[0m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mresult \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mf\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    258\u001b[0m show_inline_matplotlib_plots()\n\u001b[1;32m    259\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mauto_display \u001b[38;5;129;01mand\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mresult \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m:\n", "Cell \u001b[0;32mIn [14], line 5\u001b[0m, in \u001b[0;36mplot_observed\u001b[0;34m(alpha)\u001b[0m\n\u001b[1;32m      2\u001b[0m \u001b[38;5;129m@widgets\u001b[39m\u001b[38;5;241m.\u001b[39minteract\n\u001b[1;32m      3\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21mplot_observed\u001b[39m(alpha \u001b[38;5;241m=\u001b[39m l1_alphas):\n\u001b[1;32m      4\u001b[0m   models \u001b[38;5;241m=\u001b[39m {\n\u001b[0;32m----> 5\u001b[0m     \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mNo regularization\u001b[39m\u001b[38;5;124m\"\u001b[39m: \u001b[43mno_reg_model\u001b[49m,\n\u001b[1;32m      6\u001b[0m     \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mRegularization\u001b[39m\u001b[38;5;124m\"\u001b[39m: lasso_models[alpha]\n\u001b[1;32m      7\u001b[0m   }\n\u001b[1;32m      8\u001b[0m   plot_weights(models)\n", "\u001b[0;31mNameError\u001b[0m: name 'no_reg_model' is not defined"]}]}}}, "version_major": 2, "version_minor": 0}
+{"state": {"c38e2f40fe4f4f73bf58d85b8b36994a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "55b85fb4a55146d68722056649164e9e": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "63fbddfbe50b4492a97de503d0a728aa": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": [], "layout": "IPY_MODEL_55b85fb4a55146d68722056649164e9e"}}, "39fb3dd10c7d457d850c7cc0aeab519e": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_cb03f6ffa5a14e5b833f511fee3b041a", "IPY_MODEL_b4a2c805e7144c98ac1fc678179d0d8e"], "layout": "IPY_MODEL_55b85fb4a55146d68722056649164e9e"}}, "595dab0d7469481584be9f465355727f": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "9e930879a8114625b0ab41a3e12267e0": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "e9cedc6c957a48efaf7fe845228c4593": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "414e68d1354147d4b874bc7e43e94037": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "4477fe7837514ed3aee05b9a29c67045": {"model_name": "DropdownModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DropdownModel", "_options_labels": ["0.01", "0.1", "1", "10", "100"], "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "DropdownView", "description": "", "description_tooltip": null, "disabled": false, "index": 0, "layout": "IPY_MODEL_9e930879a8114625b0ab41a3e12267e0", "style": "IPY_MODEL_414e68d1354147d4b874bc7e43e94037"}}, "cb03f6ffa5a14e5b833f511fee3b041a": {"model_name": "DropdownModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DropdownModel", "_options_labels": ["0.01", "0.1", "1", "10", "100"], "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "DropdownView", "description": "alpha", "description_tooltip": null, "disabled": false, "index": 0, "layout": "IPY_MODEL_9e930879a8114625b0ab41a3e12267e0", "style": "IPY_MODEL_414e68d1354147d4b874bc7e43e94037"}}, "eaf7d428dfb741a78104f501a500ee3f": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "0067614c9a634c4d990c3bd88543b4cd": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "67d7d7cb0b8e41fa99ee64a783e039fa": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_0067614c9a634c4d990c3bd88543b4cd", "msg_id": "", "outputs": []}}, "b4a2c805e7144c98ac1fc678179d0d8e": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_0067614c9a634c4d990c3bd88543b4cd", "msg_id": "", "outputs": [{"output_type": "error", "ename": "NameError", "evalue": "name 'no_reg_model' is not defined", "traceback": ["\u001b[0;31m---------------------------------------------------------------------------\u001b[0m", "\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)", "File \u001b[0;32m/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/ipywidgets/widgets/interaction.py:257\u001b[0m, in \u001b[0;36minteractive.update\u001b[0;34m(self, *args)\u001b[0m\n\u001b[1;32m    255\u001b[0m     value \u001b[38;5;241m=\u001b[39m widget\u001b[38;5;241m.\u001b[39mget_interact_value()\n\u001b[1;32m    256\u001b[0m     \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mkwargs[widget\u001b[38;5;241m.\u001b[39m_kwarg] \u001b[38;5;241m=\u001b[39m value\n\u001b[0;32m--> 257\u001b[0m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mresult \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mf\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    258\u001b[0m show_inline_matplotlib_plots()\n\u001b[1;32m    259\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mauto_display \u001b[38;5;129;01mand\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mresult \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m:\n", "Cell \u001b[0;32mIn[12], line 6\u001b[0m, in \u001b[0;36mplot_observed\u001b[0;34m(alpha)\u001b[0m\n\u001b[1;32m      3\u001b[0m \u001b[38;5;129m@widgets\u001b[39m\u001b[38;5;241m.\u001b[39minteract\n\u001b[1;32m      4\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21mplot_observed\u001b[39m(alpha \u001b[38;5;241m=\u001b[39m l2_alphas):\n\u001b[1;32m      5\u001b[0m   models \u001b[38;5;241m=\u001b[39m {\n\u001b[0;32m----> 6\u001b[0m     \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mNo regularization\u001b[39m\u001b[38;5;124m\"\u001b[39m: \u001b[43mno_reg_model\u001b[49m,\n\u001b[1;32m      7\u001b[0m     \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mRegularization\u001b[39m\u001b[38;5;124m\"\u001b[39m: ridge_models[alpha]\n\u001b[1;32m      8\u001b[0m   }\n\u001b[1;32m      9\u001b[0m   plot_weights(models)\n", "\u001b[0;31mNameError\u001b[0m: name 'no_reg_model' is not defined"]}]}}, "649f82c180fe46d5b304b771a4f7ca7b": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4038e91e07ae4255bf5525bc3ce876db": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "9d1d31de59544e45b35ec5e3d68b9dd8": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": [], "layout": "IPY_MODEL_4038e91e07ae4255bf5525bc3ce876db"}}, "7ebbfc9af5bc4ba0900778323d27f28f": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_67daacff0e184802a04a222ed9eab44f", "IPY_MODEL_951cd797b62542e7a5d4abfca7013514"], "layout": "IPY_MODEL_4038e91e07ae4255bf5525bc3ce876db"}}, "1395fc9b73dd4d10a7815db387f8537f": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "9e39b6971fd9456784ce6b0e0a47f444": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "666597a5580b470e912e8df53c830bdb": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "18bb4e66e8e74f5bb33bdf4a4792dbac": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "4f91a86dc09d4b2ca67c006b7ae0bf6a": {"model_name": "DropdownModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DropdownModel", "_options_labels": ["0.0005", "0.001", "0.005", "0.01", "0.1"], "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "DropdownView", "description": "", "description_tooltip": null, "disabled": false, "index": 0, "layout": "IPY_MODEL_9e39b6971fd9456784ce6b0e0a47f444", "style": "IPY_MODEL_18bb4e66e8e74f5bb33bdf4a4792dbac"}}, "67daacff0e184802a04a222ed9eab44f": {"model_name": "DropdownModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DropdownModel", "_options_labels": ["0.0005", "0.001", "0.005", "0.01", "0.1"], "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "DropdownView", "description": "alpha", "description_tooltip": null, "disabled": false, "index": 0, "layout": "IPY_MODEL_9e39b6971fd9456784ce6b0e0a47f444", "style": "IPY_MODEL_18bb4e66e8e74f5bb33bdf4a4792dbac"}}, "ad8285de381a48cf931493fd60156d36": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "b6e9c22c524d4caeb7350432590be376": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "b9ff594a2b59429e86b1469e700c513d": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_b6e9c22c524d4caeb7350432590be376", "msg_id": "", "outputs": []}}, "951cd797b62542e7a5d4abfca7013514": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_b6e9c22c524d4caeb7350432590be376", "msg_id": "", "outputs": [{"output_type": "error", "ename": "NameError", "evalue": "name 'no_reg_model' is not defined", "traceback": ["\u001b[0;31m---------------------------------------------------------------------------\u001b[0m", "\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)", "File \u001b[0;32m/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/ipywidgets/widgets/interaction.py:257\u001b[0m, in \u001b[0;36minteractive.update\u001b[0;34m(self, *args)\u001b[0m\n\u001b[1;32m    255\u001b[0m     value \u001b[38;5;241m=\u001b[39m widget\u001b[38;5;241m.\u001b[39mget_interact_value()\n\u001b[1;32m    256\u001b[0m     \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mkwargs[widget\u001b[38;5;241m.\u001b[39m_kwarg] \u001b[38;5;241m=\u001b[39m value\n\u001b[0;32m--> 257\u001b[0m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mresult \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mf\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    258\u001b[0m show_inline_matplotlib_plots()\n\u001b[1;32m    259\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mauto_display \u001b[38;5;129;01mand\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mresult \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m:\n", "Cell \u001b[0;32mIn[14], line 5\u001b[0m, in \u001b[0;36mplot_observed\u001b[0;34m(alpha)\u001b[0m\n\u001b[1;32m      2\u001b[0m \u001b[38;5;129m@widgets\u001b[39m\u001b[38;5;241m.\u001b[39minteract\n\u001b[1;32m      3\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21mplot_observed\u001b[39m(alpha \u001b[38;5;241m=\u001b[39m l1_alphas):\n\u001b[1;32m      4\u001b[0m   models \u001b[38;5;241m=\u001b[39m {\n\u001b[0;32m----> 5\u001b[0m     \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mNo regularization\u001b[39m\u001b[38;5;124m\"\u001b[39m: \u001b[43mno_reg_model\u001b[49m,\n\u001b[1;32m      6\u001b[0m     \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mRegularization\u001b[39m\u001b[38;5;124m\"\u001b[39m: lasso_models[alpha]\n\u001b[1;32m      7\u001b[0m   }\n\u001b[1;32m      8\u001b[0m   plot_weights(models)\n", "\u001b[0;31mNameError\u001b[0m: name 'no_reg_model' is not defined"]}]}}}, "version_major": 2, "version_minor": 0}
 </script>
 
 

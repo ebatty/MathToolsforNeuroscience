@@ -616,6 +616,11 @@ const thebe_selector_output = ".output, .cell_output"
      Reaching 12.4: Intro to Pytorch
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week12/Week12Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -1122,14 +1127,14 @@ title="Print to PDF"
 <p>Imports</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Imports</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Imports
 
-<span class="c1"># Imports</span>
+# Imports
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>  <span class="c1"># interactive display</span>
-<span class="kn">import</span> <span class="nn">math</span>
+import numpy as np
+import matplotlib.pyplot as plt
+import ipywidgets as widgets  # interactive display
+import math
 </pre></div>
 </div>
 </div>
@@ -1137,17 +1142,17 @@ title="Print to PDF"
 <p>Plotting functions</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Plotting functions</span>
-<span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span><span class="p">,</span> <span class="n">eig</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span><span class="p">,</span> <span class="n">ticker</span><span class="p">,</span> <span class="n">get_backend</span><span class="p">,</span> <span class="n">rc</span>
-<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">cycle</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Plotting functions
+import numpy
+from numpy.linalg import inv, eig
+from math import ceil
+from matplotlib import pyplot, ticker, get_backend, rc
+from mpl_toolkits.mplot3d import Axes3D
+from itertools import cycle
 
 
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/NeuromatchAcademy/course-content/master/nma.mplstyle&quot;</span><span class="p">)</span>
+%config InlineBackend.figure_format = &#39;retina&#39;
+plt.style.use(&quot;https://raw.githubusercontent.com/NeuromatchAcademy/course-content/master/nma.mplstyle&quot;)
 </pre></div>
 </div>
 </div>
@@ -1171,18 +1176,18 @@ $<span class="math notranslate nohighlight">\( x = N(5 | 1)\)</span>$</p>
 <p>Hint: a normal distribution <span class="math notranslate nohighlight">\(N(\mu | \sigma)\)</span> is equivalent to <span class="math notranslate nohighlight">\(\mu + \sigma N(0|1)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulate_data</span><span class="p">(</span><span class="n">slope</span><span class="p">,</span> <span class="n">noise_sd</span><span class="p">,</span> <span class="n">n_data_points</span> <span class="o">=</span> <span class="mi">300</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def simulate_data(slope, noise_sd, n_data_points = 300):
 
-  <span class="c1"># Simulate x</span>
-  <span class="n">x</span> <span class="o">=</span> <span class="o">...</span>
+  # Simulate x
+  x = ...
 
-  <span class="c1"># Simulate y</span>
-  <span class="n">y</span> <span class="o">=</span> <span class="o">...</span>
+  # Simulate y
+  y = ...
   
-  <span class="c1"># Get correlation coefficient</span>
-  <span class="n">corr_coef</span> <span class="o">=</span> <span class="o">...</span>
+  # Get correlation coefficient
+  corr_coef = ...
 
-  <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">corr_coef</span>
+  return x, y, corr_coef
 </pre></div>
 </div>
 </div>
@@ -1194,31 +1199,31 @@ $<span class="math notranslate nohighlight">\( x = N(5 | 1)\)</span>$</p>
 <p>Execute this cell to plot simulated data</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Execute this cell to plot simulated data</span>
-<span class="n">slope</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">noise_sds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Execute this cell to plot simulated data
+slope = 2
+noise_sds = np.arange(0, 10, 2)
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="c1">#, sharey=True, sharex=True)</span>
-<span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+fig, axes = plt.subplots(1, 5, figsize=(20, 4)) #, sharey=True, sharex=True)
+r, c = (0, 0)
 
-<span class="n">corr_coefs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">noise_sds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],))</span>
-<span class="k">for</span> <span class="n">i_noise</span><span class="p">,</span> <span class="n">noise_sd</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">noise_sds</span><span class="p">):</span>
-  <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">corr_coef</span> <span class="o">=</span> <span class="n">simulate_data</span><span class="p">(</span><span class="n">slope</span><span class="p">,</span> <span class="n">noise_sd</span><span class="p">)</span>
-  <span class="n">corr_coefs</span><span class="p">[</span><span class="n">i_noise</span><span class="p">]</span> <span class="o">=</span> <span class="n">corr_coef</span>
-  <span class="n">axes</span><span class="p">[</span><span class="n">i_noise</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
-  <span class="n">axes</span><span class="p">[</span><span class="n">i_noise</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
-  <span class="n">c</span><span class="o">+=</span><span class="mi">1</span>
-  <span class="k">if</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>
-    <span class="n">r</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="n">axes</span><span class="p">[</span><span class="n">i_noise</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span><span class="s1">&#39;Noise sd = &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">noise_sd</span><span class="p">),</span> <span class="n">xlabel</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+corr_coefs = np.zeros((noise_sds.shape[0],))
+for i_noise, noise_sd in enumerate(noise_sds):
+  x, y, corr_coef = simulate_data(slope, noise_sd)
+  corr_coefs[i_noise] = corr_coef
+  axes[i_noise].plot(x, y, &#39;.&#39;)
+  axes[i_noise].set_aspect(&#39;auto&#39;)
+  c+=1
+  if c &gt; 4:
+    r += 1
+    c = 0
+  axes[i_noise].set(title =&#39;Noise sd = &#39;+str(noise_sd), xlabel = &#39;x&#39;)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">11</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">11</span>
 <span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="k">for</span> <span class="n">i_noise</span><span class="p">,</span> <span class="n">noise_sd</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">noise_sds</span><span class="p">):</span>
 <span class="g g-Whitespace">     </span><span class="mi">10</span>   <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">corr_coef</span> <span class="o">=</span> <span class="n">simulate_data</span><span class="p">(</span><span class="n">slope</span><span class="p">,</span> <span class="n">noise_sd</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">11</span>   <span class="n">corr_coefs</span><span class="p">[</span><span class="n">i_noise</span><span class="p">]</span> <span class="o">=</span> <span class="n">corr_coef</span>
@@ -1241,12 +1246,12 @@ Put your graph here
 <p>AFTER PREVIOUS STEP: Execute this cell to plot correlation coefficients vs noise sd</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown AFTER PREVIOUS STEP: Execute this cell to plot correlation coefficients vs noise sd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown AFTER PREVIOUS STEP: Execute this cell to plot correlation coefficients vs noise sd
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">noise_sds</span><span class="p">,</span> <span class="n">corr_coefs</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;#70E0BD&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+fig, ax = plt.subplots(figsize=(5, 5))
+ax.plot(noise_sds, corr_coefs, &#39;o-&#39;, c=&#39;#70E0BD&#39;, lw=3)
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Correlation coefficient vs noise&#39;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Noise sd&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Corr coeff&#39;</span><span class="p">);</span>
+ax.set(title=&#39;Correlation coefficient vs noise&#39;, xlabel=&#39;Noise sd&#39;, ylabel=&#39;Corr coeff&#39;);
 </pre></div>
 </div>
 </div>
@@ -1269,31 +1274,31 @@ Text answer here
 <p>Execute this cell to plot simulated data</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Execute this cell to plot simulated data</span>
-<span class="n">noise_sd</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">slopes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Execute this cell to plot simulated data
+noise_sd = 1
+slopes = np.arange(-8, 9, 2)
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">slopes</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+fig, axes = plt.subplots(1, len(slopes), figsize=(20, 4), sharey=True, sharex=True)
+r, c = (0, 0)
 
-<span class="n">corr_coefs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">slopes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],))</span>
-<span class="k">for</span> <span class="n">i_slope</span><span class="p">,</span> <span class="n">slope</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">slopes</span><span class="p">):</span>
-  <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">corr_coef</span> <span class="o">=</span> <span class="n">simulate_data</span><span class="p">(</span><span class="n">slope</span><span class="p">,</span> <span class="n">noise_sd</span><span class="p">)</span>
-  <span class="n">corr_coefs</span><span class="p">[</span><span class="n">i_slope</span><span class="p">]</span> <span class="o">=</span> <span class="n">corr_coef</span>
-  <span class="n">axes</span><span class="p">[</span><span class="n">i_slope</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
-  <span class="n">axes</span><span class="p">[</span><span class="n">i_slope</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
-  <span class="n">c</span><span class="o">+=</span><span class="mi">1</span>
-  <span class="k">if</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>
-    <span class="n">r</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="n">axes</span><span class="p">[</span><span class="n">i_slope</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span><span class="s1">&#39;Slope = &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">slope</span><span class="p">),</span> <span class="n">xlabel</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+corr_coefs = np.zeros((slopes.shape[0],))
+for i_slope, slope in enumerate(slopes):
+  x, y, corr_coef = simulate_data(slope, noise_sd)
+  corr_coefs[i_slope] = corr_coef
+  axes[i_slope].plot(x, y, &#39;.&#39;)
+  axes[i_slope].set_aspect(&#39;auto&#39;)
+  c+=1
+  if c &gt; 4:
+    r += 1
+    c = 0
+  axes[i_slope].set(title =&#39;Slope = &#39;+str(slope), xlabel = &#39;x&#39;)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">11</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">11</span>
 <span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="k">for</span> <span class="n">i_slope</span><span class="p">,</span> <span class="n">slope</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">slopes</span><span class="p">):</span>
 <span class="g g-Whitespace">     </span><span class="mi">10</span>   <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">corr_coef</span> <span class="o">=</span> <span class="n">simulate_data</span><span class="p">(</span><span class="n">slope</span><span class="p">,</span> <span class="n">noise_sd</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">11</span>   <span class="n">corr_coefs</span><span class="p">[</span><span class="n">i_slope</span><span class="p">]</span> <span class="o">=</span> <span class="n">corr_coef</span>
@@ -1315,12 +1320,12 @@ Put your graph here
 <p>AFTER PREVIOUS STEP: Execute this cell to plot correlation coefficients vs slope</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown AFTER PREVIOUS STEP: Execute this cell to plot correlation coefficients vs slope</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown AFTER PREVIOUS STEP: Execute this cell to plot correlation coefficients vs slope
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">slopes</span><span class="p">,</span> <span class="n">corr_coefs</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;#70E0BD&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+fig, ax = plt.subplots(figsize=(5, 5))
+ax.plot(slopes, corr_coefs, &#39;o-&#39;, c=&#39;#70E0BD&#39;, lw=3)
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Correlation coefficient vs slope&#39;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Slope&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Corr coeff&#39;</span><span class="p">);</span>
+ax.set(title=&#39;Correlation coefficient vs slope&#39;, xlabel=&#39;Slope&#39;, ylabel=&#39;Corr coeff&#39;);
 </pre></div>
 </div>
 </div>
@@ -1370,16 +1375,16 @@ Text answer here
 <p>You may want to use <code class="docutils literal notranslate"><span class="pre">np.math.factorial</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">thetas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>thetas = np.arange(0, 360, 1)
 
-<span class="n">k</span> <span class="o">=</span> <span class="mi">15</span>
-<span class="n">likelihoods</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">thetas</span><span class="p">),))</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">theta</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">thetas</span><span class="p">):</span>
-  <span class="o">...</span>
+k = 15
+likelihoods = np.zeros((len(thetas),))
+for i, theta in enumerate(thetas):
+  ...
 
-<span class="c1"># Get theta that maximizes the likelihood</span>
-<span class="n">theta_max_likelihood</span> <span class="o">=</span> <span class="o">...</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">theta_max_likelihood</span><span class="p">)</span>
+# Get theta that maximizes the likelihood
+theta_max_likelihood = ...
+print(theta_max_likelihood)
 </pre></div>
 </div>
 </div>
@@ -1391,9 +1396,9 @@ Text answer here
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">thetas</span><span class="p">,</span> <span class="n">likelihoods</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Theta&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;P(S= 15 | H=theta)&#39;</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig, ax = plt.subplots(1, 1)
+ax.plot(thetas, likelihoods, &#39;k&#39;)
+ax.set(xlabel=&#39;Theta&#39;, ylabel=&#39;P(S= 15 | H=theta)&#39;);
 </pre></div>
 </div>
 </div>
@@ -1414,17 +1419,17 @@ Answer here
 <p>Execute this cell to get and visualize prior_prob</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Execute this cell to get and visualize prior_prob </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Execute this cell to get and visualize prior_prob 
 
-<span class="kn">import</span> <span class="nn">scipy.signal</span>
+import scipy.signal
 
-<span class="n">gauss</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">gaussian</span><span class="p">(</span><span class="mi">360</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">sym</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
-<span class="n">gauss</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">gauss</span><span class="p">)</span>
-<span class="n">prior_prob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">gauss</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">360</span><span class="o">/</span><span class="mi">2</span><span class="p">):],</span> <span class="n">gauss</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="mi">360</span><span class="o">/</span><span class="mi">2</span><span class="p">)]))</span>
+gauss = scipy.signal.gaussian(360, 50, sym=True)+1
+gauss /= np.sum(gauss)
+prior_prob = np.concatenate((gauss[int(360/2):], gauss[:int(360/2)]))
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">thetas</span><span class="p">,</span> <span class="n">prior_prob</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Theta&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;P(H=theta)&#39;</span><span class="p">);</span>
+fig, ax = plt.subplots(1, 1)
+ax.plot(thetas, prior_prob, &#39;k&#39;)
+ax.set(xlabel=&#39;Theta&#39;, ylabel=&#39;P(H=theta)&#39;);
 </pre></div>
 </div>
 </div>
@@ -1443,15 +1448,15 @@ Answer here
 <p>We can again use the brute force method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">15</span>
-<span class="n">posterior_probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">thetas</span><span class="p">),))</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">theta</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">thetas</span><span class="p">):</span>
-  <span class="o">...</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>k = 15
+posterior_probs = np.zeros((len(thetas),))
+for i, theta in enumerate(thetas):
+  ...
 
 
-<span class="c1"># Get theta that maximizes the posterior probability</span>
-<span class="n">theta_max_posterior</span> <span class="o">=</span> <span class="o">...</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">theta_max_posterior</span><span class="p">)</span>
+# Get theta that maximizes the posterior probability
+theta_max_posterior = ...
+print(theta_max_posterior)
 </pre></div>
 </div>
 </div>
@@ -1463,9 +1468,9 @@ Answer here
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">thetas</span><span class="p">,</span> <span class="n">posterior_probs</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Theta&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Proportional to P(H=theta | S= 15)&#39;</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig, ax = plt.subplots(1, 1)
+ax.plot(thetas, posterior_probs, &#39;k&#39;)
+ax.set(xlabel=&#39;Theta&#39;, ylabel=&#39;Proportional to P(H=theta | S= 15)&#39;);
 </pre></div>
 </div>
 </div>
@@ -1510,10 +1515,10 @@ Answer here
 <p>Major hint</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Major hint</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Major hint
 
-<span class="c1"># Take the derivative of the log likelihood and</span>
-<span class="c1"># set equal to 0</span>
+# Take the derivative of the log likelihood and
+# set equal to 0
 </pre></div>
 </div>
 </div>

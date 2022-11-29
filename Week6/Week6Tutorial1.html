@@ -616,6 +616,11 @@ const thebe_selector_output = ".output, .cell_output"
      Reaching 12.4: Intro to Pytorch
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Week12/Week12Tutorial1.html">
+     Tutorial 1
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -1193,14 +1198,14 @@ title="Print to PDF"
 <p>Imports</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Imports</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Imports
 
-<span class="c1"># Imports</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>  <span class="c1"># interactive display</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">binom</span>
+# Imports
+import numpy as np
+import matplotlib.pyplot as plt
+import ipywidgets as widgets  # interactive display
+import math
+from scipy.stats import binom
 </pre></div>
 </div>
 </div>
@@ -1208,17 +1213,17 @@ title="Print to PDF"
 <p>Plotting functions</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Plotting functions</span>
-<span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span><span class="p">,</span> <span class="n">eig</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span><span class="p">,</span> <span class="n">ticker</span><span class="p">,</span> <span class="n">get_backend</span><span class="p">,</span> <span class="n">rc</span>
-<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">cycle</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Plotting functions
+import numpy
+from numpy.linalg import inv, eig
+from math import ceil
+from matplotlib import pyplot, ticker, get_backend, rc
+from mpl_toolkits.mplot3d import Axes3D
+from itertools import cycle
 
 
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/NeuromatchAcademy/course-content/master/nma.mplstyle&quot;</span><span class="p">)</span>
+%config InlineBackend.figure_format = &#39;retina&#39;
+plt.style.use(&quot;https://raw.githubusercontent.com/NeuromatchAcademy/course-content/master/nma.mplstyle&quot;)
 </pre></div>
 </div>
 </div>
@@ -1305,11 +1310,11 @@ Fill in your answer here
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">left_prob</span> <span class="o">=</span> <span class="mf">0.8</span>
-<span class="n">right_prob</span> <span class="o">=</span> <span class="mf">0.3</span>
-<span class="n">n_visits_per_side</span> <span class="o">=</span> <span class="mi">2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>left_prob = 0.8
+right_prob = 0.3
+n_visits_per_side = 2
 
-<span class="c1"># your simulation code here</span>
+# your simulation code here
 </pre></div>
 </div>
 </div>
@@ -1321,7 +1326,7 @@ Fill in your answer here
 <p>You have to put every thing together by hand but you can use <code class="docutils literal notranslate"><span class="pre">binom(2,</span> <span class="pre">0.8).pmf(k)</span></code> to compute bimomial probabilities. This example gives the probability of getting k rewards from the left side with 2 trials (where k is either 0, 1, or 2)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binom</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>binom(2, 0.8).pmf(0)
 </pre></div>
 </div>
 </div>
@@ -1339,14 +1344,14 @@ Fill in the probability of being wrong here so it is green. (show your work abov
 <p>Hint 1</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Hint 1</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Think through each event where you would be wrong </span>
-<span class="sd">(what the number of rewards on the left side vs the </span>
-<span class="sd">right side would be). </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Hint 1
+&quot;&quot;&quot;
+Think through each event where you would be wrong 
+(what the number of rewards on the left side vs the 
+right side would be). 
 
-<span class="sd">Brute force this - write out every single possibility.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+Brute force this - write out every single possibility.
+&quot;&quot;&quot;
 </pre></div>
 </div>
 </div>
@@ -1359,15 +1364,15 @@ Fill in the probability of being wrong here so it is green. (show your work abov
 <p>Hint 2</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Hint 2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Hint 2
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">How would you compute the total probability that you&#39;re </span>
-<span class="sd">wrong based on the probability of each of these events</span>
-<span class="sd">occuring? You may want to treat ties separately</span>
-<span class="sd">for ease.  How would you compute the probability</span>
-<span class="sd">of each event? </span>
-<span class="sd">&quot;&quot;&quot;</span>
+&quot;&quot;&quot;
+How would you compute the total probability that you&#39;re 
+wrong based on the probability of each of these events
+occuring? You may want to treat ties separately
+for ease.  How would you compute the probability
+of each event? 
+&quot;&quot;&quot;
 </pre></div>
 </div>
 </div>
@@ -1380,11 +1385,11 @@ Fill in the probability of being wrong here so it is green. (show your work abov
 <p>Hint 3</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Hint 3</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Hint 3
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">P(wrong) = P(fewer rewards on left side) + 0.5P(tie)</span>
-<span class="sd">&quot;&quot;&quot;</span>
+&quot;&quot;&quot;
+P(wrong) = P(fewer rewards on left side) + 0.5P(tie)
+&quot;&quot;&quot;
 </pre></div>
 </div>
 </div>
@@ -1397,14 +1402,14 @@ Fill in the probability of being wrong here so it is green. (show your work abov
 <p>Hint 4</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Hint 4</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Hint 4
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">The probability of either event A or event B occuring</span>
-<span class="sd">is P(A or B) = P(A) + P(B) if they are mutually exclusive </span>
-<span class="sd">(they can&#39;t both happen at once). This should help</span>
-<span class="sd">answer the first question in hint 2</span>
-<span class="sd">&quot;&quot;&quot;</span>
+&quot;&quot;&quot;
+The probability of either event A or event B occuring
+is P(A or B) = P(A) + P(B) if they are mutually exclusive 
+(they can&#39;t both happen at once). This should help
+answer the first question in hint 2
+&quot;&quot;&quot;
 </pre></div>
 </div>
 </div>
@@ -1417,13 +1422,13 @@ Fill in the probability of being wrong here so it is green. (show your work abov
 <p>Hint 5</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Hint 5</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># @markdown Hint 5
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">The probability of event A and B occuring if they are</span>
-<span class="sd">independent is P(A and B) = P(A)*P(B).  This should help </span>
-<span class="sd">answer the second question in hint 2</span>
-<span class="sd">&quot;&quot;&quot;</span>
+&quot;&quot;&quot;
+The probability of event A and B occuring if they are
+independent is P(A and B) = P(A)*P(B).  This should help 
+answer the second question in hint 2
+&quot;&quot;&quot;
 </pre></div>
 </div>
 </div>
@@ -1441,7 +1446,7 @@ Fill in the probability of being wrong here so it is green. (show your work abov
 <p>Use it it compute the probability of being wrong with n_visits = 4, left_prob = 0.7, and right_prob = 0.2</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># your code here
 </pre></div>
 </div>
 </div>
@@ -1459,15 +1464,15 @@ Fill in the probability of being wrong here so it is green. (show your work abov
 <p>In the code below, for <span class="math notranslate nohighlight">\(\theta\)</span> between 0 and 359, compute <span class="math notranslate nohighlight">\(\lambda\)</span>. Sample the spike count for 10000 trials (10000 occurences of that head direction) using <code class="docutils literal notranslate"><span class="pre">np.random.poisson</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">thetas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>thetas = np.arange(0, 360, 1)
 
-<span class="n">lam</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># should be an array the same size as thetas with the lambdas</span>
+lam = ... # should be an array the same size as thetas with the lambdas
 
-<span class="n">n_trials</span> <span class="o">=</span> <span class="mi">10000</span> 
+n_trials = 10000 
 
-<span class="c1"># Get spike counts, an array of size len(theta) x n_trials </span>
-<span class="c1"># YOUR CODE HERE</span>
-<span class="o">...</span>
+# Get spike counts, an array of size len(theta) x n_trials 
+# YOUR CODE HERE
+...
 </pre></div>
 </div>
 </div>
@@ -1483,18 +1488,18 @@ Fill in the probability of being wrong here so it is green. (show your work abov
 <p>For each <span class="math notranslate nohighlight">\(\theta\)</span>, compute the mean of the spike count over trials and plot vs <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_spike_count</span> <span class="o">=</span> <span class="o">...</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mean_spike_count = ...
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">mean_spike_count</span><span class="p">,</span> <span class="s1">&#39;ok&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Lambda&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Mean spike count&#39;</span><span class="p">);</span>
+fig, ax = plt.subplots(1, 1)
+ax.plot(lam, mean_spike_count, &#39;ok&#39;)
+ax.set(xlabel=&#39;Lambda&#39;, ylabel=&#39;Mean spike count&#39;);
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">mean_spike_count</span> <span class="o">=</span> <span class="o">...</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">mean_spike_count</span><span class="p">,</span> <span class="s1">&#39;ok&#39;</span><span class="p">)</span>
@@ -1560,18 +1565,18 @@ Fill in your text answer here (if in latex) so it is green. Use <br> <br>  for l
 <p>Now, for each theta, compute the variance of the spike counts over trials. Plot the mean spike count vs the variance of the spike counts.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">variance_spike_count</span> <span class="o">=</span> <span class="o">...</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>variance_spike_count = ...
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mean_spike_count</span><span class="p">,</span> <span class="n">variance_spike_count</span><span class="p">,</span> <span class="s1">&#39;ok&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Mean spike count&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Variance of spike counts&#39;</span><span class="p">);</span>
+fig, ax = plt.subplots(1, 1)
+ax.plot(mean_spike_count, variance_spike_count, &#39;ok&#39;)
+ax.set(xlabel=&#39;Mean spike count&#39;, ylabel=&#39;Variance of spike counts&#39;);
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">variance_spike_count</span> <span class="o">=</span> <span class="o">...</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mean_spike_count</span><span class="p">,</span> <span class="n">variance_spike_count</span><span class="p">,</span> <span class="s1">&#39;ok&#39;</span><span class="p">)</span>
